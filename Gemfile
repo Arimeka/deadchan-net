@@ -11,9 +11,11 @@ gem 'mongo_mapper'
 gem 'decent_exposure'
 gem 'russian'
 gem 'haml'
+gem "haml-rails"
 gem 'bootstrap-sass', '~> 3.0.0.0.rc'
 gem 'redis-rails'
 gem 'yui-compressor'
+gem 'bson_ext'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -1,0 +1,36 @@
+!!! 5
+%html{lang: 'ru'}
+  %head
+    %title= full_title(yield(:title))
+    %meta{charset: "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", content: "IE=edge, chrome=1"}
+    %meta{name: "viewport", content: "width=760"}
+    %meta{name: "description", content: "#{APP['site_description']}"}
+    %meta{name: "keywords", content: "#{APP['site_keywords']}"}
+
+    %meta{content: "#{APP['site_name']}", property: "og:title"}
+    %meta{content: "#{request.url || 'http://deadchan.net/'}", property: "og:url"}
+    %meta{content: "#{image_path('logo.png')}", property: "og:image"}
+    %meta{content: "#{APP['site_description']}", property: "og:description"}
+    %meta{content: "Deadchan", property: "og:site_name"}
+
+    %link{href: "#{image_path('logo.png')}", rel: "image_src"}
+    %link{href: "#{request.url || 'http://deadchan.net/'}", rel: "canonical"}
+  = stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => true
+  = stylesheet_link_tag 'vendor/normalize', "data-turbolinks-track" => true
+  = javascript_include_tag "application", "data-turbolinks-track" => true
+  = csrf_meta_tags
+%body{class: "#{controller.controller_name}"}
+  /[if lt IE 8]
+    %p.browsehappy
+      Are you fucking retarded? Use <a href="http://browsehappy.com/"> the browser</a>, Luke. 
+  %header
+    = render 'layouts/header'
+  .row
+    .col-md-2.sidebar= render 'layouts/sidebar'
+    .col-md-10
+      = render 'layouts/messages'
+      = yield
+  %footer
+    = render 'layouts/footer'
+  = render 'layouts/counters'

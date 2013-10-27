@@ -38,6 +38,8 @@ GEM
     bootstrap-sass (3.0.0.0.rc2)
       sass (~> 3.2)
     bson (1.9.2)
+    bson_ext (1.9.2)
+      bson (~> 1.9.2)
     builder (3.1.4)
     callsite (0.0.11)
     capistrano (3.0.0)
@@ -78,6 +80,11 @@ GEM
       rspec (~> 2.11)
     haml (4.0.3)
       tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     hike (1.2.3)
     i18n (0.6.5)
     jbuilder (1.5.2)
@@ -239,6 +246,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.0.0.0.rc)
+  bson_ext
   capistrano
   capybara
   coffee-rails (~> 4.0.0)
@@ -247,6 +255,7 @@ DEPENDENCIES
   factory_girl_rails
   guard-rspec
   haml
+  haml-rails
   jbuilder (~> 1.2)
   jquery-rails
   letter_opener
