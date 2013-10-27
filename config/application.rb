@@ -13,6 +13,24 @@ Bundler.require(:default, Rails.env)
 
 module DeadchanNet
   class Application < Rails::Application
+    config.time_zone = 'Europe/Moscow'
+    config.i18n.default_locale = :ru
+    config.generators do |g|
+      g.template_engine :haml
+      g.test_framework :rspec, fixture: false, view: false
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
+      g.view_specs      false
+      g.helper_specs    false     
+    end
+
+    config.cache_store = :redis_store, {
+      host: "127.0.0.1", 
+      port: 6379, 
+      db: 0, 
+      namespace: "deadchan.net:cache", 
+      expires_in: 7*24*60*60
+    }
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

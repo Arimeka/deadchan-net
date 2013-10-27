@@ -1,0 +1,6 @@
+development: &defaults
+  redis: {servers: "redis://127.0.0.1:6379/2/deadchan.net:sessions", key: '_deadchan_net', expire_in: 24*60*60}
+production:
+  <<: *defaults
+test:
+  <<: *defaults
