@@ -127,15 +127,26 @@ header, footer {
 
 .row {
   margin-left: 0px;
+  margin-right: 0px;
 }
 
-footer {
-  bottom: 0;
-  position: absolute;
+// Content
+
+.thread {
+  margin-top: 20px;
+  border-bottom: 1px dashed #ddd;
+
+  article {
+    display: inline-block;
+    img {
+      margin: 0px 20px 15px 0px;
+    }
+  }
 }
 
-
-
+.page-footer {
+  margin-top: 20px;
+}
 
 
 
