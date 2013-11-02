@@ -1,5 +1,13 @@
-DeadchanNet::Application.routes.draw do  
+DeadchanNet::Application.routes.draw do    
   root 'home#index'
+
+  scope '/lodge' do
+    devise_for :admins
+  end
+  
+  namespace :lodge do
+    get '/' => 'dashboard#index'
+  end
   
   get "boards/show"
   get "threads/show"
