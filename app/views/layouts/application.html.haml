@@ -19,7 +19,7 @@
   = stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => true
   = stylesheet_link_tag 'vendor/normalize', "data-turbolinks-track" => true
   = javascript_include_tag "application", "data-turbolinks-track" => true
-  = csrf_meta_tags
+  = render 'layouts/csrf'
 %body{class: "#{controller.controller_name}"}
   /[if lt IE 8]
     %p.browsehappy
