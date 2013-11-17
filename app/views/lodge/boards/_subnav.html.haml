@@ -1,14 +1,9 @@
 .navbar.navbar-default
   %ul.nav.navbar-nav
     %li{class: controller.controller_path == "lodge/boards" && controller.action_name == "index" ? "active" : ""}
-      - if board
-        = link_to lodge_boards_path do
-          %i.icon-list-alt
-          =t "path.controllers.lodge/#{controller.controller_name}.index"
-      - else
-        = link_to lodge_boards_path do
-          %i.icon-list-alt
-          =t "path.controllers.lodge/#{controller.controller_name}.index"
+      = link_to lodge_boards_path do
+        %i.icon-list-alt
+        =t "path.controllers.lodge/#{controller.controller_name}.index"
     %li{class: controller.controller_path == "lodge/boards" && controller.action_name == "new" ? "active" : ""}
       %a{href: new_lodge_board_path} 
         %i.icon-pencil

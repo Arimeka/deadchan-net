@@ -1,7 +1,5 @@
 %td
-  - if board.is_threadable
-    %span.glyphicon.glyphicon-ok-sign
-  - else
+  - unless board.is_threadable
     %span.glyphicon.glyphicon-minus-sign
   - if board.is_published
     %span.glyphicon.glyphicon-eye-open

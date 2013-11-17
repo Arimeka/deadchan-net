@@ -1,14 +1,14 @@
 class Post
   include Mongoid::Document
-  field :uid, type: Integer
+  field :nuid, type: Integer
   field :is_published,  type: Mongoid::Boolean, default: true
-  field :content,  type: Text
+  field :content,  type: String
 
 
   # Validations
   # ======================================================
   validates :content, presence: true, length: { in: 1..2500 }
-  validates :uid, presence: true, uniqueness: true
+  validates :nuid, presence: true
   validates :is_published, inclusion: { in: [true, false] }
 
   # Scopes

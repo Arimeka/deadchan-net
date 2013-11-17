@@ -12,3 +12,7 @@ ru:
         <<: *defaults
         title:                        "Борды"
         show:                         "Статистика борды"
+      lodge/treads:
+        <<: *defaults
+        title:                        "Треды"
+        show:                         "Статистика треда"

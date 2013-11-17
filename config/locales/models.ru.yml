@@ -9,10 +9,22 @@ ru:
       defaults: &defaults
         title:                  "Заголовок"
         placement_index:        "Позиция"
-        is_published:           "Опубликовано"
+        is_published:           "Опубликовано"        
+        nuid:                   "Номер"
+        content:                "Содержимое"
 
       board:
         <<: *defaults
         abbr:                   "Аббревиатура"
         threads_number:         "Макс. к-во тредов"
         is_threadable:          "Разрешено создание тредов"
+
+      tread:
+        <<: *defaults
+        posts_count:            "К-во постов"
+        posts_number:           "К-во постов"
+        is_commentable:         "Комментируемо"
+        is_pinned:              "Прикреплено"
+
+      post:
+        <<: *defaults
