@@ -1,0 +1,17 @@
+- provide(:title, t("path.controllers.lodge/#{controller.controller_name}.title"))
+.col-md-12
+  = render partial: "subnav"
+  .col-md-6
+    %table.table.table-condensed.table-striped
+      %thead
+        %tr
+          %th
+          %th= t "mongoid.attributes.board.abbr"
+          %th= t "mongoid.attributes.board.title"
+          %th= t "mongoid.attributes.board.threads_number"
+          %th= t "mongoid.attributes.board.placement_index"
+          %th
+      %tbody
+        = render boards
+  .clearfix
+  = will_paginate boards

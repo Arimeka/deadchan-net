@@ -1,0 +1,7 @@
+%ul.nav.navbar-nav.navbar-right
+  %li
+    = form_tag(form_url, method: :get, class: "navbar-form navbar-left") do
+      .form-group
+        = text_field_tag "search", params[:search], placeholder: "", class: "form-control"
+      = submit_tag "Поиск", class: "btn btn-default"
+.clearfix

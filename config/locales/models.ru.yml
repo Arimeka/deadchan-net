@@ -1,0 +1,18 @@
+ru:
+  mongoid:
+
+    models:
+
+      board:                    "Борда"
+
+    attributes:
+      defaults: &defaults
+        title:                  "Заголовок"
+        placement_index:        "Позиция"
+        is_published:           "Опубликовано"
+
+      board:
+        <<: *defaults
+        abbr:                   "Аббревиатура"
+        threads_number:         "Макс. к-во тредов"
+        is_threadable:          "Разрешено создание тредов"

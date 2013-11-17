@@ -1,0 +1,6 @@
+- unless @errors.nil?
+  .alert.alert-warning.alert-dismissable
+    %button{type: "button", class: "close", 'data-dismiss'=>"alert", 'aria-hidden'=>"true"}
+      &times;
+    - @errors.each do |message|
+      %p= message

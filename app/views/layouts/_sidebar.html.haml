@@ -1,3 +1,3 @@
 .well
-  = link_to 'graveyard', '#', class: 'btn btn-primary btn-lg btn-block'
-  = link_to 'about', '#', class: 'btn btn-primary btn-lg btn-block'
+  - boards.each do |board|
+    = link_to board.title, board_path(board.abbr), class: 'btn btn-primary btn-lg btn-block'

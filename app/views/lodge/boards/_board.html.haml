@@ -1,0 +1,22 @@
+%td
+  - if board.is_threadable
+    %span.glyphicon.glyphicon-ok-sign
+  - else
+    %span.glyphicon.glyphicon-minus-sign
+  - if board.is_published
+    %span.glyphicon.glyphicon-eye-open
+  - else
+    %span.glyphicon.glyphicon-eye-close
+%td
+  = board.abbr
+%td
+  = board.title
+%td
+  = board.threads_number
+%td
+  = board.placement_index
+%td
+  = link_to edit_lodge_board_path(board), class: "btn" do
+    %span.glyphicon.glyphicon-pencil
+  = link_to board_path(board.abbr), class: "btn" do
+    %span.glyphicon.glyphicon-circle-arrow-right

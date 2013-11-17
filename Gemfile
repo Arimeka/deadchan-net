@@ -16,6 +16,8 @@ gem 'bootstrap-sass', '~> 3.0.0.0.rc'
 gem 'redis-rails'
 gem 'yui-compressor'
 gem 'devise'
+gem 'tire'
+gem 'will_paginate_mongoid'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

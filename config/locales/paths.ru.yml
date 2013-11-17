@@ -1,0 +1,14 @@
+ru:  
+  path:
+    controllers:
+      defaults: &defaults
+        index:                        "Посмотреть все"
+        create:                       "Создать" 
+        new:                          "Открыть форму создания"
+        edit:                         "Открыть форму редактирования"
+        update:                       "Внести изменения" 
+        destroy:                      "Удалить"
+      lodge/boards:
+        <<: *defaults
+        title:                        "Борды"
+        show:                         "Статистика борды"

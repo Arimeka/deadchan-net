@@ -1,13 +1,4 @@
 - if admin_signed_in?
-  %nav{class: 'navbar navbar-default', role: 'navigation'}
-    .navbar-header
-      .navbar-brand= link_to 'Deadchan', lodge_path
-    %ul.nav.navbar-nav
-      %li= link_to 'Борды', '#'
-      %li= link_to 'Треды', '#'
-      %li= link_to 'Посты', '#'
-      %li= link_to 'Пользователи', '#'
-    %ul.nav.navbar-nav.navbar-right
-      %li= link_to 'Выйти', destroy_admin_session_path, method: :delete
+  = render 'layouts/lodge/header'
 .page-header  
   %h1= full_title(yield(:title))  

@@ -7,10 +7,14 @@ DeadchanNet::Application.routes.draw do
   
   namespace :lodge do
     get '/' => 'dashboard#index'
+
+    resources :boards
+    resources :threads
+    resources :posts
   end
   
-  get "boards/show"
-  get "threads/show"
+  get ':abbr'     => 'boards#show',  as: :board
+  get ":abbr/:id" => 'threads#show', as: :thread
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
