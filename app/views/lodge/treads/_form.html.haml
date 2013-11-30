@@ -3,7 +3,11 @@
   .form-group
     = f.label :title, class: "col-sm-2 control-label"
     .col-sm-3
-      = f.text_field :title, placeholder: "Тема", class: "form-control"
+      = f.text_field :title, placeholder: "Тема", class: "form-control"      
+  .form-group
+    = f.label :board_id, class: "col-sm-2 control-label"
+    .col-sm-2
+      = f.select :board_id, boards.collect {|b| [ b.title, b.id ] }, { include_blank: false }, class: 'form-control'
   .form-group
     = f.label :posts_number, class: "col-sm-2 control-label"
     .col-sm-2
@@ -22,14 +26,22 @@
         = f.label :is_pinned do
           = f.check_box :is_pinned
           = t "mongoid.attributes.tread.is_pinned"
-  = f.fields_for :posts, post do |p|
-    .form-group
-      = p.label :content, class: "col-sm-2 control-label"
-      .col-md-10
-        = p.text_area :content, rows: 10, class: "form-control"
+      .checkbox
+        = f.label :show_name do
+          = f.check_box :show_name
+          = t "mongoid.attributes.tread.show_name"
+      .checkbox
+        = f.label :is_admin do
+          = f.check_box :is_admin
+          = t "mongoid.attributes.tread.is_admin"
+  .form-group
+    = f.label :content, class: "col-sm-2 control-label"
+    .col-md-10
+      = f.text_area :content, rows: 10, class: "form-control wysihtml5"
   .form-actions
     - unless tread.new_record?
       = link_to "Удалить", lodge_tread_path(tread), method: :delete, data: { confirm: "Уверены?" }, title: "Удалить", class: "btn btn-danger pull-right"
     = f.submit t('form.save'), class: 'btn btn-success'
     = f.submit t('form.save_and_exit'), class: 'btn btn-primary'
     = link_to 'Отмена', :back, class: 'btn'
+= render partial: "lodge/shared/blocks/wysihtml5"

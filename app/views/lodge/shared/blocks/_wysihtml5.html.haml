@@ -1,0 +1,18 @@
+:javascript
+  $(document).on('page:load', function(){
+    window['rangy'].initialized = false
+  })
+  $(document).ready(function(){
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5({
+        locale: "ru-RU",
+        "font-styles": true, 
+        "emphasis": true,
+        "lists": true,
+        "html": true,
+        "link": true,
+        "image": true,
+        "color": true
+      });
+    });
+  })

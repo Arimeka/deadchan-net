@@ -49,6 +49,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.0.0.0)
       sass (~> 3.2)
+    bootstrap-wysihtml5-rails (0.3.1.23)
+      railties (>= 3.0)
     bson (2.0.0.rc3)
     builder (3.1.4)
     callsite (0.0.11)
@@ -185,6 +187,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (3.0.0)
     redis (3.0.6)
     redis-actionpack (4.0.0)
       actionpack (~> 4)
@@ -290,6 +293,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.0.0.0.rc)
+  bootstrap-wysihtml5-rails
   capistrano
   capybara
   coffee-rails (~> 4.0.0)
@@ -308,6 +312,7 @@ DEPENDENCIES
   mongoid!
   rails (= 4.0.0)
   rb-inotify (~> 0.8.8)
+  redcarpet
   redis-rails
   rspec-rails (~> 2.12)
   russian

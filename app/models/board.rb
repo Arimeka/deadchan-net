@@ -1,5 +1,7 @@
 class Board
   include Mongoid::Document
+  include Mongoid::Timestamps
+  
   field :title, type: String
   field :abbr, type: String
   field :placement_index, type: Integer, default: 0

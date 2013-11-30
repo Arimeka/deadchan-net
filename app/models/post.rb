@@ -1,5 +1,7 @@
 class Post
   include Mongoid::Document
+  include Mongoid::Timestamps
+  
   field :nuid, type: Integer
   field :is_published,  type: Mongoid::Boolean, default: true
   field :content,  type: String

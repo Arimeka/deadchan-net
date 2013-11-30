@@ -12,6 +12,8 @@ ru:
         is_published:           "Опубликовано"        
         nuid:                   "Номер"
         content:                "Содержимое"
+        show_name:              "Показать имя"
+        is_admin:               "Как админ"
 
       board:
         <<: *defaults
@@ -25,6 +27,7 @@ ru:
         posts_number:           "К-во постов"
         is_commentable:         "Комментируемо"
         is_pinned:              "Прикреплено"
+        board_id:               "Борда"
 
       post:
         <<: *defaults

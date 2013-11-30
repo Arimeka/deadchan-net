@@ -18,6 +18,8 @@ gem 'yui-compressor'
 gem 'devise'
 gem 'tire'
 gem 'will_paginate_mongoid'
+gem 'redcarpet'
+gem 'bootstrap-wysihtml5-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

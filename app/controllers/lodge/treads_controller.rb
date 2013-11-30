@@ -1,7 +1,7 @@
 class Lodge::TreadsController < Lodge::LodgeController
+  expose(:boards) { Board.published }
   expose(:treads) { Tread.paginate(page: params[:page]) }
   expose(:tread) { params[:id] ? Tread.find(params[:id]) : Tread.new(tread_params) }
-  expose(:post) { params[:id] ? Tread.find(params[:id]).posts.first : Post.new(tread_params) }
 
   def index
   end
@@ -62,8 +62,9 @@ class Lodge::TreadsController < Lodge::LodgeController
 
   private
     def tread_params
-      params.fetch(:tread, {}).permit(:title, :is_published, :pin, 
-                                        :is_commentable, :posts_number)
-      params.fetch(:post, {}).permit(:content)
+      params.fetch(:tread, {}).permit(:title, :content,
+                                        :is_published, :pin, 
+                                        :is_commentable, :posts_number,
+                                        :board_id, :is_admin, :show_name)      
     end
 end
