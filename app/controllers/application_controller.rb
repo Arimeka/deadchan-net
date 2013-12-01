@@ -1,3 +1,5 @@
+require 'markdown_renderer'
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -7,7 +9,17 @@ class ApplicationController < ActionController::Base
 
   private
     def markdown(text)
-      renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: false)
+      render_options = {
+        hard_wrap: true, 
+        filter_html: false, 
+        link_attributes: {
+          target: '_blank',
+          rel: 'nofollow'
+        },
+        no_styles: true,
+        no_images: true
+      }
+      renderer = RenderWithoutHeaders.new(render_options)
       options = {
           autolink: true,
           no_intra_emphasis: true,

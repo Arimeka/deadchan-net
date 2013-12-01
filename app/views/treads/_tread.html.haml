@@ -4,11 +4,12 @@
       %li
         = link_to '#' do
           %h3= tread.title
-      %li= Russian::strftime tread.created_at, '%a %d %B %Y %H:%M:%S'
+      %li= Russian::strftime tread.published_at, '%a %d %B %Y %H:%M:%S'
       %li
         = link_to "##{tread.nuid}", '#'
-    .body
-      = link_to '#' do
-        = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail pull-left'
-      = tread.content.html_safe
+    .body.row
+      .col-md-2
+        = link_to '#' do
+          = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
+      .col-md-10= tread.content.html_safe
     .footer

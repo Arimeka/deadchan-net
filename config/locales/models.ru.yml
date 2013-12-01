@@ -23,6 +23,7 @@ ru:
 
       tread:
         <<: *defaults
+        title:                  "Тема"
         posts_count:            "К-во постов"
         posts_number:           "К-во постов"
         is_commentable:         "Комментируемо"

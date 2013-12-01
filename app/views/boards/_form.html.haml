@@ -1,0 +1,16 @@
+= form_for tread, url: board_path(board.abbr), authenticity_token: true, html: {role: 'form', class: 'form-horizontal', remote: true}  do |f|
+  .form-group
+    = f.label :title, class: "col-md-2 control-label"
+    .col-md-10
+      = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :content, class: "col-md-2 control-label"
+    .col-md-10
+      = f.text_area :content, rows: 10, class: "form-control"
+      .controls
+        %a{class: "upload-file btn btn-sm btn-primary"}
+          %b 
+            Загрузить изображение
+        %input{id: "fileupload", type: "file", name: "file_attaches"}
+        %span{class: "uploading-filename"}            
+  = f.submit t('form.submit'), class: 'btn btn-primary'

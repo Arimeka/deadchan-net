@@ -12,9 +12,13 @@ DeadchanNet::Application.routes.draw do
     resources :treads
     resources :posts
   end
-  
-  get ':abbr'     => 'boards#show',  as: :board
-  get ":abbr/:id" => 'treads#show', as: :tread
+
+  scope ':abbr' do
+    get   '/'     => 'boards#show', as: :board
+    post  '/'     => 'boards#create'
+    get   '/:id'  => 'treads#show', as: :tread
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

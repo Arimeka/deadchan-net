@@ -1,16 +1,6 @@
 - provide(:title, 'Название доски')
 .col-md-6
-  .well
-    %form{role: "form", class: 'form-horizontal'}
-      .form-group
-        %label{for: "title", class: "col-md-2 control-label"} Тема
-        .col-md-10
-          %input{type: "text", class: "form-control", id: 'title'}
-      .form-group
-        %label{for: "content", class: "col-md-2 control-label"} Содержимое
-        .col-md-10
-          %textarea{type: "text", rows: "10", class: "form-control", id: 'content'}
-      %button{type: "submit", class: "btn btn-primary"} Отправить
+  .well= render partial: 'form'
 .clearfix
 .col-md-12
   = render treads

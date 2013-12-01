@@ -8,6 +8,7 @@ class Tread
   field :title, type: String
   field :content, type: String
   field :is_published,  type: Mongoid::Boolean, default: true
+  field :published_at, type: Time
   field :is_commentable,  type: Mongoid::Boolean, default: true
   field :is_pinned,  type: Mongoid::Boolean, default: false 
   field :posts_number, type: Integer, default: 500
@@ -18,6 +19,7 @@ class Tread
   # Validations
   # ======================================================
   validates :title, presence: true, length: { in: 2..30 }
+  validates :content, presence: true, length: { in: 1..2500 }
   validates :posts_count, :posts_number, 
             numericality: { only_integer: true }
   validates :board_id, presence: true
@@ -26,7 +28,7 @@ class Tread
 
   # Scopes
   # ======================================================
-  scope :published, where(is_published: true)
+  scope :published, where(is_published: true).desc(:published_at)
 
   # Relations
   # ======================================================
@@ -36,7 +38,8 @@ class Tread
 
   # Callbacks
   # ======================================================
-  before_save :set_nuid
+  before_save :set_nuid, :set_published_at
+  before_create :first_set_published_at
 
 
   private
@@ -45,6 +48,18 @@ class Tread
         board = Board.find(board_id)
         self.nuid = board.sequence
         board.inc(sequence: 1)
+      end
+    end
+
+    def first_set_published_at
+      if is_published
+        self.published_at = Time.now
+      end
+    end
+
+    def set_published_at
+      if is_published && is_published_changed? && !published_at
+        self.published_at = Time.now
       end
     end
 end
