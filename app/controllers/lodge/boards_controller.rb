@@ -1,5 +1,5 @@
 class Lodge::BoardsController < Lodge::LodgeController
-  expose(:boards) { Board.paginate(page: params[:page]) }
+  expose(:boards) { Board.desc(:created_at).paginate(page: params[:page]) }
   expose(:board) { params[:id] ? Board.find(params[:id]) : Board.new(board_params) }
 
   def index

@@ -1,0 +1,13 @@
+%article{class: 'well', id: post.nuid}
+  %ul.header.list-inline
+    %li
+    %li= Russian::strftime post.created_at, '%a %d %B %Y %H:%M:%S'
+    %li
+      = link_to "##{post.nuid}", tread_path(board.abbr, post.tread.nuid, {anchor: post.nuid})
+  .body.row
+    .col-md-2
+      = link_to '#' do
+        = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
+    .col-md-10= post.content.html_safe
+  .footer
+    

@@ -1,18 +1,17 @@
-%td
-  - unless tread.is_commentable
-    %span.glyphicon.glyphicon-minus-sign
-  - if tread.is_published
-    %span.glyphicon.glyphicon-eye-open
-  - else
-    %span.glyphicon.glyphicon-eye-close
-  - if tread.is_pinned
-    %span.glyphicon.glyphicon-pushpin
-%td
-  = tread.nuid
-%td
-  = tread.title
-%td
-  = tread.posts_count
-%td
-  = link_to edit_lodge_tread_path(tread), class: "btn" do
-    %span.glyphicon.glyphicon-pencil
+%tr
+  %td
+    - unless tread.is_commentable
+      %span.glyphicon.glyphicon-minus-sign
+    - if tread.is_published
+      %span.glyphicon.glyphicon-eye-open
+    - else
+      %span.glyphicon.glyphicon-eye-close
+    - if tread.is_pinned
+      %span.glyphicon.glyphicon-pushpin
+  %td= link_to tread.board.title, edit_lodge_board_path(tread.board)
+  %td= tread.nuid
+  %td= tread.title
+  %td= tread.posts_count
+  %td
+    = link_to edit_lodge_tread_path(tread), class: "btn" do
+      %span.glyphicon.glyphicon-pencil

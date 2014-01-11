@@ -2,14 +2,22 @@
   %article.well
     %ul.header.list-inline
       %li
-        = link_to '#' do
+        = link_to tread_path(board.abbr, tread.nuid) do
           %h3= tread.title
       %li= Russian::strftime tread.published_at, '%a %d %B %Y %H:%M:%S'
       %li
-        = link_to "##{tread.nuid}", '#'
+        = link_to "№#{tread.nuid}", tread_path(board.abbr, tread.nuid)
     .body.row
       .col-md-2
         = link_to '#' do
           = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
       .col-md-10= tread.content.html_safe
     .footer
+  - if tread.posts.any?
+    .posts
+      - if tread.posts.count - 1 > 0
+        %p.text-muted 
+          = Russian.p(tread.posts.count - 1, "Пропущен", "Пропущено", "Пропущено") 
+          = tread.posts.count - 1
+          = link_to Russian.p(tread.posts.count - 1, "ответ", "ответа", "ответов"), tread_path(board.abbr, tread.nuid, {anchor: 'posts'})
+      = render tread.posts.last

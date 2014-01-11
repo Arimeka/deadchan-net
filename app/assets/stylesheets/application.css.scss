@@ -144,8 +144,25 @@ header, footer {
   }
 }
 
+.posts {
+  margin-left: 100px;
+}
+
 .page-footer {
   margin-top: 20px;
+}
+
+.form-group {
+  .controls {
+    border-top: 1px solid #eee;
+    padding: 10px;
+    position: relative;
+    min-height: 20px;
+
+    #fileupload {
+      display: none;
+    }
+  }
 }
 
 .wysiwyg-color-black {
@@ -215,30 +232,6 @@ header, footer {
 .wysiwyg-color-orange {
   color: orange;
 }
-
-.form-group {
-  .controls {
-    border-top: 1px solid #eee;
-    padding: 10px;
-    position: relative;
-    min-height: 20px;
-
-    #fileupload {
-      display: none;
-    }
-  }
-}
-
-.show
-
-
-
-
-
-
-
-
-
 
 /* ==========================================================================
    Helper classes

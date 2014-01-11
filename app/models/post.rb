@@ -15,9 +15,9 @@ class Post
 
   # Scopes
   # ======================================================
-  scope :published, where(is_published: true)
+  scope :published, where(is_published: true).asc(:created_at)
 
   # Relations
   # ======================================================
-  belongs_to :tread
+  embedded_in :tread
 end

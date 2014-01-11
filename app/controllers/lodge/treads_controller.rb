@@ -1,6 +1,6 @@
 class Lodge::TreadsController < Lodge::LodgeController
   expose(:boards) { Board.published }
-  expose(:treads) { Tread.paginate(page: params[:page]) }
+  expose(:treads) { Tread.desc(:created_at).includes(:board).paginate(page: params[:page]) }
   expose(:tread) { params[:id] ? Tread.find(params[:id]) : Tread.new(tread_params) }
 
   def index
