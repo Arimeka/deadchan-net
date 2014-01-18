@@ -7,11 +7,4 @@
   .page-footer
     .col-md-6.well= render partial: 'form'
     .clearfix
-    %ul.pagination
-      %li.disabled= link_to '&laquo;'.html_safe, '#'
-      %li.active= link_to '1', '#'
-      %li= link_to '2', '#'
-      %li= link_to '3', '#'
-      %li= link_to '4', '#'
-      %li= link_to '5', '#'
-      %li= link_to '&raquo;'.html_safe, '#'
+    = will_paginate treads

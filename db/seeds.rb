@@ -5,3 +5,26 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+admin = Admin.new(email: 'foobar@foobar.com', password: 'foobar', password_confirmation: 'foobar')
+admin.save!(validate: false)
+
+
+boards = Board.create([ {title: 'graveyard', abbr: 'gr'},
+                        {title: 'about', abbr: 'ab'},
+                        {title: 'mackaking', abbr: 'mac'}
+                      ])
+
+boards.each do |board|
+  40.times do
+    tread = board.treads.create!(title: Faker::Lorem.words(2).join(' '), content: Faker::Lorem.paragraphs.join("<br><br>"))
+    posts = []
+    80.times do
+      post = Post.new(content: Faker::Lorem.paragraphs.join("<br><br>"))
+      tread.sequence += 1
+      post.nuid = tread.sequence
+      tread.posts.push(post)
+      tread.save!
+    end
+  end
+end

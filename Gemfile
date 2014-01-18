@@ -44,6 +44,7 @@ group :development, :test do
   gem "rspec-rails", "~> 2.12"
   gem 'guard-rspec'
   gem "letter_opener"
+  gem "ffaker"
 end
 
 group :test do 

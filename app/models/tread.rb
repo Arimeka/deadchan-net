@@ -42,7 +42,6 @@ class Tread
   before_save :set_nuid, :set_published_at
   before_create :first_set_published_at
 
-
   private
     def set_nuid
       unless nuid

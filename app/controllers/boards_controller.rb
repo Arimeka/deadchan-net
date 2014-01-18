@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   expose(:board)  { Board.published.find_by(abbr: params[:abbr]) }
-  expose(:treads) { board.treads.published.paginate(page: params[:page]) }
+  expose(:treads) { board.treads.published.paginate(page: params[:page], per_page: 10) }
   expose(:tread)  { board.treads.build(tread_params) }
 
   def show
