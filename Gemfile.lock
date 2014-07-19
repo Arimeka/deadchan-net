@@ -8,6 +8,16 @@ GIT
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
 
+GIT
+  remote: git@git.nnbs.ru:gem/bootstrap_notify.git
+  revision: 2402cc38c5a60e8f4998c774923e3c593c2137db
+  tag: v0.0.2
+  specs:
+    bootstrap_notify (1.0.1)
+      bootstrap-sass
+      jquery-rails
+      rails (>= 3.2.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -124,6 +134,9 @@ GEM
     jquery-rails (3.1.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.0.2)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.8.1)
     kgio (2.9.2)
     launchy (2.4.2)
@@ -196,6 +209,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.1.1)
       json (~> 1.4)
+    recaptcha (0.3.6)
     redcarpet (3.1.2)
     redis (3.1.0)
     redis-actionpack (4.0.0)
@@ -305,6 +319,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.0.0.0.rc)
   bootstrap-wysihtml5-rails
+  bootstrap_notify!
   capistrano
   capybara
   coffee-rails (~> 4.0.0)
@@ -318,6 +333,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-turbolinks
   letter_opener
   libnotify
   meta_request
@@ -325,6 +341,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.1.4)
   rb-inotify (~> 0.8.8)
+  recaptcha
   redcarpet
   redis-rails
   rspec-rails (~> 2.12)

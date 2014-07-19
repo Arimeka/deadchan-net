@@ -7,6 +7,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
 gem 'decent_exposure'
@@ -14,6 +15,7 @@ gem 'russian'
 gem 'haml'
 gem "haml-rails"
 gem 'bootstrap-sass', '~> 3.0.0.0.rc'
+gem 'bootstrap_notify', git: 'git@git.nnbs.ru:gem/bootstrap_notify.git', tag: 'v0.0.2'
 gem 'redis-rails'
 gem 'yui-compressor'
 gem 'devise'
@@ -22,6 +24,7 @@ gem 'will_paginate_mongoid'
 gem 'redcarpet'
 gem 'bootstrap-wysihtml5-rails'
 gem 'quiet_assets'
+gem 'recaptcha', require: 'recaptcha/rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

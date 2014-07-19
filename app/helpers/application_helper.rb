@@ -19,4 +19,19 @@ module ApplicationHelper
     end
     super *[collection_or_options, options].compact
   end
+
+  def bootstrap_class_for(type)
+    case type.to_sym
+    when :success
+      'success'
+    when :error
+      'danger'
+    when :alert
+      'warning'
+    when :notice
+      'info'
+    else
+      'danger'
+    end
+  end
 end

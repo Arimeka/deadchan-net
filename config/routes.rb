@@ -4,6 +4,8 @@ DeadchanNet::Application.routes.draw do
   scope '/lodge' do
     devise_for :admins
   end
+
+  devise_for :users
   
   namespace :lodge do
     get '/' => 'dashboard#index'

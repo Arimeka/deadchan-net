@@ -5,13 +5,34 @@ class BoardsController < ApplicationController
 
   def create
     respond_to do |format|
-      format.json do
-        tread.content = markdown(tread.content)
-        if tread.save
-          render json: {app: {notice: {text: t('msg.saved')}, redirect: tread_url(board.abbr, tread.id)}}
-        else
-          errors = tread.errors.full_messages
-          render json: {app: {error: {text: errors}}}
+      if (user_signed_in? || admin_signed_in?) && request.xhr?
+        format.json do
+          tread.content = markdown(tread.content)
+          if tread.save
+            render json: {app: {notice: {text: t('msg.saved')}, redirect: tread_url(board.abbr, tread.id)}}
+          else
+            errors = tread.errors.full_messages
+            render json: {app: {error: {text: errors}}}
+          end
+        end
+      else
+        format.html do
+          if verify_recaptcha
+            old_content = tread.content
+            tread.content = markdown(tread.content)
+            if tread.save
+              user = User.create
+              user.remember_me!
+              sign_in user
+              redirect_to tread_url(board.abbr, tread.id), notice: t('msg.saved')
+            else
+              tread.content = old_content
+              flash.now[:error] = tread.errors.full_messages
+              render :show
+            end
+          else
+            render :show
+          end
         end
       end
     end

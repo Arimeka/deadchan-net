@@ -1,6 +1,8 @@
 - provide(:title, "#{board.title} - #{tread.title}")
-.col-md-6
-  .well= render partial: 'form'
+.col-md-6.form-answer
+  %button.btn.well#answer Ответить
+  %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+    Скрыть форму
 .clearfix
 .col-md-12
   .thread
@@ -20,5 +22,10 @@
       .footer
     .posts#posts
       = render posts
-.col-md-6.page-footer
-  .well= render partial: 'form'
+.col-md-6.form-answer.page-footer
+  %button.btn.well#answer Ответить
+  %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+    Скрыть форму
+
+%div{class: 'well', id: 'form', style: 'display: none;'}
+  = render partial: 'form'

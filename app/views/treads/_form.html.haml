@@ -1,12 +1,16 @@
-= form_for post, url: tread_path(board.abbr, tread.id), authenticity_token: true, html: {role: 'form', class: 'form-horizontal', remote: true}  do |f|
+= form_for post, url: tread_path(board.abbr, tread.id), authenticity_token: true, html: {role: 'form', class: 'form-horizontal', remote: (user_signed_in? || admin_signed_in?)}  do |f|
   .form-group
     = f.label :content, class: "col-md-2 control-label"
     .col-md-10
       = f.text_area :content, rows: 10, class: "form-control"
       .controls
+        - unless user_signed_in? || admin_signed_in?
+          .captcha
+            = recaptcha_tags ajax: true
         %a{class: "upload-file btn btn-sm btn-primary"}
           %b 
             Загрузить изображение
         %input{id: "fileupload", type: "file", name: "file_attaches"}
-        %span{class: "uploading-filename"}            
+        %span{class: "uploading-filename"}
+
   = f.submit t('form.submit'), class: 'btn btn-primary'

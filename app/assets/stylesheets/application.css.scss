@@ -120,6 +120,13 @@ $brand-info:    #999999;
 
 @import "bootstrap";
 
+$notify_right: 10px;
+$notify_left: $notify_right;
+$notify_top: 55px;
+$notify_bottom: $notify_top;
+
+@import "bootstrap_notify";
+
 
 
 header, footer {
@@ -161,6 +168,10 @@ header, footer {
 
     #fileupload {
       display: none;
+    }
+
+    .captcha {
+      float: right;
     }
   }
 }
@@ -231,6 +242,10 @@ header, footer {
 
 .wysiwyg-color-orange {
   color: orange;
+}
+
+.notifications {
+  z-index: 9999;
 }
 
 /* ==========================================================================

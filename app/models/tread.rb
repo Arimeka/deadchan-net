@@ -19,7 +19,7 @@ class Tread
   # ======================================================
   validates :title, presence: true, length: { in: 2..30 }
   validates :content, presence: true, length: { in: 1..2500 }
-  validates :posts_count, :posts_number, 
+  validates :posts_number,
             numericality: { only_integer: true }
   validates :board_id, presence: true
   validates :is_pinned, :is_published, :is_commentable,
