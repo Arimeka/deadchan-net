@@ -2,7 +2,6 @@ class Tread
   include Mongoid::Document
 
   field :board_id, type: String
-  field :posts_count, type: Integer, default: 0
   field :title, type: String
   field :content, type: String
   field :is_published,  type: Mongoid::Boolean, default: true
@@ -28,7 +27,7 @@ class Tread
 
   # Scopes
   # ======================================================
-  scope :published, -> { where(is_published: true).desc(:updated_at) }
+  scope :published, -> { where(is_published: true, :published_at.lt => Time.now).desc(:updated_at) }
 
   # Relations
   # ======================================================

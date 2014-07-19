@@ -1,0 +1,11 @@
+%tr
+  %td
+    - if post.is_published
+      %span.glyphicon.glyphicon-eye-open
+    - else
+      %span.glyphicon.glyphicon-eye-close
+  %td= post.id
+  %td= post.content.html_safe
+  %td
+    = link_to lodge_tread_post_path(tread, post), class: "btn btn-danger", method: :delete,  data: { confirm: "Уверены?" } do
+      %span.glyphicon.glyphicon-trash

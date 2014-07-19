@@ -11,7 +11,9 @@
   %td= link_to tread.board.title, edit_lodge_board_path(tread.board)
   %td= tread.id
   %td= tread.title
-  %td= tread.posts_count
+  %td= tread.posts.count
   %td
     = link_to edit_lodge_tread_path(tread), class: "btn" do
       %span.glyphicon.glyphicon-pencil
+    = link_to lodge_tread_path(tread), class: "btn" do
+      %span.glyphicon.glyphicon-circle-arrow-right

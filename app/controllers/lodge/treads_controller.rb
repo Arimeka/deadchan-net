@@ -1,16 +1,7 @@
 class Lodge::TreadsController < Lodge::LodgeController
-  expose(:boards) { Board.published }
-  expose(:treads) { Tread.desc(:created_at).includes(:board).paginate(page: params[:page]) }
-  expose(:tread) { params[:id] ? Tread.find(params[:id]) : Tread.new(tread_params) }
-
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
+  expose(:treads) { Tread.desc(:updated_at).includes(:board).paginate(page: params[:page], per_page: 30) }
+  expose(:tread)  { params[:id] ? Tread.find(params[:id]) : Tread.new(tread_params) }
+  expose(:posts)  { tread.posts.paginate(page: params[:page], per_page: 30) }
 
   def create
     if tread.save
@@ -25,9 +16,6 @@ class Lodge::TreadsController < Lodge::LodgeController
       flash[:error] = t("msg.save_error")
       render :new
     end
-  end
-
-  def edit
   end
 
   def update
@@ -53,10 +41,10 @@ class Lodge::TreadsController < Lodge::LodgeController
       end
     else
       respond_to do |format|
-          @errors = tread.errors.full_messages
-          flash[:error] = @errors 
-          format.html {redirect_to edit_lodge_tread_url(tread)}
-        end
+        @errors = tread.errors.full_messages
+        flash[:error] = @errors
+        format.html {redirect_to edit_lodge_tread_url(tread)}
+      end
     end
   end
 

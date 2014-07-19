@@ -1,15 +1,7 @@
 class Lodge::BoardsController < Lodge::LodgeController
   expose(:boards) { Board.desc(:created_at).paginate(page: params[:page]) }
-  expose(:board) { params[:id] ? Board.find(params[:id]) : Board.new(board_params) }
-
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
+  expose(:board)  { params[:id] ? Board.find(params[:id]) : Board.new(board_params) }
+  expose(:treads) { board.treads.includes(:board).desc(:updated_at).paginate(page: params[:page], per_page: 30) }
 
   def create
     if board.save
@@ -24,9 +16,6 @@ class Lodge::BoardsController < Lodge::LodgeController
       flash[:error] = t("msg.save_error")
       render :new
     end
-  end
-
-  def edit
   end
 
   def update
@@ -52,10 +41,10 @@ class Lodge::BoardsController < Lodge::LodgeController
       end
     else
       respond_to do |format|
-          @errors = board.errors.full_messages
-          flash[:error] = @errors 
-          format.html {redirect_to edit_lodge_board_url(board)}
-        end
+        @errors = board.errors.full_messages
+        flash[:error] = @errors
+        format.html {redirect_to edit_lodge_board_url(board)}
+      end
     end
   end
 
