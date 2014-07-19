@@ -21,8 +21,6 @@ boards.each do |board|
     posts = []
     80.times do
       post = Post.new(content: Faker::Lorem.paragraphs.join("<br><br>"))
-      tread.sequence += 1
-      post.nuid = tread.sequence
       tread.posts.push(post)
       tread.save!
     end

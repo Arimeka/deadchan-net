@@ -1,21 +1,16 @@
 class TreadsController < ApplicationController
   expose(:board)  { Board.published.find_by(abbr: params[:abbr]) }
-  expose(:tread)  { board.treads.published.find_by(nuid: params[:nuid]) }
+  expose(:tread)  { board.treads.published.find(params[:id]) }
   expose(:posts)  { tread.posts.published }
   expose(:post)   { Post.new(post_params) }
-
-  def show
-  end
 
   def create
     respond_to do |format|
       format.json do
         post.content = markdown(post.content)
-        tread.sequence += 1
-        post.nuid = tread.sequence
         tread.posts.push(post)        
         if tread.save
-          render json: {app: {notice: {text: t('msg.saved')}, redirect: tread_url(board.abbr, tread.nuid, {anchor: post.nuid})}}
+          render json: {app: {notice: {text: t('msg.saved')}, redirect: tread_url(board.abbr, tread.id, {anchor: post.id})}}
         else
           errors = post.errors.full_messages
           render json: {app: {error: {text: errors}}}

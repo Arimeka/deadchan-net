@@ -1,14 +1,13 @@
 class Tread
   include Mongoid::Document
-  include Mongoid::Timestamps
 
-  field :nuid, type: Integer
   field :board_id, type: String
   field :posts_count, type: Integer, default: 0
   field :title, type: String
   field :content, type: String
   field :is_published,  type: Mongoid::Boolean, default: true
   field :published_at, type: Time
+  field :updated_at, type: Time
   field :is_commentable,  type: Mongoid::Boolean, default: true
   field :is_pinned,  type: Mongoid::Boolean, default: false 
   field :posts_number, type: Integer, default: 500
@@ -29,7 +28,7 @@ class Tread
 
   # Scopes
   # ======================================================
-  scope :published, where(is_published: true).desc(:published_at)
+  scope :published, -> { where(is_published: true).desc(:updated_at) }
 
   # Relations
   # ======================================================
@@ -39,21 +38,14 @@ class Tread
 
   # Callbacks
   # ======================================================
-  before_save :set_nuid, :set_published_at
-  before_create :first_set_published_at
+  before_save :set_published_at, :check_is_full
+  before_create :first_set_timestamps
 
   private
-    def set_nuid
-      unless nuid
-        board = Board.find(board_id)
-        self.nuid = board.sequence
-        board.inc(sequence: 1)
-      end
-    end
-
-    def first_set_published_at
+    def first_set_timestamps
       if is_published
         self.published_at = Time.now
+        self.updated_at = Time.now
       end
     end
 
@@ -61,5 +53,15 @@ class Tread
       if is_published && is_published_changed? && !published_at
         self.published_at = Time.now
       end
+    end
+
+    def check_is_full
+      if self.posts.size > posts_number
+        self.is_full = true
+      else 
+        self.is_full = false
+        self.updated_at = Time.now
+      end
+      true
     end
 end

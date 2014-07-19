@@ -10,7 +10,6 @@ ru:
         title:                  "Заголовок"
         placement_index:        "Позиция"
         is_published:           "Опубликовано"        
-        nuid:                   "Номер"
         content:                "Содержимое"
         show_name:              "Показать имя"
         is_admin:               "Как админ"

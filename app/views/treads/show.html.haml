@@ -7,11 +7,11 @@
     %article.well
       %ul.header.list-inline
         %li
-          = link_to tread_path(board.abbr, tread.nuid) do
+          = link_to tread_path(board.abbr, tread.id) do
             %h3= tread.title
         %li= Russian::strftime tread.published_at, '%a %d %B %Y %H:%M:%S'
         %li
-          = link_to "№#{tread.nuid}", tread_path(board.abbr, tread.nuid)
+          = link_to tread.id, tread_path(board.abbr, tread.id)
       .body.row
         .col-md-2
           = link_to '#' do

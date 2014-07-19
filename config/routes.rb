@@ -14,10 +14,10 @@ DeadchanNet::Application.routes.draw do
   end
 
   scope ':abbr' do
-    get   '/'       => 'boards#show', as: :board
-    post  '/'       => 'boards#create'
-    get   '/:nuid'  => 'treads#show', as: :tread
-    post  '/:nuid'  => 'treads#create'
+    get   '/'     => 'boards#show', as: :board
+    post  '/'     => 'boards#create'
+    get   '/:id'  => 'treads#show', as: :tread
+    post  '/:id'  => 'treads#create'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

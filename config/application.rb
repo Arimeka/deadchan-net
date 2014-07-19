@@ -15,6 +15,8 @@ module DeadchanNet
   class Application < Rails::Application
     config.time_zone = 'Europe/Moscow'
     config.i18n.default_locale = :ru
+    config.quiet_assets = true
+
     config.generators do |g|
       g.template_engine :haml
       g.test_framework :rspec, fixture: false, view: false

@@ -2,7 +2,6 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  field :nuid, type: Integer
   field :is_published,  type: Mongoid::Boolean, default: true
   field :content,  type: String
 
@@ -10,12 +9,11 @@ class Post
   # Validations
   # ======================================================
   validates :content, presence: true, length: { in: 1..2500 }
-  validates :nuid, presence: true
   validates :is_published, inclusion: { in: [true, false] }
 
   # Scopes
   # ======================================================
-  scope :published, where(is_published: true).asc(:created_at)
+  scope :published, -> { where(is_published: true).asc(:created_at) }
 
   # Relations
   # ======================================================

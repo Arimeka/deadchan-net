@@ -1,9 +1,10 @@
-%article{class: 'well', id: post.nuid}
+%article{class: 'well', id: post.id}
   %ul.header.list-inline
     %li
     %li= Russian::strftime post.created_at, '%a %d %B %Y %H:%M:%S'
     %li
-      = link_to "##{post.nuid}", tread_path(board.abbr, post.tread.nuid, {anchor: post.nuid})
+      = link_to post.tread.id.to_s.last(10), tread_path(board.abbr, post.tread.id)
+      = link_to "##{post.id.to_s.last(10)}", tread_path(board.abbr, post.tread.id, {anchor: post.id})
   .body.row
     .col-md-2
       = link_to '#' do
