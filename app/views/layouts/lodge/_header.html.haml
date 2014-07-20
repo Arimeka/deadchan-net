@@ -2,10 +2,13 @@
   .navbar-header
     .navbar-brand= link_to 'Deadchan', lodge_path
   %ul.nav.navbar-nav
+    %li
+      = link_to 'Фронт', root_path
     %li{class: controller.controller_path == "lodge/boards" && controller.action_name == "index" ? "active" : ""}
       = link_to 'Борды', lodge_boards_path
     %li{class: controller.controller_path == "lodge/treads" && controller.action_name == "index" ? "active" : ""}
       = link_to 'Треды', lodge_treads_path
-    %li= link_to 'Пользователи', '#'
+    %li{class: controller.controller_path == "lodge/users" && controller.action_name == "index" ? "active" : ""}
+      = link_to 'Пользователи', lodge_users_path
   %ul.nav.navbar-nav.navbar-right
     %li= link_to 'Выйти', destroy_admin_session_path, method: :delete

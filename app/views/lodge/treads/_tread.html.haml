@@ -17,3 +17,5 @@
       %span.glyphicon.glyphicon-pencil
     = link_to lodge_tread_path(tread), class: "btn" do
       %span.glyphicon.glyphicon-circle-arrow-right
+    = link_to lodge_tread_path(tread), class: "btn btn-danger", method: :delete,  data: { confirm: "Уверены?" } do
+      %span.glyphicon.glyphicon-trash

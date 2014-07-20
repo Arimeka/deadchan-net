@@ -112,6 +112,12 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+// Fonts
+
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600&subset=latin,cyrillic");
+$font-family-sans-serif:  "Open Sans", sans-serif;
+$headings-font-weight:    600 !default;
+
 // Custom colors
 
 $body-bg:       #eeeeee;
@@ -127,7 +133,13 @@ $notify_bottom: $notify_top;
 
 @import "bootstrap_notify";
 
+body {
+  font-weight: 400;
 
+  strong {
+    font-weight: 700;
+  }
+}
 
 header, footer {
   margin-left: 15px;
@@ -147,6 +159,16 @@ header, footer {
   article {
     img {
       margin: 0px 20px 15px 0px;
+    }
+    .header {
+      border-bottom: 1px dashed #ddd;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+
+      h3 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
     }
   }
 }

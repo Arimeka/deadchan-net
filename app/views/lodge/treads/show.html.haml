@@ -1,8 +1,8 @@
 - provide(:title, t("path.controllers.lodge/#{controller.controller_name}.show"))
 .col-md-12
   = render partial: "subnav"
-  %h1= tread.title
-  .col-md-6
+  %h1= "#{tread.title} - #{t("path.controllers.lodge/#{controller.controller_name}.show")}"
+  .col-md-8
     %table.table.table-condensed.table-striped
       %thead
         %tr

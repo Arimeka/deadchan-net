@@ -31,3 +31,10 @@ ru:
 
       post:
         <<: *defaults
+
+      user:
+        last_sign_in_at:        "Последний вход"
+        current_sign_in_at:     "Текущий вход"
+        current_sign_in_ip:     "Текущий ip"
+        last_sign_in_ip:        "Последний ip"
+        locked_at:              "Заблокирован до"

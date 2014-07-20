@@ -13,7 +13,6 @@ class Tread
   field :is_full,  type: Mongoid::Boolean, default: false
   field :is_admin, type: Mongoid::Boolean, default: false
   field :show_name, type: Mongoid::Boolean, default: false
-  field :sequence, type: Integer, default: 0
 
   # Validations
   # ======================================================

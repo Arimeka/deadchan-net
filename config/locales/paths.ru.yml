@@ -16,3 +16,7 @@ ru:
         <<: *defaults
         title:                        "Треды"
         show:                         "Статистика треда"
+      lodge/users:
+        <<: *defaults
+        title:                        "Пользователи"
+        show:                         "Статистика пользователя"

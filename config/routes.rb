@@ -14,6 +14,7 @@ DeadchanNet::Application.routes.draw do
     resources :treads do
       resources :posts, only: [:update, :destroy]
     end
+    resources :users
   end
 
   scope ':abbr' do

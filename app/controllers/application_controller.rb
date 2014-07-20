@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  expose(:boards) { Board.published }
+  expose(:boards) { Board.published.asc(:placement_index) }
 
   private
     def markdown(text)
@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
           rel: 'nofollow'
         },
         no_styles: true,
-        no_images: true
+        no_images: true,
+        escape_html: true
       }
       renderer = RenderWithoutHeaders.new(render_options)
       options = {
