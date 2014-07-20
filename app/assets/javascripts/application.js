@@ -20,4 +20,10 @@
 //= require bootstrap-wysihtml5
 //= require bootstrap-wysihtml5/locales/ru-RU
 //= require bootstrap_notify
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require backbone/deadchan_net
+//= require moment
 //= require_tree .

@@ -1,7 +1,7 @@
 %article{class: 'well', id: post.id}
   %ul.header.list-inline
     %li
-    %li= Russian::strftime post.created_at, '%a %d %B %Y %H:%M:%S'
+    %li= Russian::strftime post.created_at, '%d %B %Y %H:%M:%S'
     %li
       = link_to post.tread.id.to_s.last(7), tread_path(post.tread.board.abbr, post.tread.id)
       = link_to "##{post.id.to_s.last(7)}", tread_path(post.tread.board.abbr, post.tread.id, {anchor: post.id})

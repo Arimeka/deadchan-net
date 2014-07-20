@@ -4,7 +4,7 @@
       %li
         = link_to tread_path(tread.board.abbr, tread.id) do
           %h3= tread.title
-      %li= Russian::strftime tread.published_at, '%a %d %B %Y %H:%M:%S'
+      %li= Russian::strftime tread.published_at, '%d %B %Y %H:%M:%S'
       %li
         = link_to tread.id.to_s.last(7), tread_path(tread.board.abbr, tread.id)
     .body.row

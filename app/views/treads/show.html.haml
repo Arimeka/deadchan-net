@@ -11,7 +11,7 @@
         %li
           = link_to tread_path(entry.board.abbr, entry.id) do
             %h3= entry.title
-        %li= Russian::strftime entry.published_at, '%a %d %B %Y %H:%M:%S'
+        %li= Russian::strftime entry.published_at, '%d %B %Y %H:%M:%S'
         %li
           = link_to entry.id.to_s.last(7), tread_path(entry.board.abbr, entry.id)
       .body.row
@@ -20,8 +20,8 @@
             = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
         .col-md-10= entry.content.html_safe
       .footer
-    .posts#posts
-      = render posts
+    #posts
+      .posts= render posts
 .col-md-6.form-answer.page-footer
   %button.btn.well#answer Ответить
   %button{class: 'btn well', id: 'hide', style: 'display: none;'}

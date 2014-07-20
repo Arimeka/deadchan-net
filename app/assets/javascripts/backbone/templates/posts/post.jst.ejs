@@ -1,0 +1,16 @@
+<ul class="header list-inline">
+  <li></li>
+  <li><%= moment(created_at).format('D MMMM YYYY HH:mm:ss') %></li>
+  <li>
+    <a href="/gr/<%= tread_id %>"><%= tread_id.substr(_id.$oid.length - 7) %></a>
+    <a href="/gr/<%= tread_id %>#<%= _id.$oid %>">#<%= _id.$oid.substr(_id.$oid.length - 7) %></a>
+  </li>
+</ul>
+<div class="body row">
+  <div class="col-md-2">
+    <a href="#"><img alt="Post image" class="img-responsive img-thumbnail" src="/sample/post-image.gif">
+    </a>
+  </div>
+  <div class="col-md-10"><%= content %></div>
+</div>
+<div class="footer"></div>
