@@ -1,17 +1,16 @@
 class TreadsController < ApplicationController
   expose(:board)  { Board.published.find_by(abbr: params[:abbr]) }
-  expose(:tread)  { board.treads.published.find(params[:id]) }
-  expose(:posts)  { tread.posts.published }
+  expose(:entry)  { board.treads.published.find(params[:id]) }
+  expose(:posts)  { entry.posts.published }
   expose(:post)   { Post.new(post_params) }
 
   def create
     respond_to do |format|
       if (user_signed_in? || admin_signed_in?) && request.xhr?
         format.json do
-          post.content = markdown(post.content)
-          tread.posts.push(post)
-          if tread.save
-            render json: {app: {notice: {text: t('msg.saved')}, redirect: tread_url(board.abbr, tread.id, {anchor: post.id})}}
+          entry.posts.push(post)
+          if entry.save
+            render json: {app: {notice: {text: t('msg.saved')}, redirect: tread_url(board.abbr, entry.id, {anchor: post.id})}}
           else
             errors = post.errors.full_messages
             render json: {app: {error: {text: errors}}}
@@ -20,16 +19,13 @@ class TreadsController < ApplicationController
       else
         format.html do
           if verify_recaptcha
-            old_content = post.content
-            post.content = markdown(post.content)
-            tread.posts.push(post)
-            if tread.save
+            entry.posts.push(post)
+            if entry.save
               user = User.create
               user.remember_me!
               sign_in user
-              redirect_to tread_url(board.abbr, tread.id, {anchor: post.id}), notice: t('msg.saved')
+              redirect_to tread_url(board.abbr, entry.id, {anchor: post.id}), notice: t('msg.saved')
             else
-              post.content = old_content
               flash.now[:error] = post.errors.full_messages
               render :show
             end

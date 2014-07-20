@@ -1,5 +1,6 @@
 class Tread
   include Mongoid::Document
+  include ContentSupport
 
   field :board_id, type: String
   field :title, type: String

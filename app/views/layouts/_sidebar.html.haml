@@ -1,3 +1,5 @@
-.well
-  - boards.each do |board|
-    = link_to board.title, board_path(board.abbr), class: 'btn btn-primary btn-lg btn-block'
+.col-md-2
+  %aside.sidebar.col-md-2
+    .well
+      - boards.each do |board|
+        = link_to board.title, board_path(board.abbr), class: 'btn btn-primary btn-lg btn-block'

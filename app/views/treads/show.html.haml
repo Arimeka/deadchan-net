@@ -1,4 +1,4 @@
-- provide(:title, "#{board.title} - #{tread.title}")
+- provide(:title, "#{entry.board.title} - #{entry.title}")
 .col-md-6.form-answer
   %button.btn.well#answer Ответить
   %button{class: 'btn well', id: 'hide', style: 'display: none;'}
@@ -9,16 +9,16 @@
     %article.well
       %ul.header.list-inline
         %li
-          = link_to tread_path(board.abbr, tread.id) do
-            %h3= tread.title
-        %li= Russian::strftime tread.published_at, '%a %d %B %Y %H:%M:%S'
+          = link_to tread_path(entry.board.abbr, entry.id) do
+            %h3= entry.title
+        %li= Russian::strftime entry.published_at, '%a %d %B %Y %H:%M:%S'
         %li
-          = link_to tread.id.to_s.last(7), tread_path(board.abbr, tread.id)
+          = link_to entry.id.to_s.last(7), tread_path(entry.board.abbr, entry.id)
       .body.row
         .col-md-2
           = link_to '#' do
             = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
-        .col-md-10= tread.content.html_safe
+        .col-md-10= entry.content.html_safe
       .footer
     .posts#posts
       = render posts

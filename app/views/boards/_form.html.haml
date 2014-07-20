@@ -1,4 +1,4 @@
-= form_for tread, url: board_path(board.abbr), authenticity_token: true, html: {role: 'form', class: 'form-horizontal', remote: (user_signed_in? || admin_signed_in?)}  do |f|
+= form_for tread, url: board_path(entry.abbr), authenticity_token: true, html: {role: 'form', class: 'form-horizontal', remote: (user_signed_in? || admin_signed_in?)}  do |f|
   .form-group
     = f.label :title, class: "col-md-2 control-label"
     .col-md-10
