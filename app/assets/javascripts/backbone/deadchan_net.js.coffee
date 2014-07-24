@@ -9,14 +9,17 @@ window.DeadchanNet =
   Collections: {}
   Routers: {}
   Views: {}
+  initialize: ->
+    window.app ||= {}
+    app.views ||= {}
+    app.collections ||= {}
+    app.router ||= new DeadchanNet.Routers.ApplicationRouter
+    Backbone.history.start pushState: true
 
 $ ->
-  window.app ||= {}
-  app.views ||= {}
-  app.collections ||= {}
-  app.router ||= new DeadchanNet.Routers.ApplicationRouter
-
-  Backbone.history.start(pushState: true) unless Backbone.History.started
-  $(document).on "page:change", ->
+  $(document).ready ->
     Backbone.history.stop()
-    Backbone.history.start(pushState: true)
+    DeadchanNet.initialize()
+
+
+

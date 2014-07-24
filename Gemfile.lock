@@ -240,6 +240,7 @@ GEM
       redis-store (~> 1.1.0)
     redis-store (1.1.4)
       redis (>= 2.2)
+    remotipart (1.2.1)
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
@@ -357,6 +358,7 @@ DEPENDENCIES
   recaptcha
   redcarpet
   redis-rails
+  remotipart (~> 1.2)
   rspec-rails (~> 2.12)
   russian
   rvm-capistrano

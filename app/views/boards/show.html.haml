@@ -1,18 +1,20 @@
 - provide(:title, entry.title)
-= will_paginate treads
-.col-md-6.form-answer
-  %button.btn.well#answer Создать тред
-  %button{class: 'btn well', id: 'hide', style: 'display: none;'}
-    Скрыть форму
-.clearfix
-.col-md-12
-  = render treads
-  .page-footer
-    .col-md-6.wel.form-answer
+#board
+  .page-header
+    = will_paginate treads
+    .col-md-6.form-answer
       %button.btn.well#answer Создать тред
       %button{class: 'btn well', id: 'hide', style: 'display: none;'}
         Скрыть форму
-    = will_paginate treads
+  .clearfix
+  .col-md-12
+    = render treads
+    .page-footer
+      .col-md-6.wel.form-answer
+        %button.btn.well#answer Создать тред
+        %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+          Скрыть форму
+      = will_paginate treads
 
-%div{class: 'well', id: 'form', style: 'display: none;'}
-  = render partial: 'form'
+  %div{class: 'well', id: 'form', style: 'display: none;'}
+    = render partial: 'form'
