@@ -6,6 +6,7 @@
       %button.btn.well#answer Создать тред
       %button{class: 'btn well', id: 'hide', style: 'display: none;'}
         Скрыть форму
+      #form
   .clearfix
   .col-md-12
     = render treads
@@ -14,7 +15,5 @@
         %button.btn.well#answer Создать тред
         %button{class: 'btn well', id: 'hide', style: 'display: none;'}
           Скрыть форму
+        #form
       = will_paginate treads
-
-  %div{class: 'well', id: 'form', style: 'display: none;'}
-    = render partial: 'form'

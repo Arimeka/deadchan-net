@@ -12,5 +12,6 @@ ru:
     previous_label: "&laquo;"
   recaptcha:
     errors:
-      incorrect-captcha-sol: Неверный код подтверждения
+      verification_failed:    Неверный код подтверждения
+      incorrect-captcha-sol:  Неверный код подтверждения
       invalid-request-cookie: Боты должны страдать

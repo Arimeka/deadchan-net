@@ -17,12 +17,19 @@ DeadchanNet::Application.routes.draw do
     resources :users
   end
 
-  get 'treads/:id' => 'posts#index'
+  scope 'treads' do
+    get '/form/:abbr/:id' => 'treads#form'
+    get '/:id'            => 'posts#index'
+  end
+
+  scope 'boards' do
+    get '/form/:abbr' => 'boards#form'
+  end
 
   scope ':abbr' do
     get   '/'     => 'boards#show', as: :board
-    post  '/'     => 'treads#create'
+    post  '/'     => 'boards#create'
     get   '/:id'  => 'treads#show', as: :tread
-    post  '/:id'  => 'posts#create'
+    post  '/:id'  => 'treads#create'
   end
 end

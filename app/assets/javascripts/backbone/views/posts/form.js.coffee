@@ -1,12 +1,25 @@
 DeadchanNet.Views.Posts ||= {}
 
 class DeadchanNet.Views.Posts.Form extends Backbone.View
-  el: '#new_post'
+  idName: 'new_post'
 
   events:
     'ajax:success'          : 'ajaxSuccess'
     'click .upload-file'    : 'fileClick'
     'change #fileupload'    : 'fileupload'
+
+  initialize: (attributes) ->
+    @attributes = attributes
+
+  render: ->
+    $.ajax
+      url: "/treads/form/#{@attributes.abbr}/#{@attributes.treadId}"
+      async: false
+      success: (data) =>
+        @$el.html data
+        @initialize()
+    @
+
 
   fileClick: (e) ->
     e.preventDefault()
@@ -35,11 +48,14 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
               type: 'success'
               closable: false
             .show()
-          @$('form').trigger('reset')
-          @$('textarea').val('')
-          @$('.uploading-filename').empty()
-          postsCollection = new DeadchanNet.Views.Posts.Collection
-          a = $posts.html postsCollection.render().el
-          $('html, body').animate(
-            {scrollTop: $(a).find('article').last().offset().top
-            })
+          if data.app.reload
+            window.location.reload()
+          else
+            @$('form').trigger('reset')
+            @$('textarea').val('')
+            @$('.uploading-filename').empty()
+            postsCollection = new DeadchanNet.Views.Posts.Collection
+            a = $posts.html postsCollection.render().el
+            $('html, body').animate(
+              {scrollTop: $(a).find('article').last().offset().top
+              })

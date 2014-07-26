@@ -4,6 +4,7 @@
     %button.btn.well#answer Ответить
     %button{class: 'btn well', id: 'hide', style: 'display: none;'}
       Скрыть форму
+    #form
   .clearfix
   .col-md-12
     .thread
@@ -27,6 +28,4 @@
     %button.btn.well#answer Ответить
     %button{class: 'btn well', id: 'hide', style: 'display: none;'}
       Скрыть форму
-
-  %div{class: 'well', id: 'form', style: 'display: none;'}
-    = render partial: 'form'
+    #form

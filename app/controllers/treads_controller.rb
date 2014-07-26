@@ -2,40 +2,50 @@ class TreadsController < ApplicationController
   expose(:board)  { Board.published.find_by(abbr: params[:abbr]) }
   expose(:entry)  { board.treads.published.find(params[:id]) }
   expose(:posts)  { entry.posts.published }
-  expose(:tread)  { board.treads.build(tread_params) }
   expose(:post)   { Post.new(post_params) }
+
+  before_action :verify_recaptcha!, only: :create
 
   def create
     respond_to do |format|
-      format.html do
-        verify_recaptcha! unless user_signed_in? || admin_signed_in?
-        if tread.save
+      format.json do
+        entry.posts.push(post)
+        if entry.save
           unless user_signed_in? || admin_signed_in?
             user = User.create
             user.remember_me!
             sign_in user
+            render json: {app: {notice: {text: [t('msg.saved')]}, reload: true}}
+          else
+            render json: {app: {notice: {text: [t('msg.saved')]}}}
           end
-          redirect_to tread_url(board.abbr, tread.id), notice: t('msg.saved')
         else
-          flash.now[:error] = tread.errors.full_messages
-          render :show
+          errors = post.errors.full_messages
+          render json: {app: {error: {text: errors}}}
         end
       end
     end
   end
 
-  private
-    def tread_params
-      params.fetch(:tread, {}).permit(:title, :content)
+  def form
+    respond_to do |format|
+      format.html do
+        render partial: 'form'
+      end
     end
+  end
 
+  private
     def post_params
       params.fetch(:post, {}).permit(:content)
     end
 
     def verify_recaptcha!
-      unless verify_recaptcha
-        render :show
+      unless user_signed_in? || admin_signed_in?
+        unless verify_recaptcha(model: post)
+          errors = post.errors.full_messages
+          render json: {app: {error: {text: errors}}}
+        end
       end
     end
 end

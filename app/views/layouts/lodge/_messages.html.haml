@@ -1,0 +1,13 @@
+.notifications.top-right
+  - if flash.present?
+    :coffee
+      $(document).one 'ready', ->
+        flash_messages = #{ flash.map { |type, msg| {type: bootstrap_class_for(type), msg: msg}.to_json } }
+        for msg of flash_messages
+          js = $.parseJSON(flash_messages[msg])
+          $('.top-right').notify
+            message:
+              text: js.msg
+            type: js.type
+            closable: false
+          .show()

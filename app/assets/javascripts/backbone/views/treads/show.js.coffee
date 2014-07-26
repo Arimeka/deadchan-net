@@ -7,6 +7,9 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
     'click button#answer' : 'showForm'
     'click button#hide'   : 'hideForm'
 
+  initialize: (attributes) ->
+    @attributes = attributes
+
   showForm: (e) ->
     $container = $(e.currentTarget).closest('.form-answer')
     $btnHide = $container.find('button#hide')
@@ -14,9 +17,10 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
     $(e.currentTarget).toggle()
     $btnHide.toggle()
 
-    @$('#form').clone().insertAfter($btnHide).show()
-
-    new DeadchanNet.Views.Posts.Form
+    app.views.postForm = new DeadchanNet.Views.Posts.Form
+                                abbr:     @attributes.abbr
+                                treadId:  @attributes.treadId
+    $container.find('#form').html app.views.postForm.render().el
 
   hideForm: (e) ->
     $container = $(e.currentTarget).closest('.form-answer')
@@ -24,4 +28,4 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
     $(e.currentTarget).toggle()
     $container.find('button#answer').toggle()
 
-    $container.find('#form').remove()
+    app.views.postForm.remove()
