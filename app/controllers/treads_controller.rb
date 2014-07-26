@@ -15,9 +15,9 @@ class TreadsController < ApplicationController
             user = User.create
             user.remember_me!
             sign_in user
-            render json: {app: {notice: {text: [t('msg.saved')]}, reload: true}}
+            render json: {app: {notice: {text: [t('msg.saved')]}, reload: true, id: post.id}}
           else
-            render json: {app: {notice: {text: [t('msg.saved')]}}}
+            render json: {app: {notice: {text: [t('msg.saved')]}, id: post.id}}
           end
         else
           errors = post.errors.full_messages

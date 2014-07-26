@@ -10,5 +10,9 @@
       = link_to '#' do
         = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
     .col-md-10= post.content.html_safe
-  .footer
+  .footer.post-form
+    %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: post.tread.board.abbr, id: post.tread.id}} Ответить
+    %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
+      Скрыть форму
+    #form
     

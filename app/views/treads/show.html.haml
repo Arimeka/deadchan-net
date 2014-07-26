@@ -1,6 +1,6 @@
 - provide(:title, "#{entry.board.title} - #{entry.title}")
 #tread
-  .col-md-6.form-answer
+  .col-md-6.post-form
     %button.btn.well#answer Ответить
     %button{class: 'btn well', id: 'hide', style: 'display: none;'}
       Скрыть форму
@@ -24,7 +24,7 @@
         .footer
       #posts
         .posts= render posts
-  .col-md-6.form-answer.page-footer
+  .col-md-6.post-form.page-footer
     %button.btn.well#answer Ответить
     %button{class: 'btn well', id: 'hide', style: 'display: none;'}
       Скрыть форму

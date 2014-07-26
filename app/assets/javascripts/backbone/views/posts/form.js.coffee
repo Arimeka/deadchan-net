@@ -17,6 +17,7 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
       async: false
       success: (data) =>
         @$el.html data
+        @$el.attributes = {abbr: @attributes.abbr, treadId: @attributes.treadId, redirect: @attributes.redirect}
         @initialize()
     @
 
@@ -38,19 +39,21 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
           closable: false
         .show()
     else
-      $posts = $("#posts")
-      app.collections.posts.fetch
-        success: ->
-          for msg of data.app.notice.text
-            $('.top-right').notify
-              message:
-                text: data.app.notice.text[msg]
-              type: 'success'
-              closable: false
-            .show()
-          if data.app.reload
-            window.location.reload()
-          else
+      for msg of data.app.notice.text
+        $('.top-right').notify
+          message:
+            text: data.app.notice.text[msg]
+          type: 'success'
+          closable: false
+        .show()
+      if @$el.attributes && @$el.attributes.redirect
+        window.location.replace "/#{@$el.attributes.abbr}/#{@$el.attributes.treadId}##{data.app.id.$oid}"
+      else if data.app.reload
+        window.location.reload()
+      else
+        $posts = $("#posts")
+        app.collections.posts.fetch
+          success: ->
             @$('form').trigger('reset')
             @$('textarea').val('')
             @$('.uploading-filename').empty()

@@ -13,4 +13,10 @@
   </div>
   <div class="col-md-10"><%= content %></div>
 </div>
-<div class="footer"></div>
+<div class="footer post-form">
+  <button class="btn btn-default btn-sm" data-abbr="<%= window.location.pathname.split('/')[1] %>" data-id="<%= tread_id %>" id="answer">Ответить</button>
+  <button class="btn btn-default btn-sm" id="hide" style="display: none;">
+    Скрыть форму
+  </button>
+  <div id="form"></div>
+</div>

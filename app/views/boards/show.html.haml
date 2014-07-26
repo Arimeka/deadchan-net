@@ -2,7 +2,7 @@
 #board
   .page-header
     = will_paginate treads
-    .col-md-6.form-answer
+    .col-md-6.tread-form
       %button.btn.well#answer Создать тред
       %button{class: 'btn well', id: 'hide', style: 'display: none;'}
         Скрыть форму
@@ -11,7 +11,7 @@
   .col-md-12
     = render treads
     .page-footer
-      .col-md-6.wel.form-answer
+      .col-md-6.wel.tread-form
         %button.btn.well#answer Создать тред
         %button{class: 'btn well', id: 'hide', style: 'display: none;'}
           Скрыть форму
