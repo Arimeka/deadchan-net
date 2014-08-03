@@ -34,18 +34,21 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
 
   showPostForm: (e) ->
     e.preventDefault()
-    $container = $(e.currentTarget).closest('.post-form')
-    $btnHide = $container.find('button#hide')
-    data = e.currentTarget.dataset
+    if app.views.postForm
+      @togglePostForm(e)
+    else
+      $container = $(e.currentTarget).closest('.post-form')
+      $btnHide = $container.find('button#hide')
+      data = e.currentTarget.dataset
 
-    $(e.currentTarget).toggle()
-    $btnHide.toggle()
+      $(e.currentTarget).toggle()
+      $btnHide.toggle()
 
-    app.views.postForm = new DeadchanNet.Views.Posts.Form
-                                abbr:     data.abbr
-                                treadId:  data.id
-                                redirect: true
-    $container.find('#form').html app.views.postForm.render().el
+      app.views.postForm = new DeadchanNet.Views.Posts.Form
+                                  abbr:     data.abbr
+                                  treadId:  data.id
+                                  redirect: true
+      $container.find('#form').html app.views.postForm.render().el
 
   hidePostForm: (e) ->
     $container = $(e.currentTarget).closest('.post-form')
@@ -54,3 +57,36 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
     $container.find('button#answer').toggle()
 
     app.views.postForm.remove()
+
+  togglePostForm: (e) ->
+    e.preventDefault()
+    $container = $(e.currentTarget).closest('.post-form')
+    $btnHide = $container.find('button#hide')
+    data = e.currentTarget.dataset
+
+    $(e.currentTarget).toggle()
+    $btnHide.toggle()
+
+    $form = $container.find('#form')
+
+    oldView = app.views.postForm
+    $oldForm = app.views.postForm.$el
+
+    app.views.postForm = new DeadchanNet.Views.Posts.Form
+
+    app.views.postForm.$el = $oldForm.clone().appendTo $form
+    app.views.postForm.$el.attributes = {abbr: data.abbr, treadId:  data.id, redirect: true}
+
+    oldView.delegateEvents app.views.postForm.events
+    app.views.postForm.delegateEvents()
+
+    if Recaptcha
+      eval($('.captcha script').html())
+
+    @togglePostButtons($oldForm)
+    oldView.remove()
+
+  togglePostButtons: (elem) ->
+    $container = $(elem).closest('.post-form')
+    $container.find('button#answer').toggle()
+    $container.find('button#hide').toggle()
