@@ -17,10 +17,10 @@ boards = Board.create([ {title: 'graveyard', abbr: 'gr'},
 
 boards.each do |board|
   40.times do
-    tread = board.treads.create!(title: Faker::Lorem.words(2).join(' '), content: Faker::Lorem.paragraphs.join("<br><br>"))
+    tread = board.treads.create!(title: Faker::Lorem.words(2).join(' '), content: Faker::Lorem.paragraphs.join("\n\n"))
     posts = []
     80.times do
-      post = Post.new(content: Faker::Lorem.paragraphs.join("<br><br>"))
+      post = Post.new(content: Faker::Lorem.paragraphs.join("\n\n"))
       tread.posts.push(post)
       tread.save!
     end

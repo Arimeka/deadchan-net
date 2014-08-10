@@ -36,7 +36,7 @@ end
 group :development do
   gem 'capistrano'
   gem "rvm-capistrano"
-  gem 'annotate', ">=2.5.0"  
+  gem 'annotate', ">=2.5.0"
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
@@ -52,9 +52,12 @@ group :development, :test do
   gem 'guard-rspec'
   gem "letter_opener"
   gem "ffaker"
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'pry-rails'
 end
 
-group :test do 
+group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'simplecov', :require => false

@@ -15,3 +15,6 @@
 /log/*.log
 /tmp
 /config/recaptcha.yml
+
+deadchan-net.sublime-project
+deadchan-net.sublime-workspace

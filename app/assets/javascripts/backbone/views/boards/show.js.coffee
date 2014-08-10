@@ -76,6 +76,7 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
 
     app.views.postForm.$el = $oldForm.clone().appendTo $form
     app.views.postForm.$el.attributes = {abbr: data.abbr, treadId:  data.id, redirect: true}
+    app.views.postForm.$el.find('form')[0].action = "/#{data.abbr}/#{data.id}"
 
     oldView.delegateEvents app.views.postForm.events
     app.views.postForm.delegateEvents()
