@@ -81,7 +81,7 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
     oldView.delegateEvents app.views.postForm.events
     app.views.postForm.delegateEvents()
 
-    if Recaptcha
+    unless typeof(Recaptcha) == 'undefined'
       eval($('.captcha script').html())
 
     @togglePostButtons($oldForm)

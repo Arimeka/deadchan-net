@@ -156,7 +156,18 @@ header, footer {
 
 // Content
 
-.thread {
+#board {
+  .tread-form {
+    button {
+      float: left;
+    }
+    .pages {
+      text-align: center;
+    }
+  }
+}
+
+.thread, #tread {
   margin-top: 20px;
   border-bottom: 1px dashed #ddd;
 
@@ -173,6 +184,9 @@ header, footer {
         margin-top: 5px;
         margin-bottom: 5px;
       }
+    }
+    .post-form {
+      margin-top: 15px;
     }
   }
 }

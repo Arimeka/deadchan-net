@@ -12,12 +12,16 @@
         = link_to '#' do
           = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
       .col-md-10= tread.content.html_safe
-    .footer
+    .footer.post-form
+      %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: tread.board.abbr, id: tread.id}} Ответить
+      %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
+        Скрыть форму
+      #form
   - if tread.posts.any?
     .posts
       - if tread.posts.count - 1 > 0
-        %p.text-muted 
-          = Russian.p(tread.posts.count - 1, "Пропущен", "Пропущено", "Пропущено") 
+        %p.text-muted
+          = Russian.p(tread.posts.count - 1, "Пропущен", "Пропущено", "Пропущено")
           = tread.posts.count - 1
           = link_to Russian.p(tread.posts.count - 1, "ответ", "ответа", "ответов"), tread_path(tread.board.abbr, tread.id, {anchor: 'posts'})
       = render tread.posts.last

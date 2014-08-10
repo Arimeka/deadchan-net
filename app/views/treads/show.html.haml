@@ -1,6 +1,6 @@
 - provide(:title, "#{entry.board.title} - #{entry.title}")
 #tread
-  .col-md-6.post-form
+  .col-md-12.post-form
     %button.btn.well#answer Ответить
     %button{class: 'btn well', id: 'hide', style: 'display: none;'}
       Скрыть форму
@@ -21,10 +21,14 @@
             = link_to '#' do
               = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
           .col-md-10= entry.content.html_safe
-        .footer
+        .footer.post-form
+          %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id}} Ответить
+          %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
+            Скрыть форму
+          #form
       #posts
         .posts= render posts
-  .col-md-6.post-form.page-footer
+  .col-md-12.post-form.page-footer
     %button.btn.well#answer Ответить
     %button{class: 'btn well', id: 'hide', style: 'display: none;'}
       Скрыть форму

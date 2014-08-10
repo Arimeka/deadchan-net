@@ -1,19 +1,21 @@
 - provide(:title, entry.title)
 #board
   .page-header
-    = will_paginate treads
-    .col-md-6.tread-form
+    .col-md-12.tread-form
       %button.btn.well#answer Создать тред
       %button{class: 'btn well', id: 'hide', style: 'display: none;'}
         Скрыть форму
+      .pages= will_paginate treads
+      .clearfix
       #form
   .clearfix
   .col-md-12
     = render treads
     .page-footer
-      .col-md-6.wel.tread-form
+      .col-md-12.wel.tread-form
         %button.btn.well#answer Создать тред
         %button{class: 'btn well', id: 'hide', style: 'display: none;'}
           Скрыть форму
+        .pages= will_paginate treads
+        .clearfix
         #form
-      = will_paginate treads
