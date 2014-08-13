@@ -4,4 +4,5 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   expose(:boards) { Board.published.asc(:placement_index) }
+  expose(:entry)  { nil }
 end

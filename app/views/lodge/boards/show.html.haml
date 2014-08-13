@@ -2,7 +2,7 @@
 .col-md-12
   = render partial: "subnav"
   %h1= "#{board.title} - #{t("path.controllers.lodge/#{controller.controller_name}.show")}"
-  .col-md-6
+  .table-responsive
     %table.table.table-condensed.table-striped
       %thead
         %tr
