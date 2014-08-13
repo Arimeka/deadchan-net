@@ -49,6 +49,8 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
                                   treadId:  data.id
                                   redirect: true
       $container.find('#form').html app.views.postForm.render().el
+      if data.reply
+        app.views.postForm.$el.find('#post_content')[0].value = "+#{data.reply}"
 
   hidePostForm: (e) ->
     $container = $(e.currentTarget).closest('.post-form')
@@ -77,6 +79,8 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
     app.views.postForm.$el = $oldForm.clone().appendTo $form
     app.views.postForm.$el.attributes = {abbr: data.abbr, treadId:  data.id, redirect: true}
     app.views.postForm.$el.find('form')[0].action = "/#{data.abbr}/#{data.id}"
+    if data.reply
+      app.views.postForm.$el.find('#post_content')[0].value = "+#{data.reply}"
 
     oldView.delegateEvents app.views.postForm.events
     app.views.postForm.delegateEvents()

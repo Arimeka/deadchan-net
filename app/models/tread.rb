@@ -2,18 +2,19 @@ class Tread
   include Mongoid::Document
   include ContentSupport
 
-  field :board_id, type: String
-  field :title, type: String
-  field :content, type: String
-  field :is_published,  type: Mongoid::Boolean, default: true
-  field :published_at, type: Time
-  field :updated_at, type: Time
+  field :board_id,        type: String
+  field :title,           type: String
+  field :content,         type: String
+  field :published_at,    type: Time
+  field :updated_at,      type: Time
+  field :replies,         type: Array                             # [{board_abbr, tread_id, post_id}, ...]
   field :is_commentable,  type: Mongoid::Boolean, default: true
-  field :is_pinned,  type: Mongoid::Boolean, default: false 
-  field :posts_number, type: Integer, default: 500
-  field :is_full,  type: Mongoid::Boolean, default: false
-  field :is_admin, type: Mongoid::Boolean, default: false
-  field :show_name, type: Mongoid::Boolean, default: false
+  field :is_published,    type: Mongoid::Boolean, default: true
+  field :is_pinned,       type: Mongoid::Boolean, default: false
+  field :is_full,         type: Mongoid::Boolean, default: false
+  field :is_admin,        type: Mongoid::Boolean, default: false
+  field :show_name,       type: Mongoid::Boolean, default: false
+  field :posts_number,    type: Integer,          default: 500
 
   # Validations
   # ======================================================
@@ -32,7 +33,7 @@ class Tread
   # Relations
   # ======================================================
   belongs_to :board
-  
+
   embeds_many :posts
 
   # Callbacks
@@ -57,7 +58,7 @@ class Tread
     def check_is_full
       if self.posts.size > posts_number
         self.is_full = true
-      else 
+      else
         self.is_full = false
         self.updated_at = Time.now
       end

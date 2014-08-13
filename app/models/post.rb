@@ -2,9 +2,10 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
   include ContentSupport
-  
+
+  field :content,       type: String
+  field :replies,       type: Array                           # [{board_abbr, tread_id, post_id}, ...]
   field :is_published,  type: Mongoid::Boolean, default: true
-  field :content,  type: String
 
 
   # Validations

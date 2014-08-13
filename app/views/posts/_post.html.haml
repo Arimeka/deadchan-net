@@ -11,8 +11,16 @@
         = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
     .col-md-10= post.content.html_safe
   .footer.post-form
-    %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: post.tread.board.abbr, id: post.tread.id}} Ответить
+    - if post.replies
+      %ul.list-inline
+        %li
+          %small Ответы:
+        - post.replies.each do |p|
+          %li
+            = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
+              %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
+    %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: post.tread.board.abbr, id: post.tread.id, post_id: post.id, reply: post.id}} Ответить
     %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
       Скрыть форму
     #form
-    
+

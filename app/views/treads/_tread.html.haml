@@ -13,6 +13,14 @@
           = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
       .col-md-10= tread.content.html_safe
     .footer.post-form
+      - if tread.replies
+        %ul.list-inline
+          %li
+            %small Ответы:
+          - tread.replies.each do |p|
+            %li
+              = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
+                %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
       %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: tread.board.abbr, id: tread.id}} Ответить
       %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
         Скрыть форму

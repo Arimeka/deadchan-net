@@ -14,7 +14,30 @@
   <div class="col-md-10"><%= content %></div>
 </div>
 <div class="footer post-form">
-  <button class="btn btn-default btn-sm" data-abbr="<%= window.location.pathname.split('/')[1] %>" data-id="<%= tread_id %>" id="answer">Ответить</button>
+  <% if(replies) {%>
+    <ul class="list-inline">
+      <li>
+        <small>Ответы:</small>
+      </li>
+      <% replies.forEach( function (arrayItem) { %>
+        <%
+          var tread_id = arrayItem.tread_id.$oid
+          var link = tread_id
+          var short = tread_id.substr(tread_id.length - 7)
+          if(arrayItem.post_id){
+            var post_id = arrayItem.post_id.$oid
+            link += '#' + post_id
+            short += '#' + (post_id.substr(post_id.length - 7))
+          }
+        %>
+        <li>
+          <a class="text-muted" href="/<%= arrayItem.board_abbr %>/<%= link %>"><small>&gt;&gt;<%= short %></small>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <button class="btn btn-default btn-sm" data-abbr="<%= window.location.pathname.split('/')[1] %>" data-id="<%= tread_id %>" data-reply="<%= _id.$oid %>" id="answer">Ответить</button>
   <button class="btn btn-default btn-sm" id="hide" style="display: none;">
     Скрыть форму
   </button>
