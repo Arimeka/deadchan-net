@@ -3,16 +3,21 @@
     window['rangy'].initialized = false
   })
   $(document).ready(function(){
-    $('.wysihtml5').each(function(i, elem) {
-      $(elem).wysihtml5({
-        locale: "ru-RU",
-        "font-styles": true, 
-        "emphasis": true,
-        "lists": true,
-        "html": true,
-        "link": true,
-        "image": true,
-        "color": true
+    if($('.wysihtml5-toolbar').length === 0) {
+      $('.wysihtml5').each(function(i, elem) {
+        $(elem).wysihtml5({
+          locale: "ru-RU",
+          stylesheets: ["#{asset_path('backend/backend.css')}"],
+          toolbar: {
+            'font-styles': true,
+            emphasis: true,
+            lists: true,
+            html: true,
+            link: true,
+            image: true,
+            color: true
+          }
+        });
       });
-    });
+    };
   })

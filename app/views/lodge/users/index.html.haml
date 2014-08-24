@@ -1,19 +1,17 @@
 - provide(:title, t("path.controllers.lodge/#{controller.controller_name}.title"))
-.col-md-12
-  = render partial: "subnav"
-  .table-responsive
-    %table.table.table-condensed.table-striped
-      %thead
-        %tr
-          %th
-          %th= t "mongoid.attributes.user.id"
-          %th= t "mongoid.attributes.user.last_sign_in_at"
-          %th= t "mongoid.attributes.user.current_sign_in_at"
-          %th= t "mongoid.attributes.user.current_sign_in_ip"
-          %th= t "mongoid.attributes.user.last_sign_in_ip"
-          %th= t "mongoid.attributes.user.locked_at"
-          %th
-      %tbody
-        = render users
-  .clearfix
-  = will_paginate users
+= render partial: "subnav"
+.table-responsive
+  %table.table.table-condensed.table-striped
+    %thead
+      %tr
+        %th
+        %th= t "mongoid.attributes.user.id"
+        %th= t "mongoid.attributes.user.last_sign_in_at"
+        %th= t "mongoid.attributes.user.current_sign_in_at"
+        %th= t "mongoid.attributes.user.current_sign_in_ip"
+        %th= t "mongoid.attributes.user.last_sign_in_ip"
+        %th= t "mongoid.attributes.user.locked_at"
+        %th
+    %tbody= render users
+.clearfix
+= will_paginate users

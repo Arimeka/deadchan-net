@@ -7,6 +7,7 @@ class Post
   field :replies,       type: Array                           # [{board_abbr, tread_id, post_id}, ...]
   field :is_published,  type: Mongoid::Boolean, default: true
 
+  attr_accessor :lodge
 
   # Validations
   # ======================================================

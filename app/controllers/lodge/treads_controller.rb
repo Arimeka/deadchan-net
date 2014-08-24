@@ -1,6 +1,6 @@
 class Lodge::TreadsController < Lodge::LodgeController
   expose(:treads) { Tread.desc(:updated_at).includes(:board).paginate(page: params[:page], per_page: 30) }
-  expose(:tread)  { params[:id] ? Tread.find(params[:id]) : Tread.new(tread_params) }
+  expose(:tread)  { params[:id] ? Tread.find(params[:id]) : Tread.new(tread_params.merge(lodge: true)) }
   expose(:posts)  { tread.posts.paginate(page: params[:page], per_page: 30) }
 
   def create
@@ -19,7 +19,7 @@ class Lodge::TreadsController < Lodge::LodgeController
   end
 
   def update
-    if tread.update_attributes(tread_params)
+    if tread.update_attributes(tread_params.merge(lodge: true))
       flash[:notice] = t('msg.saved')
       if params[:commit] == t('form.save_and_exit')
         redirect_to lodge_tread_url tread
@@ -51,8 +51,9 @@ class Lodge::TreadsController < Lodge::LodgeController
   private
     def tread_params
       params.fetch(:tread, {}).permit(:title, :content,
-                                        :is_published, :pin, 
+                                        :is_published, :pin,
                                         :is_commentable, :posts_number,
-                                        :board_id, :is_admin, :show_name)      
+                                        :board_id, :is_admin, :show_name,
+                                        :lodge)
     end
 end

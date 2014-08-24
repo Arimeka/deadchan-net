@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: 1f8e12c5b03da1c9bd49bab12d86bef969868fb3
+  revision: 5ba2e1fb4cb8189c9890e29c19cf4e16c25e4bc5
   specs:
     mongoid (4.0.0)
       activemodel (~> 4.0)
@@ -64,13 +64,15 @@ GEM
       rake (>= 0.8.7)
     ansi (1.4.3)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (2.2.0.20140804)
+      execjs
     bcrypt (3.1.7)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.0.0.0)
+    bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     bootstrap-wysihtml5-rails (0.3.2.100)
       railties (>= 3.0)
@@ -101,7 +103,7 @@ GEM
     database_cleaner (1.3.0)
     debug_inspector (0.0.2)
     decent_exposure (2.3.2)
-    devise (3.2.4)
+    devise (3.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -162,7 +164,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    meta_request (0.3.3)
+    meta_request (0.3.4)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
       railties (>= 3.0.0, < 5.0.0)
@@ -183,7 +185,7 @@ GEM
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     netrc (0.7.7)
-    nokogiri (1.6.2.1)
+    nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     optionable (0.2.0)
     origin (2.1.1)
@@ -273,9 +275,9 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    sdoc (0.4.0)
-      json (~> 1.8)
-      rdoc (~> 4.0, < 5.0)
+    sdoc (0.4.1)
+      json (~> 1.7, >= 1.7.7)
+      rdoc (~> 4.0)
     simplecov (0.9.0)
       docile (~> 1.1.0)
       multi_json
@@ -308,7 +310,7 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
-    tzinfo (1.2.1)
+    tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
@@ -332,9 +334,10 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (>= 2.5.0)
+  autoprefixer-rails
   better_errors
   binding_of_caller
-  bootstrap-sass (~> 3.0.0.0.rc)
+  bootstrap-sass (~> 3.2.0)
   bootstrap-wysihtml5-rails
   bootstrap_notify!
   capistrano

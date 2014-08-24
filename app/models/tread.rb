@@ -16,6 +16,8 @@ class Tread
   field :show_name,       type: Mongoid::Boolean, default: false
   field :posts_number,    type: Integer,          default: 500
 
+  attr_accessor :lodge
+
   # Validations
   # ======================================================
   validates :title, presence: true, length: { in: 2..30 }

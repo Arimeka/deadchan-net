@@ -4,7 +4,7 @@ module ContentSupport
   extend ActiveSupport::Concern
 
   included do
-    before_create :preprocess_content
+    before_create :preprocess_content, unless: 'lodge'
     after_create  :find_replies
   end
 
