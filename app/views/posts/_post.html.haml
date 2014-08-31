@@ -6,10 +6,10 @@
       = link_to post.tread.id.to_s.last(7), tread_path(post.tread.board.abbr, post.tread.id)
       = link_to "##{post.id.to_s.last(7)}", tread_path(post.tread.board.abbr, post.tread.id, {anchor: post.id})
   .body.row
-    .col-md-2
+    .col-lg-2.col-md-12
       = link_to '#' do
         = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
-    .col-md-10= post.content.html_safe
+    .col-lg-10.col-md-12= post.content.html_safe
   .footer.post-form
     - if post.replies
       %ul.list-inline

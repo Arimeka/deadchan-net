@@ -1,2 +1,5 @@
 .page-header
   %h1= breadcrumbs entry
+  %ul.list-inline.hidden-lg
+    - boards.each do |board|
+      %li= link_to "/#{board.abbr}/ #{board.title}", board_path(board.abbr)

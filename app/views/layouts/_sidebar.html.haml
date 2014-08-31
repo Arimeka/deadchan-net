@@ -1,6 +1,6 @@
 .col-md-2
   %aside.sidebar
-    %ul.well.lead.list-unstyled.col-md-2
+    %ul.well.lead.list-unstyled.col-lg-2.visible-lg-block
       - boards.each do |board|
         = link_to board_path(board.abbr) do
           %li= board.title

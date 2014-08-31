@@ -57,6 +57,7 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
             @$('form').trigger('reset')
             @$('textarea').val('')
             @$('.uploading-filename').empty()
+            @$('button').click()
             postsCollection = new DeadchanNet.Views.Posts.Collection
             a = $posts.html postsCollection.render().el
             $('html, body').animate(
