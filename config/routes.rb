@@ -1,4 +1,4 @@
-DeadchanNet::Application.routes.draw do    
+DeadchanNet::Application.routes.draw do
   root 'home#index'
 
   scope '/lodge' do
@@ -6,7 +6,7 @@ DeadchanNet::Application.routes.draw do
   end
 
   devise_for :users
-  
+
   namespace :lodge do
     get '/' => 'dashboard#index'
 
@@ -14,7 +14,7 @@ DeadchanNet::Application.routes.draw do
     resources :treads do
       resources :posts, only: [:update, :destroy]
     end
-    resources :users
+    resources :users, only: [:index, :destroy]
   end
 
   scope 'treads' do

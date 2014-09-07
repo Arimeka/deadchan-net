@@ -7,3 +7,5 @@
   %td= user.last_sign_in_ip
   %td= user.locked_at
   %td
+    = link_to lodge_user_path(user), class: "btn btn-danger", method: :delete, data: { confirm: "Уверены?" } do
+      %span.glyphicon.glyphicon-trash
