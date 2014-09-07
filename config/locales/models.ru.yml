@@ -11,6 +11,9 @@ ru:
         board:
           unthreadable:         "Создание тредов запрещено"
 
+        tread:
+          uncommentable:        "Ответы запрещены"
+
     attributes:
       defaults: &defaults
         title:                  "Заголовок"

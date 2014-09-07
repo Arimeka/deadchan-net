@@ -1,11 +1,12 @@
 - provide(:title, "#{entry.board.title} - #{entry.title}")
 #tread
   .col-md-12.post-form
-    %button{class: 'btn well', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id}}
-      Ответить
-    %button{class: 'btn well', id: 'hide', style: 'display: none;'}
-      Скрыть форму
-    #form
+    - if entry.is_commentable?
+      %button{class: 'btn well', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id}}
+        Ответить
+      %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+        Скрыть форму
+      #form
   .clearfix
   .col-md-12
     .thread
@@ -34,16 +35,18 @@
                 %li
                   = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
                     %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
-          %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id, reply: entry.id}}
-            Ответить
-          %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
-            Скрыть форму
-          #form
+          - if entry.is_commentable?
+            %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id, reply: entry.id}}
+              Ответить
+            %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
+              Скрыть форму
+            #form
       #posts
         .posts= render posts
   .col-md-12.post-form.page-footer
-    %button{class: 'btn well', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id}}
-      Ответить
-    %button{class: 'btn well', id: 'hide', style: 'display: none;'}
-      Скрыть форму
-    #form
+    - if entry.is_commentable?
+      %button{class: 'btn well', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id}}
+        Ответить
+      %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+        Скрыть форму
+      #form

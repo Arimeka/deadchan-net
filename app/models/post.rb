@@ -14,6 +14,8 @@ class Post
   validates :content, presence: true, length: { in: 1..2500 }
   validates :is_published, inclusion: { in: [true, false] }
 
+  validates_with IsCommentableValidator
+
   # Scopes
   # ======================================================
   scope :published, -> { where(is_published: true).asc(:created_at) }
