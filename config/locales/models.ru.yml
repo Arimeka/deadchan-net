@@ -5,11 +5,17 @@ ru:
 
       board:                    "Борда"
 
+      errors:
+        unsaved:                "Ошибка сохранения"
+
+        board:
+          unthreadable:         "Создание тредов запрещено"
+
     attributes:
       defaults: &defaults
         title:                  "Заголовок"
         placement_index:        "Позиция"
-        is_published:           "Опубликовано"        
+        is_published:           "Опубликовано"
         content:                "Содержимое"
         show_name:              "Показать имя"
         is_admin:               "Как админ"

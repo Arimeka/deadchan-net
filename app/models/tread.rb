@@ -28,6 +28,8 @@ class Tread
   validates :is_pinned, :is_published, :is_commentable,
             :is_full, inclusion: { in: [true, false] }
 
+  validates_with TreadValidator
+
   # Scopes
   # ======================================================
   scope :published, -> { where(is_published: true, :published_at.lt => Time.now).desc(:is_pinned).desc(:updated_at) }

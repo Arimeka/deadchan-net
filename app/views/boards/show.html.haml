@@ -1,21 +1,23 @@
 - provide(:title, entry.title)
 #board
   .page-header
-    .col-md-12.tread-form
-      %button.btn.well#answer Создать тред
-      %button{class: 'btn well', id: 'hide', style: 'display: none;'}
-        Скрыть форму
-      .pages= will_paginate treads
-      .clearfix
-      #form
+    - if entry.is_threadable?
+      .col-md-12.tread-form
+        %button.btn.well#answer Создать тред
+        %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+          Скрыть форму
+        .pages= will_paginate treads
+        .clearfix
+        #form
   .clearfix
   .col-md-12
     = render treads
   .page-footer
-    .col-md-12.wel.tread-form
-      %button.btn.well#answer Создать тред
-      %button{class: 'btn well', id: 'hide', style: 'display: none;'}
-        Скрыть форму
-      .pages= will_paginate treads
-      .clearfix
-      #form
+    - if entry.is_threadable?
+      .col-md-12.wel.tread-form
+        %button.btn.well#answer Создать тред
+        %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+          Скрыть форму
+        .pages= will_paginate treads
+        .clearfix
+        #form
