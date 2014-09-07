@@ -1,7 +1,7 @@
 class Lodge::BoardsController < Lodge::LodgeController
   expose(:boards) { Board.asc(:placement_index).paginate(page: params[:page]) }
   expose(:board)  { params[:id] ? Board.find(params[:id]) : Board.new(board_params) }
-  expose(:treads) { board.treads.includes(:board).desc(:updated_at).paginate(page: params[:page], per_page: 30) }
+  expose(:treads) { board.treads.includes(:board).desc(:is_pinned).desc(:updated_at).paginate(page: params[:page], per_page: 30) }
 
   def create
     if board.save
@@ -50,7 +50,7 @@ class Lodge::BoardsController < Lodge::LodgeController
 
   private
     def board_params
-      params.fetch(:board, {}).permit(:title, :abbr, :placement_index, 
+      params.fetch(:board, {}).permit(:title, :abbr, :placement_index,
                                 :threads_number, :is_threadable, :is_published)
     end
 end

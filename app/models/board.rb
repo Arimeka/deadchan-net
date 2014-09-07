@@ -1,7 +1,7 @@
 class Board
   include Mongoid::Document
   include Mongoid::Timestamps
-  
+
   field :title, type: String
   field :abbr, type: String
   field :placement_index, type: Integer, default: 0
@@ -24,4 +24,19 @@ class Board
   # Relations
   # ======================================================
   has_many :treads, dependent: :destroy
+
+  # Callbacks
+  # ======================================================
+  after_save :unpublish_olds
+
+  private
+
+    def unpublish_olds
+      if threads_number < self.treads.published.count
+        self.treads.published.skip(threads_number).each do |t|
+          t.set(is_published: false)
+        end
+      end
+      true
+    end
 end

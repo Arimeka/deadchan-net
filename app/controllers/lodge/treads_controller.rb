@@ -1,5 +1,5 @@
 class Lodge::TreadsController < Lodge::LodgeController
-  expose(:treads) { Tread.desc(:updated_at).includes(:board).paginate(page: params[:page], per_page: 30) }
+  expose(:treads) { Tread.desc(:is_pinned).desc(:updated_at).includes(:board).paginate(page: params[:page], per_page: 30) }
   expose(:tread)  { params[:id] ? Tread.find(params[:id]) : Tread.new(tread_params.merge(lodge: true)) }
   expose(:posts)  { tread.posts.paginate(page: params[:page], per_page: 30) }
 
@@ -51,7 +51,7 @@ class Lodge::TreadsController < Lodge::LodgeController
   private
     def tread_params
       params.fetch(:tread, {}).permit(:title, :content,
-                                        :is_published, :pin,
+                                        :is_published, :is_pinned,
                                         :is_commentable, :posts_number,
                                         :board_id, :is_admin, :show_name,
                                         :lodge)

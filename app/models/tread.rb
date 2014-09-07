@@ -30,7 +30,7 @@ class Tread
 
   # Scopes
   # ======================================================
-  scope :published, -> { where(is_published: true, :published_at.lt => Time.now).desc(:updated_at) }
+  scope :published, -> { where(is_published: true, :published_at.lt => Time.now).desc(:is_pinned).desc(:updated_at) }
 
   # Relations
   # ======================================================
@@ -42,8 +42,10 @@ class Tread
   # ======================================================
   before_save :set_published_at, :check_is_full
   before_create :first_set_timestamps
+  after_create :unpublish_old
 
   private
+
     def first_set_timestamps
       if is_published
         self.published_at = Time.now
@@ -63,6 +65,13 @@ class Tread
       else
         self.is_full = false
         self.updated_at = Time.now
+      end
+      true
+    end
+
+    def unpublish_old
+      if self.board.threads_number < self.board.treads.published.count
+        self.board.treads.published.last.set(is_published: false)
       end
       true
     end
