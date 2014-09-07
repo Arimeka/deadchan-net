@@ -5,6 +5,7 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
 
   events:
     'ajax:success'          : 'ajaxSuccess'
+    'ajax:error'            : 'ajaxError'
     'click .upload-file'    : 'fileClick'
     'change #fileupload'    : 'fileupload'
 
@@ -63,3 +64,11 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
             $('html, body').animate(
               {scrollTop: $(a).find('article').last().offset().top
               })
+
+  ajaxError: ->
+    $('.top-right').notify
+      message:
+        text: 'Ошибка отправки формы, перезагрузите страницу'
+      type: 'danger'
+      closable: false
+    .show()
