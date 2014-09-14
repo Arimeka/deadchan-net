@@ -35,6 +35,10 @@ module DeadchanNet
       expires_in: 7*24*60*60
     }
 
+    def application_config
+      @application_config ||= YAML.load_file(Rails.root.join('config', 'app.yml'))[Rails.env]
+    end
+
     # Middlewares
     config.middleware.use 'SessionIpMiddleware'
 

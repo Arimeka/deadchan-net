@@ -1,7 +1,21 @@
-host:                               "deadchan.net"
-host_title:                         "deadchan.net"
-site_url:                           "http://deadchan.net"
-site_name:                          "Deadchan - Мертворожденная борда"
-site_description:                   "Еще одна нкому не нужная мертворожденная борда"
-site_keywords:                      "уныние, безысходность"
-site_copyright:                     "Derp."
+defaults: &defaults
+  settings:
+    host:                               "deadchan.net"
+    host_title:                         "deadchan.net"
+    site_url:                           "http://deadchan.net"
+    site_name:                          "Deadchan - Мертворожденная борда"
+    site_description:                   "Еще одна нкому не нужная мертворожденная борда"
+    site_keywords:                      "уныние, безысходность"
+    site_copyright:                     "Derp."
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+production:
+  <<: *defaults

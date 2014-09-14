@@ -5,13 +5,13 @@
     %meta{charset: "utf-8"}
     %meta{"http-equiv" => "X-UA-Compatible", content: "IE=edge, chrome=1"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
-    %meta{name: "description", content: "#{APP['site_description']}"}
-    %meta{name: "keywords", content: "#{APP['site_keywords']}"}
+    %meta{name: "description", content: "#{Settings.site_description}"}
+    %meta{name: "keywords", content: "#{Settings.site_keywords}"}
 
-    %meta{content: "#{APP['site_name']}", property: "og:title"}
+    %meta{content: "#{Settings.site_name}", property: "og:title"}
     %meta{content: "#{request.url || 'http://deadchan.net/'}", property: "og:url"}
     %meta{content: "#{image_path('logo.png')}", property: "og:image"}
-    %meta{content: "#{APP['site_description']}", property: "og:description"}
+    %meta{content: "#{Settings.site_description}", property: "og:description"}
     %meta{content: "Deadchan", property: "og:site_name"}
 
     %link{href: "#{image_path('logo.png')}", rel: "image_src"}

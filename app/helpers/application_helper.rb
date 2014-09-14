@@ -4,7 +4,7 @@ module ApplicationHelper
   def full_title(page_title)
     base_title = "Deadchan"
     if page_title.empty?
-      APP['site_name']
+      Settings.site_name
     else
       "#{base_title} - #{page_title}"
     end
@@ -39,7 +39,7 @@ module ApplicationHelper
     base_title = "Deadchan"
     root = link_to base_title, root_path
     unless entry
-      APP['site_name']
+      Settings.site_name
     else
       case entry.class.name
       when 'Board'

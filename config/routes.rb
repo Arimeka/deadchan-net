@@ -15,6 +15,8 @@ DeadchanNet::Application.routes.draw do
       resources :posts, except: [:index, :show]
     end
     resources :users, only: [:index, :destroy]
+
+    mount RailsSettingsUi::Engine, at: 'settings'
   end
 
   scope 'treads' do
