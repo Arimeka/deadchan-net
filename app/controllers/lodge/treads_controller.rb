@@ -13,7 +13,7 @@ class Lodge::TreadsController < Lodge::LodgeController
       end
     else
       @errors = tread.errors.full_messages
-      flash[:error] = t("msg.save_error")
+      flash.now[:error] = t("msg.save_error")
       render :new
     end
   end
@@ -28,7 +28,7 @@ class Lodge::TreadsController < Lodge::LodgeController
       end
     else
       @errors = tread.errors.full_messages
-      flash[:error] = t("msg.save_error")
+      flash.now[:error] = t("msg.save_error")
       render :edit
     end
   end

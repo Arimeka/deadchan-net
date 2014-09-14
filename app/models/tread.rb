@@ -28,7 +28,7 @@ class Tread
   validates :is_pinned, :is_published, :is_commentable,
             :is_full, inclusion: { in: [true, false] }
 
-  validates_with IsThreadableValidator
+  validates_with IsThreadableValidator, on: :create, unless: 'lodge'
 
   # Scopes
   # ======================================================

@@ -14,7 +14,7 @@ class Post
   validates :content, presence: true, length: { in: 1..2500 }
   validates :is_published, inclusion: { in: [true, false] }
 
-  validates_with IsCommentableValidator
+  validates_with IsCommentableValidator, on: :create, unless: 'lodge'
 
   # Scopes
   # ======================================================
