@@ -4,9 +4,12 @@
       %li
         = link_to tread_path(tread.board.abbr, tread.id) do
           %h3= tread.title
-      - if tread.is_pinned
+      - if tread.is_pinned?
         %li
           %span.glyphicon.glyphicon-pushpin
+      - unless tread.is_commentable?
+        %li
+          %span.glyphicon.glyphicon-lock
       %li= Russian::strftime tread.published_at, '%d %B %Y %H:%M:%S'
       %li
         = link_to tread.id.to_s.last(7), tread_path(tread.board.abbr, tread.id)
