@@ -49,6 +49,7 @@ class Lodge::TreadsController < Lodge::LodgeController
   end
 
   private
+
     def tread_params
       params.fetch(:tread, {}).permit(:title, :content,
                                         :is_published, :is_pinned,

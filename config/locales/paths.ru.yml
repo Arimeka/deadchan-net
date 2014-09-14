@@ -1,12 +1,12 @@
-ru:  
+ru:
   path:
     controllers:
       defaults: &defaults
         index:                        "Посмотреть все"
-        create:                       "Создать" 
+        create:                       "Создать"
         new:                          "Открыть форму создания"
         edit:                         "Открыть форму редактирования"
-        update:                       "Внести изменения" 
+        update:                       "Внести изменения"
         destroy:                      "Удалить"
       lodge/boards:
         <<: *defaults
@@ -16,6 +16,7 @@ ru:
         <<: *defaults
         title:                        "Треды"
         show:                         "Статистика треда"
+        new_post:                     "Ответить в тред"
       lodge/users:
         <<: *defaults
         title:                        "Пользователи"

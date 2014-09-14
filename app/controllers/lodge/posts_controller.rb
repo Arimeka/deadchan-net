@@ -1,6 +1,37 @@
 class Lodge::PostsController < Lodge::LodgeController
   expose(:tread)  { Tread.find(params[:tread_id]) }
-  expose(:post)  { tread.posts.find(params[:id]) }
+  expose(:post)   { params[:id] ? tread.posts.find(params[:id]) : Post.new(post_params.merge(lodge: true)) }
+
+  def create
+    tread.posts.push(post)
+    if tread.save
+      flash[:notice] = t('msg.saved')
+      if params[:commit] == t('form.save_and_exit')
+        redirect_to lodge_tread_url(tread)
+      else
+        redirect_to edit_lodge_tread_post_url(tread,post)
+      end
+    else
+      @errors = post.errors.full_messages
+      flash.now[:error] = t("msg.save_error")
+      render :new
+    end
+  end
+
+  def update
+    if post.update_attributes(post_params.merge(lodge: true))
+      flash[:notice] = t('msg.saved')
+      if params[:commit] == t('form.save_and_exit')
+        redirect_to lodge_tread_url(tread)
+      else
+        redirect_to edit_lodge_tread_post_url(tread,post)
+      end
+    else
+      @errors = post.errors.full_messages
+      flash.now[:error] = t("msg.save_error")
+      render :edit
+    end
+  end
 
   def destroy
     if post.delete
@@ -16,4 +47,10 @@ class Lodge::PostsController < Lodge::LodgeController
       end
     end
   end
+
+  private
+
+    def post_params
+      params.fetch(:post, {}).permit(:content, :is_published)
+    end
 end

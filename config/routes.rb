@@ -12,7 +12,7 @@ DeadchanNet::Application.routes.draw do
 
     resources :boards
     resources :treads do
-      resources :posts, only: [:update, :destroy]
+      resources :posts, except: [:index, :show]
     end
     resources :users, only: [:index, :destroy]
   end
