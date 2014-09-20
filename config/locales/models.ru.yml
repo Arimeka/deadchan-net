@@ -66,3 +66,5 @@ ru:
         name:                   "СЕО копирайты"
       readonly:
         name:                   "Режим ридонли"
+      panic_mode:
+        name:                   "Режим паники"

@@ -8,6 +8,7 @@ defaults: &defaults
     site_keywords:    "уныние, безысходность"
     site_copyright:   "Derp."
     readonly:         false
+    panic_mode:       false
 
 development:
   <<: *defaults
