@@ -47,3 +47,22 @@ ru:
         current_sign_in_ip:     "Текущий ip"
         last_sign_in_ip:        "Последний ip"
         locked_at:              "Заблокирован до"
+
+  settings:
+    attributes:
+      host:
+        name:                   "Хост"
+      host_title:
+        name:                   "Название хоста"
+      site_url:
+        name:                   "УРЛ сайта"
+      site_name:
+        name:                   "Название сайта"
+      site_description:
+        name:                   "СЕО-описание сайта"
+      site_keywords:
+        name:                   "SEO-keywords"
+      site_copyright:
+        name:                   "СЕО копирайты"
+      readonly:
+        name:                   "Режим ридонли"

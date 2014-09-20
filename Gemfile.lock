@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Arimeka/rails-settings-cached.git
-  revision: 4f4e05c351df9da527b0dffe4e07179dffb21b4f
+  revision: ee3be1b0665af47cc2f22678550b4636e7f77af1
   specs:
     rails-settings-cached (0.4.1)
       rails (>= 4.0.0)

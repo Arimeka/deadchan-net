@@ -29,6 +29,22 @@ class Board
   # ======================================================
   after_save :unpublish_olds
 
+  def is_threadable
+    if Settings.readonly
+      false
+    else
+      super
+    end
+  end
+
+  def is_threadable?
+    if Settings.readonly
+      false
+    else
+      super
+    end
+  end
+
   private
 
     def unpublish_olds

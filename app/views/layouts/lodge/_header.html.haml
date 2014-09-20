@@ -11,4 +11,6 @@
     %li{class: controller.controller_path == "lodge/users" && controller.action_name == "index" ? "active" : ""}
       = link_to 'Пользователи', lodge_users_path
   %ul.nav.navbar-nav.navbar-right
+    %li{class: controller.controller_path == "rails_settings_ui/settings" && controller.action_name == "index" ? "active" : ""}
+      = link_to 'Настройки', settings_path
     %li= link_to 'Выйти', destroy_admin_session_path, method: :delete

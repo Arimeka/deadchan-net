@@ -21,3 +21,5 @@ ru:
         <<: *defaults
         title:                        "Пользователи"
         show:                         "Статистика пользователя"
+      rails_settings_ui/settings:
+        title:                        "Настройки"

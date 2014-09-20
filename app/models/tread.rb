@@ -46,6 +46,23 @@ class Tread
   before_create :first_set_timestamps
   after_create :unpublish_old
 
+
+  def is_commentable
+    if Settings.readonly
+      false
+    else
+      super
+    end
+  end
+
+  def is_commentable?
+    if Settings.readonly
+      false
+    else
+      super
+    end
+  end
+
   private
 
     def first_set_timestamps
