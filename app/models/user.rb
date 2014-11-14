@@ -14,4 +14,8 @@ class User
 
   ## Lockable
   field :locked_at,       :type => Time
+
+  # Relations
+  # ======================================================
+  has_many :treads
 end

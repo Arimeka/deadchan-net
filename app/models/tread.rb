@@ -3,6 +3,7 @@ class Tread
   include ContentSupport
 
   field :board_id,        type: String
+  field :user_id,         type: String
   field :title,           type: String
   field :content,         type: String
   field :published_at,    type: Time
@@ -15,6 +16,7 @@ class Tread
   field :is_admin,        type: Mongoid::Boolean, default: false
   field :show_name,       type: Mongoid::Boolean, default: false
   field :posts_number,    type: Integer,          default: 500
+  field :request_ip,      type: BSON::Binary
 
   attr_accessor :lodge
 
@@ -37,6 +39,7 @@ class Tread
   # Relations
   # ======================================================
   belongs_to :board
+  belongs_to :user
 
   embeds_many :posts
 

@@ -8,12 +8,14 @@ class BoardsController < ApplicationController
   def create
     respond_to do |format|
       format.html do
+        unless user_signed_in? || admin_signed_in?
+          user = User.create
+          user.remember_me!
+          sign_in user
+        end
+        tread.user_id = current_user.id if current_user
+        tread.request_ip = IPAddr.new(request.ip).hton
         if tread.save
-          unless user_signed_in? || admin_signed_in?
-            user = User.create
-            user.remember_me!
-            sign_in user
-          end
           render json: {app: {notice: {text: [t('msg.saved')]}, redirect: tread_url(entry.abbr, tread.id)}}
           $redis.set("last_posting:#{current_user.id}", 1, ex: 10)
         else

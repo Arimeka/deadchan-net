@@ -3,9 +3,11 @@ class Post
   include Mongoid::Timestamps
   include ContentSupport
 
+  field :user_id,       type: String
   field :content,       type: String
   field :replies,       type: Array                           # [{board_abbr, tread_id, post_id}, ...]
   field :is_published,  type: Mongoid::Boolean, default: true
+  field :request_ip,    type: BSON::Binary
 
   attr_accessor :lodge
 

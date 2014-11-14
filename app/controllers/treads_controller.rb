@@ -9,11 +9,16 @@ class TreadsController < ApplicationController
   def create
     respond_to do |format|
       format.json do
+        unless user_signed_in? || admin_signed_in?
+          user = User.create
+          user.remember_me!
+          post.user_id = user.id
+        end
+        post.user_id = current_user.id if user_signed_in?
+        post.request_ip = IPAddr.new(request.ip).hton
         entry.posts.push(post)
         if entry.save
           unless user_signed_in? || admin_signed_in?
-            user = User.create
-            user.remember_me!
             sign_in user
             render json: {app: {notice: {text: [t('msg.saved')]}, reload: true, id: post.id}}
           else
@@ -51,9 +56,11 @@ class TreadsController < ApplicationController
     end
 
     def check_last_posting
-      if user_signed_in?
-        if $redis.get("last_posting:#{current_user.id}")
-          session.keys.each { |key| session.delete key }
+      unless admin_signed_in?
+        if user_signed_in?
+          if $redis.get("last_posting:#{current_user.id}")
+            session.keys.each { |key| session.delete key }
+          end
         end
       end
     end
