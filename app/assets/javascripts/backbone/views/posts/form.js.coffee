@@ -4,20 +4,25 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
   idName: 'new_post'
 
   events:
+    'ajax:beforeSend'       : 'ajaxBeforeSend'
     'ajax:success'          : 'ajaxSuccess'
     'ajax:error'            : 'ajaxError'
+    'ajax:complete'         : 'ajaxComplete'
     'click .upload-file'    : 'fileClick'
     'change #fileupload'    : 'fileupload'
 
   initialize: (attributes) ->
     @attributes = attributes
+    @$submitButton = @$el.find('input[type="submit"]')
 
-  render: ->
+  render: (content) ->
     $.ajax
       url: "/treads/form/#{@attributes.abbr}/#{@attributes.treadId}"
       async: false
       success: (data) =>
         @$el.html data
+        if content?
+          @$el.find('textarea').val(content)
         @$el.attributes = {abbr: @attributes.abbr, treadId: @attributes.treadId, redirect: @attributes.redirect}
         @initialize()
     @
@@ -66,9 +71,20 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
               })
 
   ajaxError: ->
+    content = @$el.find('textarea').val()
+    app.views.postForm = new DeadchanNet.Views.Posts.Form
+                                abbr:     @$el.attributes.abbr
+                                treadId:  @$el.attributes.treadId
+    @$el.closest('#form').html app.views.postForm.render(content).el
     $('.top-right').notify
       message:
-        text: 'Ошибка отправки формы, перезагрузите страницу'
+        text: 'Ошибка отправки формы, попробуйте еще раз'
       type: 'danger'
       closable: false
     .show()
+
+  ajaxBeforeSend: ->
+    @$submitButton.prop('disabled', true)
+
+  ajaxComplete: ->
+    @$submitButton.prop('disabled', false)
