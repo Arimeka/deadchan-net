@@ -19,7 +19,7 @@ class BoardsController < ApplicationController
         tread.request_ip = IPAddr.new(request.ip).hton
         if tread.save
           render json: {app: {notice: {text: [t('msg.saved')]}, redirect: tread_url(entry.abbr, tread.id)}}
-          $redis.set("last_posting:#{current_user.id}", 1, ex: 10)
+          $redis.set("last_posting:#{current_user.id}", 1, ex: 10) if user_signed_in?
         else
           errors = tread.errors.full_messages
           render json: {app: {error: {text: errors}}}

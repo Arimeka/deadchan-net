@@ -26,7 +26,7 @@ class TreadsController < ApplicationController
           else
             render json: {app: {notice: {text: [t('msg.saved')]}, id: post.id}}
           end
-          $redis.set("last_posting:#{current_user.id}", 1, ex: 10)
+          $redis.set("last_posting:#{current_user.id}", 1, ex: 10) if user_signed_in?
         else
           errors = post.errors.full_messages
           render json: {app: {error: {text: errors}}}
