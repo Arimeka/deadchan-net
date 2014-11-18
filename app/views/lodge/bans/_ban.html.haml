@@ -1,0 +1,8 @@
+%tr
+  %td= ban.ban_type.type
+  %td= ban.until
+  %td
+    = link_to edit_lodge_ban_path(ban), class: "btn" do
+      %span.glyphicon.glyphicon-pencil
+    = link_to lodge_ban_path(ban), class: "btn btn-danger", method: :delete,  data: { confirm: "Уверены?" } do
+      %span.glyphicon.glyphicon-trash

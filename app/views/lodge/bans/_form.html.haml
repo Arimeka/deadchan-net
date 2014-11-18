@@ -1,0 +1,24 @@
+= render partial: "lodge/shared/blocks/messages"
+= form_for [:lodge, ban], html: {class: "form-horizontal", role: "form"} do |f|
+  .form-group
+    = f.label :ban_type_id, class: "col-sm-2 control-label"
+    .col-sm-2
+      = f.select :ban_type_id, ban_types.collect {|b| [ b.type, b.id ] }, { include_blank: false }, class: 'form-control'
+  .form-group
+    = f.label :until, class: "col-sm-2 control-label"
+    .col-sm-3
+      = f.text_field :until, placeholder: "До числа", class: "form-control", data: {provide: 'datepicker', 'date-format' => 'dd/mm/yyyy', 'date-language' => 'ru'}
+  .form-group
+    = f.label :request_ip, class: "col-sm-2 control-label"
+    .col-sm-3
+      = f.text_field :request_ip, placeholder: "IP-адрес", class: "form-control"
+  .form-group
+    = f.label :reason, class: "col-sm-2 control-label"
+    .col-md-10
+      = f.text_area :reason, rows: 10, class: "form-control"
+  .form-actions
+    - unless ban.new_record?
+      = link_to "Удалить", lodge_ban_path(ban), method: :delete, data: { confirm: "Уверены?" }, title: "Удалить", class: "btn btn-danger pull-right"
+    = f.submit t('form.save'), class: 'btn btn-success'
+    = f.submit t('form.save_and_exit'), class: 'btn btn-primary'
+    = link_to 'Отмена', :back, class: 'btn'

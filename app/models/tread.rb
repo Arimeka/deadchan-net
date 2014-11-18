@@ -34,7 +34,7 @@ class Tread
 
   # Scopes
   # ======================================================
-  scope :published, -> { where(is_published: true, :published_at.lt => Time.now).desc(:is_pinned).desc(:updated_at) }
+  scope :published, -> { where(is_published: true, :published_at.lt => Time.zone.now).desc(:is_pinned).desc(:updated_at) }
 
   # Relations
   # ======================================================
@@ -70,14 +70,14 @@ class Tread
 
     def first_set_timestamps
       if is_published
-        self.published_at = Time.now
-        self.updated_at = Time.now
+        self.published_at = Time.zone.now
+        self.updated_at = Time.zone.now
       end
     end
 
     def set_published_at
       if is_published && is_published_changed? && !published_at
-        self.published_at = Time.now
+        self.published_at = Time.zone.now
       end
     end
 
@@ -86,7 +86,7 @@ class Tread
         self.is_full = true
       else
         self.is_full = false
-        self.updated_at = Time.now
+        self.updated_at = Time.zone.now
       end
       true
     end

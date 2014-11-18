@@ -1,0 +1,10 @@
+.navbar.navbar-default
+  %ul.nav.navbar-nav
+    %li{class: controller.controller_path == "lodge/bans" && controller.action_name == "index" ? "active" : ""}
+      = link_to lodge_bans_path do
+        %i.icon-list-alt
+        =t "path.controllers.lodge/bans.index"
+    %li{class: controller.controller_path == "lodge/bans" && controller.action_name == "new" ? "active" : ""}
+      %a{href: new_lodge_ban_path}
+        %i.icon-pencil
+        =t "path.controllers.lodge/bans.new"

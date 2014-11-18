@@ -20,6 +20,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'bootstrap_notify', git: 'git@git.nnbs.ru:gem/bootstrap_notify.git', tag: 'v0.0.2'
 gem 'bootstrap-wysihtml5-rails'
+gem 'bootstrap-datepicker-rails'
 gem 'redis-rails'
 gem 'yui-compressor'
 gem 'devise'
@@ -66,6 +67,4 @@ group :test do
   gem 'factory_girl_rails'
   gem 'simplecov', :require => false
   gem 'database_cleaner'
-  gem 'rb-inotify', '~> 0.8.8'
-  gem 'libnotify'
 end

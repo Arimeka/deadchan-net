@@ -15,6 +15,7 @@ DeadchanNet::Application.routes.draw do
       resources :posts, except: [:index, :show]
     end
     resources :users, only: [:index, :destroy]
+    resources :bans, except: :show
 
     mount RailsSettingsUi::Engine, at: 'settings'
   end

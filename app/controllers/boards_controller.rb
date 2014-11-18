@@ -1,9 +1,11 @@
 class BoardsController < ApplicationController
+  include CheckPostingConcern
+
   expose(:entry)  { Board.published.find_by(abbr: params[:abbr]) }
   expose(:treads) { entry.treads.includes(:board).published.paginate(page: params[:page], per_page: 10) }
   expose(:tread)  { entry.treads.build(tread_params) }
 
-  before_action :verify_recaptcha!, :check_last_posting,  only: :create
+  before_action :check_ban, :verify_recaptcha!, :check_last_posting,  only: :create
 
   def create
     respond_to do |format|
@@ -44,14 +46,6 @@ class BoardsController < ApplicationController
         unless verify_recaptcha(model: tread)
           errors = tread.errors.full_messages
           render json: {app: {error: {text: errors}}}
-        end
-      end
-    end
-
-    def check_last_posting
-      if user_signed_in?
-        if $redis.get("last_posting:#{current_user.id}")
-          session.keys.each { |key| session.delete key }
         end
       end
     end

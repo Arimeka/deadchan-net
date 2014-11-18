@@ -42,6 +42,7 @@ module DeadchanNet
     # Middlewares
     config.middleware.use 'SessionIpMiddleware'
     config.middleware.use 'PanicModeMiddleware'
+    config.middleware.use 'FullBanMiddleware'
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

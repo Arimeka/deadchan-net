@@ -14,6 +14,12 @@ ru:
         tread:
           uncommentable:        "Ответы запрещены"
 
+        ban:
+          wrong_until:          "Дата окончания бана меньше текущего числа"
+
+        user:
+          banned:               "Данный ip забанен"
+
     attributes:
       defaults: &defaults
         title:                  "Заголовок"
@@ -47,6 +53,12 @@ ru:
         current_sign_in_ip:     "Текущий ip"
         last_sign_in_ip:        "Последний ip"
         locked_at:              "Заблокирован до"
+
+      ban:
+        ban_type_id:            "Тип бана"
+        reason:                 "Причина бана"
+        until:                  "Бан до"
+        request_ip:             "IP-адрес"
 
   settings:
     attributes:

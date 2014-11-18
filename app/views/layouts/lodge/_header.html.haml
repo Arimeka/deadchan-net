@@ -10,6 +10,8 @@
       = link_to 'Треды', lodge_treads_path
     %li{class: controller.controller_path == "lodge/users" && controller.action_name == "index" ? "active" : ""}
       = link_to 'Пользователи', lodge_users_path
+    %li{class: controller.controller_path == "lodge/bans" && controller.action_name == "index" ? "active" : ""}
+      = link_to 'Баны', lodge_bans_path
   %ul.nav.navbar-nav.navbar-right
     %li{class: controller.controller_path == "rails_settings_ui/settings" && controller.action_name == "index" ? "active" : ""}
       = link_to 'Настройки', lodge_rails_settings_ui_path

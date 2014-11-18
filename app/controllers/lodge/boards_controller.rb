@@ -34,7 +34,7 @@ class Lodge::BoardsController < Lodge::LodgeController
   end
 
   def destroy
-    if board.delete
+    if board.destroy
       respond_to do |format|
         flash[:notice] = t("msg.deleted")
         format.html {redirect_to lodge_boards_url}

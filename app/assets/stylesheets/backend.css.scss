@@ -9,6 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap-datepicker3
+ *= require bootstrap-wysihtml5
  */
 
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
@@ -157,97 +159,6 @@ footer {
 .row {
   margin-left: 0px;
   margin-right: 0px;
-}
-
-// Content
-
-#board {
-  .tread-form {
-    button {
-      float: left;
-    }
-    .pages {
-      text-align: center;
-    }
-  }
-}
-
-.thread, #tread {
-  margin-top: 20px;
-  border-bottom: 1px dashed #ddd;
-
-  article {
-    img {
-      margin: 0px 20px 15px 0px;
-    }
-    .header {
-      border-bottom: 1px dashed #ddd;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-
-      h3 {
-        margin-top: 5px;
-        margin-bottom: 5px;
-      }
-    }
-    .body {
-      word-wrap: break-word;
-      img {
-        max-width: 100%;
-      }
-    }
-    .post-form {
-      margin-top: 15px;
-    }
-  }
-}
-
-.posts {
-  margin-left: 100px;
-}
-
-.page-footer {
-  margin-top: 20px;
-}
-
-.form-group {
-  .control-label {
-    width: 15%;
-    float: left;
-    padding-right: 10px;
-  }
-  .form-control {
-    width: 70%;
-    max-width: 850px;
-    float: left;
-  }
-  .controls {
-    width: 70%;
-    max-width: 850px;
-    float: left;
-    margin-left: 15%;
-  }
-
-  .controls {
-    border-top: 1px solid #eee;
-    padding: 10px;
-    position: relative;
-    min-height: 20px;
-
-    #fileupload {
-      display: none;
-    }
-
-    .captcha {
-      float: right;
-    }
-  }
-}
-
-aside.sidebar {
-  ul {
-    position: fixed;
-  }
 }
 
 .wysihtml5-supported {

@@ -34,7 +34,7 @@ class Lodge::TreadsController < Lodge::LodgeController
   end
 
   def destroy
-    if tread.delete
+    if tread.destroy
       respond_to do |format|
         flash[:notice] = t("msg.deleted")
         format.html {redirect_to lodge_treads_url}
