@@ -1,43 +1,44 @@
-.thread
-  %article.well
-    %ul.header.list-inline
-      %li
-        = link_to tread_path(tread.board.abbr, tread.id) do
-          %h3= tread.title
-      - if tread.is_pinned?
+- cache tread do
+  .thread
+    %article.well
+      %ul.header.list-inline
         %li
-          %span.glyphicon.glyphicon-pushpin
-      - unless tread.is_commentable?
-        %li
-          %span.glyphicon.glyphicon-lock
-      %li= Russian::strftime tread.published_at, '%d %B %Y %H:%M:%S'
-      %li
-        = link_to tread.id.to_s.last(7), tread_path(tread.board.abbr, tread.id)
-    .body.row
-      - if tread.image && tread.image.file?
-        .col-lg-2.col-md-12
-          = link_to tread.image.url(:original) do
-            = image_tag tread.image.url, class: 'img-responsive img-thumbnail'
-      .col-lg-10.col-md-12= tread.content.html_safe
-    .footer.post-form
-      - if tread.replies
-        %ul.list-inline
+          = link_to tread_path(tread.board.abbr, tread.id) do
+            %h3= tread.title
+        - if tread.is_pinned?
           %li
-            %small Ответы:
-          - tread.replies.each do |p|
+            %span.glyphicon.glyphicon-pushpin
+        - unless tread.is_commentable?
+          %li
+            %span.glyphicon.glyphicon-lock
+        %li= Russian::strftime tread.published_at, '%d %B %Y %H:%M:%S'
+        %li
+          = link_to tread.id.to_s.last(7), tread_path(tread.board.abbr, tread.id)
+      .body.row
+        - if tread.image && tread.image.file?
+          .col-lg-2.col-md-12
+            = link_to tread.image.url(:original) do
+              = image_tag tread.image.url, class: 'img-responsive img-thumbnail'
+        .col-lg-10.col-md-12= tread.content.html_safe
+      .footer.post-form
+        - if tread.replies
+          %ul.list-inline
             %li
-              = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
-                %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
-      - if tread.is_commentable?
-        %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: tread.board.abbr, id: tread.id}} Ответить
-        %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
-          Скрыть форму
-        #form
-  - if tread.posts.any?
-    .posts
-      - if tread.posts.count - 1 > 0
-        %p.text-muted
-          = Russian.p(tread.posts.count - 1, "Пропущен", "Пропущено", "Пропущено")
-          = tread.posts.count - 1
-          = link_to Russian.p(tread.posts.count - 1, "ответ", "ответа", "ответов"), tread_path(tread.board.abbr, tread.id, {anchor: 'posts'})
-      = render tread.posts.last
+              %small Ответы:
+            - tread.replies.each do |p|
+              %li
+                = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
+                  %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
+        - if tread.is_commentable?
+          %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: tread.board.abbr, id: tread.id}} Ответить
+          %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
+            Скрыть форму
+          #form
+    - if tread.posts.any?
+      .posts
+        - if tread.posts.count - 1 > 0
+          %p.text-muted
+            = Russian.p(tread.posts.count - 1, "Пропущен", "Пропущено", "Пропущено")
+            = tread.posts.count - 1
+            = link_to Russian.p(tread.posts.count - 1, "ответ", "ответа", "ответов"), tread_path(tread.board.abbr, tread.id, {anchor: 'posts'})
+        = render tread.posts.last

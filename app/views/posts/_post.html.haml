@@ -1,28 +1,29 @@
-%article{class: 'well', id: post.id}
-  %ul.header.list-inline
-    %li
-    %li= Russian::strftime post.created_at, '%d %B %Y %H:%M:%S'
-    %li
-      = link_to post.tread.id.to_s.last(7), tread_path(post.tread.board.abbr, post.tread.id)
-      = link_to "##{post.id.to_s.last(7)}", tread_path(post.tread.board.abbr, post.tread.id, {anchor: post.id})
-  .body.row
-    - if post.image && post.image.file?
-      .col-lg-2.col-md-12
-        = link_to post.image.url(:original) do
-          = image_tag post.image.url, class: 'img-responsive img-thumbnail'
-    .col-lg-10.col-md-12= post.content.html_safe
-  .footer.post-form
-    - if post.replies
-      %ul.list-inline
-        %li
-          %small Ответы:
-        - post.replies.each do |p|
+- cache post do
+  %article{class: 'well', id: post.id}
+    %ul.header.list-inline
+      %li
+      %li= Russian::strftime post.created_at, '%d %B %Y %H:%M:%S'
+      %li
+        = link_to post.tread.id.to_s.last(7), tread_path(post.tread.board.abbr, post.tread.id)
+        = link_to "##{post.id.to_s.last(7)}", tread_path(post.tread.board.abbr, post.tread.id, {anchor: post.id})
+    .body.row
+      - if post.image && post.image.file?
+        .col-lg-2.col-md-12
+          = link_to post.image.url(:original) do
+            = image_tag post.image.url, class: 'img-responsive img-thumbnail'
+      .col-lg-10.col-md-12= post.content.html_safe
+    .footer.post-form
+      - if post.replies
+        %ul.list-inline
           %li
-            = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
-              %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
-    - if post.tread.is_commentable?
-      %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: post.tread.board.abbr, id: post.tread.id, post_id: post.id, reply: post.id}} Ответить
-      %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
-        Скрыть форму
-      #form
+            %small Ответы:
+          - post.replies.each do |p|
+            %li
+              = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
+                %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
+      - if post.tread.is_commentable?
+        %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: post.tread.board.abbr, id: post.tread.id, post_id: post.id, reply: post.id}} Ответить
+        %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
+          Скрыть форму
+        #form
 

@@ -1,11 +1,10 @@
 class PostsController < ApplicationController
   expose(:tread)  { Tread.published.find(params[:id]) }
+  expose(:posts)  { tread.posts.published }
 
   def index
     respond_to do |format|
-      format.json do
-        render json: tread.get_posts
-      end
+      format.json
     end
   end
 end

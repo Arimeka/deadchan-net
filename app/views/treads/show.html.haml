@@ -1,56 +1,57 @@
-- provide(:title, "#{entry.board.title} - #{entry.title}")
-#tread
-  .col-md-12.post-form
-    - if entry.is_commentable?
-      %button{class: 'btn well', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id}}
-        Ответить
-      %button{class: 'btn well', id: 'hide', style: 'display: none;'}
-        Скрыть форму
-      #form
-  .clearfix
-  .col-md-12
-    .thread
-      %article.well
-        %ul.header.list-inline
-          %li
-            = link_to tread_path(entry.board.abbr, entry.id) do
-              %h3= entry.title
-          - if entry.is_pinned?
+- cache "tread/show/#{entry.id}/#{entry.updated_at.to_i}/#{posts.last.id}/#{posts.last.updated_at.to_i}" do
+  - provide(:title, "#{entry.board.title} - #{entry.title}")
+  #tread
+    .col-md-12.post-form
+      - if entry.is_commentable?
+        %button{class: 'btn well', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id}}
+          Ответить
+        %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+          Скрыть форму
+        #form
+    .clearfix
+    .col-md-12
+      .thread
+        %article.well
+          %ul.header.list-inline
             %li
-              %span.glyphicon.glyphicon-pushpin
-          - unless entry.is_commentable?
-            %li
-              %span.glyphicon.glyphicon-lock
-          %li= Russian::strftime entry.published_at, '%d %B %Y %H:%M:%S'
-          %li
-            = link_to entry.id.to_s.last(7), tread_path(entry.board.abbr, entry.id)
-        .body.row
-          - if entry.image && entry.image.file?
-            .col-lg-2.col-md-12
-              = link_to entry.image.url(:original) do
-                = image_tag entry.image.url, class: 'img-responsive img-thumbnail'
-          .col-lg-10.col-md-12= entry.content.html_safe
-        .footer.post-form
-          - if entry.replies
-            %ul.list-inline
+              = link_to tread_path(entry.board.abbr, entry.id) do
+                %h3= entry.title
+            - if entry.is_pinned?
               %li
-                %small Ответы:
-              - entry.replies.each do |p|
+                %span.glyphicon.glyphicon-pushpin
+            - unless entry.is_commentable?
+              %li
+                %span.glyphicon.glyphicon-lock
+            %li= Russian::strftime entry.published_at, '%d %B %Y %H:%M:%S'
+            %li
+              = link_to entry.id.to_s.last(7), tread_path(entry.board.abbr, entry.id)
+          .body.row
+            - if entry.image && entry.image.file?
+              .col-lg-2.col-md-12
+                = link_to entry.image.url(:original) do
+                  = image_tag entry.image.url, class: 'img-responsive img-thumbnail'
+            .col-lg-10.col-md-12= entry.content.html_safe
+          .footer.post-form
+            - if entry.replies
+              %ul.list-inline
                 %li
-                  = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
-                    %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
-          - if entry.is_commentable?
-            %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id, reply: entry.id}}
-              Ответить
-            %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
-              Скрыть форму
-            #form
-      #posts
-        .posts= render posts
-  .col-md-12.post-form.page-footer
-    - if entry.is_commentable?
-      %button{class: 'btn well', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id}}
-        Ответить
-      %button{class: 'btn well', id: 'hide', style: 'display: none;'}
-        Скрыть форму
-      #form
+                  %small Ответы:
+                - entry.replies.each do |p|
+                  %li
+                    = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
+                      %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
+            - if entry.is_commentable?
+              %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id, reply: entry.id}}
+                Ответить
+              %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
+                Скрыть форму
+              #form
+        #posts
+          .posts= render posts
+    .col-md-12.post-form.page-footer
+      - if entry.is_commentable?
+        %button{class: 'btn well', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id}}
+          Ответить
+        %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+          Скрыть форму
+        #form

@@ -1,23 +1,24 @@
-- provide(:title, entry.title)
-#board
-  .page-header
-    - if entry.is_threadable?
-      .col-md-12.tread-form
-        %button.btn.well#answer Создать тред
-        %button{class: 'btn well', id: 'hide', style: 'display: none;'}
-          Скрыть форму
-        .pages= will_paginate treads
-        .clearfix
-        #form
-  .clearfix
-  .col-md-12
-    = render treads
-  .page-footer
-    - if entry.is_threadable?
-      .col-md-12.wel.tread-form
-        %button.btn.well#answer Создать тред
-        %button{class: 'btn well', id: 'hide', style: 'display: none;'}
-          Скрыть форму
-        .pages= will_paginate treads
-        .clearfix
-        #form
+- cache "board/show/#{entry.id}/#{entry.updated_at.to_i}/#{treads.first.id}/#{treads.first.updated_at.to_i}" do
+  - provide(:title, entry.title)
+  #board
+    .page-header
+      - if entry.is_threadable?
+        .col-md-12.tread-form
+          %button.btn.well#answer Создать тред
+          %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+            Скрыть форму
+          .pages= will_paginate treads
+          .clearfix
+          #form
+    .clearfix
+    .col-md-12
+      = render treads
+    .page-footer
+      - if entry.is_threadable?
+        .col-md-12.wel.tread-form
+          %button.btn.well#answer Создать тред
+          %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+            Скрыть форму
+          .pages= will_paginate treads
+          .clearfix
+          #form
