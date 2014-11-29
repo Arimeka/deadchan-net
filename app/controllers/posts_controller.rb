@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   def index
     respond_to do |format|
       format.json do
-        render json: tread.posts.only(:_id, :content, :created_at, :replies).as_json.map { |m| m.select { |k,v| ['_id','content','created_at','replies'].include? k }}
+        render json: tread.get_posts
       end
     end
   end

@@ -31,6 +31,7 @@ class BoardsController < ApplicationController
   def form
     respond_to do |format|
       format.html do
+        self.tread.build_image unless self.tread.image
         render partial: 'form'
       end
     end
@@ -38,7 +39,7 @@ class BoardsController < ApplicationController
 
   private
     def tread_params
-      params.fetch(:tread, {}).permit(:title, :content)
+      params.fetch(:tread, {}).permit(:title, :content, image_attributes: [:id, :file])
     end
 
     def verify_recaptcha!

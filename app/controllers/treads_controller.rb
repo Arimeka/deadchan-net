@@ -38,6 +38,7 @@ class TreadsController < ApplicationController
   def form
     respond_to do |format|
       format.html do
+        self.post.build_image unless self.post.image
         render partial: 'form'
       end
     end
@@ -45,7 +46,7 @@ class TreadsController < ApplicationController
 
   private
     def post_params
-      params.fetch(:post, {}).permit(:content)
+      params.fetch(:post, {}).permit(:content, image_attributes: [:id, :file])
     end
 
     def verify_recaptcha!

@@ -25,9 +25,10 @@
           %li
             = link_to entry.id.to_s.last(7), tread_path(entry.board.abbr, entry.id)
         .body.row
-          .col-lg-2.col-md-12
-            = link_to '#' do
-              = image_tag '/sample/post-image.gif', class: 'img-responsive img-thumbnail'
+          - if entry.image && entry.image.file?
+            .col-lg-2.col-md-12
+              = link_to entry.image.url(:original) do
+                = image_tag entry.image.url, class: 'img-responsive img-thumbnail'
           .col-lg-10.col-md-12= entry.content.html_safe
         .footer.post-form
           - if entry.replies

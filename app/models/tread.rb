@@ -1,6 +1,7 @@
 class Tread
   include Mongoid::Document
   include ContentSupport
+  include ImageConcern
 
   field :board_id,        type: String
   field :user_id,         type: String
@@ -43,6 +44,8 @@ class Tread
 
   embeds_many :posts
 
+  has_image :image, Attachment::PublicationImage
+
   # Callbacks
   # ======================================================
   before_save :set_published_at, :check_is_full
@@ -63,6 +66,18 @@ class Tread
       false
     else
       super
+    end
+  end
+
+  def get_posts
+    self.posts.published.map do |post|
+      { _id: post.id,
+        content: post.content,
+        created_at: post.created_at,
+        replies: post.replies,
+        image: (post.image && post.image.file?) ? post.image.url(:original) : nil,
+        image_thumb: (post.image && post.image.file?) ? post.image.url : nil
+      }
     end
   end
 

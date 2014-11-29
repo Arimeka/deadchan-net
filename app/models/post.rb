@@ -2,6 +2,7 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
   include ContentSupport
+  include ImageConcern
 
   field :user_id,       type: String
   field :content,       type: String
@@ -25,4 +26,5 @@ class Post
   # Relations
   # ======================================================
   embedded_in :tread
+  has_image :image, Attachment::PublicationImage
 end

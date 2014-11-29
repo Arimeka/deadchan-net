@@ -33,6 +33,9 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'rails-settings-ui', '~> 0.3.0'
 gem 'rails-settings-cached', github: 'Arimeka/rails-settings-cached'
 
+gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+gem 'aws-sdk'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
