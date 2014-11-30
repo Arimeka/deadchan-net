@@ -9,6 +9,7 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
 
   initialize: (attributes) ->
     @attributes = attributes
+    @checkCommentable()
 
   showForm: (e) ->
     e.preventDefault()
@@ -72,3 +73,7 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
     $container = $(elem).closest('.post-form')
     $container.find('button#answer').toggle()
     $container.find('button#hide').toggle()
+
+  checkCommentable: ->
+    if $('.thread>article .post-form button').length == 0
+      $('.post-form button').hide()

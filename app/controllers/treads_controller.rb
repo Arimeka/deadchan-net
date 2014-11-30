@@ -8,6 +8,10 @@ class TreadsController < ApplicationController
 
   before_action :check_ban, :verify_recaptcha!, :check_last_posting, only: :create
 
+  def show
+    redirect_to_good_slug and return if bad_slug?
+  end
+
   def create
     respond_to do |format|
       format.json do
