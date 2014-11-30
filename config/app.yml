@@ -7,6 +7,7 @@ defaults: &defaults
     site_description: "Еще одна нкому не нужная мертворожденная борда"
     site_keywords:    "уныние, безысходность"
     site_copyright:   "Derp."
+    ip_blocks:        ''
     readonly:         false
     panic_mode:       false
 

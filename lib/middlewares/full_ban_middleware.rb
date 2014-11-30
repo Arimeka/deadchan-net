@@ -6,7 +6,7 @@ class FullBanMiddleware
   def call(env)
     request = Rack::Request.new(env)
 
-    if !(request.path =~ /(lodge)|(assets)/) && $redis.exists("bans:full:#{request.ip}")
+    if !(request.path =~ /(lodge)|(assets)/) && ip_banned?(request.ip)
       [403, {"Content-Type" => "text/html; charset=UTF-8"}, [response_text]]
     else
       @app.call(env)
@@ -14,6 +14,16 @@ class FullBanMiddleware
   end
 
   private
+
+    def ip_banned?(ip)
+      return true if $redis.exists("bans:full:#{ip}")
+      ::Settings.ip_blocks.split(',').each do |ips|
+        net = IPAddr.new ips
+        ip_addr = IPAddr.new ip
+        return true if net.include? ip_addr
+      end
+      false
+    end
 
     def response_text
       <<-TEXT

@@ -71,12 +71,14 @@ ru:
       site_name:
         name:                   "Название сайта"
       site_description:
-        name:                   "СЕО-описание сайта"
+        name:                   "SEO-описание сайта"
       site_keywords:
         name:                   "SEO-keywords"
       site_copyright:
-        name:                   "СЕО копирайты"
+        name:                   "SEO копирайты"
       readonly:
         name:                   "Режим ридонли"
       panic_mode:
         name:                   "Режим паники"
+      ip_blocks:
+        name:                   "Заблокированные диапазоны IP"
