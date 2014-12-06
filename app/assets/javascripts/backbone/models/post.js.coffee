@@ -3,9 +3,11 @@ class DeadchanNet.Models.Post extends Backbone.Model
     _id: 0
     content: ''
     created_at: ''
-    is_published: true
-    updated_at: ''
+    replies: []
+    image: ''
+    image_thumb: ''
     tread_id: 0
+    board_abbr: ''
 
 class DeadchanNet.Collections.PostsCollection extends Backbone.Collection
   url: -> "/treads/#{@meta('id')}"

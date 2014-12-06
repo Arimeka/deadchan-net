@@ -34,5 +34,6 @@ DeadchanNet::Application.routes.draw do
     post  '/'     => 'boards#create'
     get   '/:id'  => 'treads#show', as: :tread
     post  '/:id'  => 'treads#create'
+    get   '/:tread_id/:id'  => 'posts#show'
   end
 end

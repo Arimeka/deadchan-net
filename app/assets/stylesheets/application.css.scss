@@ -152,6 +152,14 @@ textarea {
     }
     .post-form {
       margin-top: 15px;
+
+      .reply {
+        article {
+          position: absolute;
+          z-index: 10;
+          left: 100px;
+        }
+      }
     }
   }
 }

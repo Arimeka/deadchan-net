@@ -1,4 +1,4 @@
-- cache "board/show/#{entry.id}/#{entry.updated_at.to_i}/#{treads.first.id}/#{treads.first.updated_at.to_i}" do
+- cache "board/show/#{entry.id}/#{entry.updated_at.to_i}/#{treads.first.try(:id)}/#{treads.first.try(:updated_at).to_i}" do
   - provide(:title, entry.title)
   #board
     .page-header

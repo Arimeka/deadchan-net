@@ -1,20 +1,14 @@
-DeadchanNet.Views.Posts ||= {}
+DeadchanNet.Views.Treads ||= {}
 
-class DeadchanNet.Views.Posts.Item extends Backbone.View
-  template: JST["backbone/templates/posts/post"]
+class DeadchanNet.Views.Treads.Item extends Backbone.View
+  template: JST["backbone/templates/treads/tread"]
 
   tagName: "article"
   className: "well"
 
-
   events:
     'mouseenter li.reply'            : 'showReply'
     'mouseleave li.reply'            : 'hideReply'
-
-  initialize: ->
-    if @model.collection?
-      @model.set tread_id: @model.collection.meta('id')
-      @model.set board_abbr: @model.collection.meta('abbr')
 
   attributes: ->
     id: @model.get('_id').$oid
@@ -33,19 +27,11 @@ class DeadchanNet.Views.Posts.Item extends Backbone.View
           url: url,
           dataType: 'json'
           success: (data) ->
-            if data['tread_id']?
-              post = new DeadchanNet.Models.Post data
-              post.set board_abbr: url.split('/')[1]
+            post = new DeadchanNet.Models.Post data
+            post.set board_abbr: url.split('/')[1]
 
-              view = new DeadchanNet.Views.Posts.Item
-                          model: post
-            else
-              tread = new DeadchanNet.Models.Tread data
-              tread.set board_abbr: url.split('/')[1]
-
-              view = new DeadchanNet.Views.Treads.Item
-                          model: tread
-
+            view = new DeadchanNet.Views.Posts.Item
+                        model: post
             $element = view.render().el
             $reply.append $element
             rect = $element.getBoundingClientRect();

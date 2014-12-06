@@ -10,6 +10,7 @@ class DeadchanNet.Routers.ApplicationRouter extends Backbone.Router
     $posts = $("#posts")
     app.collections.posts = new DeadchanNet.Collections.PostsCollection
     app.collections.posts.meta 'id', id
+    app.collections.posts.meta 'abbr', abbr
 
   boardShow: (abbr) ->
     new DeadchanNet.Views.Boards.Show

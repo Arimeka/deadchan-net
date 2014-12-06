@@ -1,9 +1,20 @@
 <ul class="header list-inline">
-  <li></li>
-  <li><%= moment(created_at).format('D MMMM YYYY HH:mm:ss') %></li>
   <li>
-    <a href="/<%= board_abbr %>/<%= tread_id %>"><%= tread_id.substr(_id.$oid.length - 7) %></a>
-    <a href="/<%= board_abbr %>/<%= tread_id %>#<%= _id.$oid %>">#<%= _id.$oid.substr(_id.$oid.length - 7) %></a>
+    <a href="/<%= board_abbr %>/<%= _id.$oid %>"><h3><%= title %></h3></a>
+  </li>
+  <% if( is_pinned === true ) { %>
+    <li>
+      <span class="glyphicon glyphicon-pushpin"></span>
+    </li>
+  <% } %>
+  <% if( is_commentable === false ) { %>
+    <li>
+      <span class="glyphicon glyphicon-lock"></span>
+    </li>
+  <% } %>
+  <li><%= moment(published_at).format('D MMMM YYYY HH:mm:ss') %></li>
+  <li>
+    <a href="/<%= board_abbr %>/<%= _id.$oid %>">#<%= _id.$oid.substr(_id.$oid.length - 7) %></a>
   </li>
 </ul>
 <div class="body row">
@@ -39,9 +50,11 @@
       <% }) %>
     </ul>
   <% } %>
-  <button class="btn btn-default btn-sm" data-abbr="<%= window.location.pathname.split('/')[1] %>" data-id="<%= tread_id %>" data-reply="<%= _id.$oid %>" id="answer">Ответить</button>
-  <button class="btn btn-default btn-sm" id="hide" style="display: none;">
-    Скрыть форму
-  </button>
-  <div id="form"></div>
+  <% if( is_commentable === true ) { %>
+    <button class="btn btn-default btn-sm" data-abbr="<%= window.location.pathname.split('/')[1] %>" data-id="<%= _id.$oid %>" id="answer">Ответить</button>
+    <button class="btn btn-default btn-sm" id="hide" style="display: none;">
+      Скрыть форму
+    </button>
+    <div id="form"></div>
+  <% } %>
 </div>

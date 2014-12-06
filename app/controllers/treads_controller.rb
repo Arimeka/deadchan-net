@@ -10,6 +10,11 @@ class TreadsController < ApplicationController
 
   def show
     redirect_to_good_slug and return if bad_slug?
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create
