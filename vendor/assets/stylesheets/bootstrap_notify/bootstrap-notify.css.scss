@@ -1,0 +1,52 @@
+/**
+ * Bootstrap-notify.css.scss
+ *
+ * @author Vitaly @Laboratory
+ * @author Nijiko Yonskai
+ * @copyright 2012 Vitaly
+ * @copyright 2013 Nijiko Yonskai
+ */
+
+ @import "variables";
+
+.notifications {
+  position: fixed;
+
+  &.top-right {
+    right: $notify_right;
+    top: $notify_top;
+  }
+
+  &.top-left {
+    left: $notify_left;
+    top: $notify_top;
+  }
+
+  &.bottom-left {
+    left: $notify_left;
+    bottom: $notify_bottom;
+  }
+
+  &.bottom-right {
+    right: $notify_right;
+    bottom: $notify_bottom;
+  }
+
+  > div {
+    position: relative;
+    z-index: 9999;
+    margin: 5px 0px;
+  }
+
+  &.center {
+    top: 48%;
+    left: 0;
+    width: 100%;
+
+    > div {
+      margin: 5px auto;
+      width: 20%;
+      text-align: center;
+    }
+  }
+}

@@ -24,7 +24,8 @@ class Tread
   # Validations
   # ======================================================
   validates :title, presence: true, length: { in: 2..30 }
-  validates :content, presence: true, length: { in: 1..2500 }
+  validates :content, presence: true, length: { in: 1..2500 }, unless: 'self.image'
+  validates :content, length: { maximum: 2500 }
   validates :posts_number,
             numericality: { only_integer: true }
   validates :board_id, presence: true

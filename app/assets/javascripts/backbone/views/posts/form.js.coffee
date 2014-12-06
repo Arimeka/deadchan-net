@@ -44,6 +44,7 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
           type: 'danger'
           closable: false
         .show()
+      @$('.uploading-filename').text ''
     else
       for msg of data.app.notice.text
         $('.top-right').notify

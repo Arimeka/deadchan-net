@@ -14,7 +14,8 @@ class Post
 
   # Validations
   # ======================================================
-  validates :content, presence: true, length: { in: 1..2500 }
+  validates :content, presence: true, length: { in: 1..2500 }, unless: 'self.image'
+  validates :content, length: { maximum: 2500 }
   validates :is_published, inclusion: { in: [true, false] }
 
   validates_with IsCommentableValidator, on: :create, unless: 'lodge'

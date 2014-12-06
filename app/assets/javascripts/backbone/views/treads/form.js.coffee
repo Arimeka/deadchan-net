@@ -45,6 +45,7 @@ class DeadchanNet.Views.Treads.Form extends Backbone.View
           type: 'danger'
           closable: false
         .show()
+      @$('.uploading-filename').text ''
     else
       window.location.replace data.app.redirect
 
