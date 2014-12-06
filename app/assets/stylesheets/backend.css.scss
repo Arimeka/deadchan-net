@@ -113,53 +113,7 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-// Fonts
-
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700&subset=latin,cyrillic,cyrillic-ext,latin-ext");
-$font-family-sans-serif:  "Open Sans", sans-serif;
-$headings-font-weight:    600 !default;
-
-// Custom colors
-
-$body-bg:       #eeeeee;
-$brand-primary: #555555;
-$brand-info:    #999999;
-
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-blockquote p {
-  font-size: $font-size-base;
-}
-
-$notify_right: 10px;
-$notify_left: $notify_right;
-$notify_top: 55px;
-$notify_bottom: $notify_top;
-
-@import "bootstrap_notify";
-
-body {
-  font-weight: 400;
-
-  strong {
-    font-weight: 700;
-  }
-}
-
-header, footer {
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
-footer {
-  padding-top: 40px;
-}
-
-.row {
-  margin-left: 0px;
-  margin-right: 0px;
-}
+@import "main";
 
 .wysihtml5-supported {
   textarea.wysihtml5 {
@@ -167,77 +121,6 @@ footer {
   }
 }
 
-.wysiwyg-color-black {
-  color: black;
-}
-
-.wysiwyg-color-silver {
-  color: silver;
-}
-
-.wysiwyg-color-gray {
-  color: gray;
-}
-
-.wysiwyg-color-white {
-  color: white;
-}
-
-.wysiwyg-color-maroon {
-  color: maroon;
-}
-
-.wysiwyg-color-red {
-  color: red;
-}
-
-.wysiwyg-color-purple {
-  color: purple;
-}
-
-.wysiwyg-color-fuchsia {
-  color: fuchsia;
-}
-
-.wysiwyg-color-green {
-  color: green;
-}
-
-.wysiwyg-color-lime {
-  color: lime;
-}
-
-.wysiwyg-color-olive {
-  color: olive;
-}
-
-.wysiwyg-color-yellow {
-  color: yellow;
-}
-
-.wysiwyg-color-navy {
-  color: navy;
-}
-
-.wysiwyg-color-blue {
-  color: blue;
-}
-
-.wysiwyg-color-teal {
-  color: teal;
-}
-
-.wysiwyg-color-aqua {
-  color: aqua;
-}
-
-.wysiwyg-color-orange {
-  color: orange;
-}
-
-.notifications {
-  z-index: 9999;
-}
 
 /* ==========================================================================
    Helper classes

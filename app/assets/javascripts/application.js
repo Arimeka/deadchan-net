@@ -23,3 +23,10 @@
 //= require backbone_datalink
 //= require backbone/deadchan_net
 //= require moment
+
+$(document).on('page:fetch', function() {
+  $('.loading').show();
+});
+$(document).on('page:change', function() {
+  $('.loading').hide();
+});
