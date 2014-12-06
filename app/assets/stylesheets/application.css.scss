@@ -212,6 +212,18 @@ aside.sidebar {
   }
 }
 
+.modal-dialog {
+  .modal-content {
+    .modal-body {
+      img {
+        display: block;
+        margin: auto;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
 
 /* ==========================================================================
    Helper classes

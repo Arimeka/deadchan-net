@@ -17,7 +17,7 @@
       .body.row
         - if tread.image && tread.image.file?
           .col-lg-2.col-md-12
-            = link_to tread.image.url(:original) do
+            = link_to tread.image.url(:original), class: 'attachment' do
               = image_tag tread.image.url, class: 'img-responsive img-thumbnail'
         .col-lg-10.col-md-12= tread.content.html_safe
       .footer.post-form

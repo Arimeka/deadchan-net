@@ -10,10 +10,23 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
     'click .post-form button#hide'    : 'hidePostForm'
     'mouseenter .post-form li.reply'  : 'showReply'
     'mouseleave .post-form li.reply'  : 'hideReply'
+    'click a.attachment'              : 'showFullsize'
 
   initialize: (attributes) ->
     @attributes = attributes
     @checkCommentable()
+
+    $('#modal').on('hidden.bs.modal', (e) ->
+      $body = $(@).find('.modal-body')
+
+      $body.html ''
+    )
+
+    $('#modal').on('shown.bs.modal', (e) ->
+      $body = $(@).find('.modal-body')
+
+      wheelzoom($body.find('img'), {zoom:0.005})
+    )
 
   showForm: (e) ->
     e.preventDefault()
@@ -107,6 +120,17 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
   hideReply: (e) ->
     clearTimeout @replyTimer
     $(e.currentTarget).find('article').hide()
+
+  showFullsize: (e) ->
+    e.preventDefault()
+    $modal = $('#modal')
+    $body = $modal.find('.modal-body')
+    $footer = $modal.find('.modal-body')
+    src =  $(e.currentTarget).attr('href')
+    $body.html "<img src='#{src}' class='img-rounded'>"
+    $body.find('img').css('max-height',"#{$(window).height() - 200}px")
+
+    $('#modal').modal('show')
 
   togglePostForm: (e) ->
     e.preventDefault()

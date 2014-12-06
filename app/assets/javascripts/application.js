@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require jquery.turbolinks
 //= require bootstrap/alert
+//= require bootstrap/modal
 //= require bootstrap_notify
 //= require underscore
 //= require backbone
@@ -23,6 +24,7 @@
 //= require backbone_datalink
 //= require backbone/deadchan_net
 //= require moment
+//= require wheelzoom
 
 $(document).on('page:fetch', function() {
   $('.loading').show();

@@ -9,7 +9,7 @@
     .body.row
       - if post.image && post.image.file?
         .col-lg-2.col-md-12
-          = link_to post.image.url(:original) do
+          = link_to post.image.url(:original), class: 'attachment' do
             = image_tag post.image.url, class: 'img-responsive img-thumbnail'
       .col-lg-10.col-md-12= post.content.html_safe
     .footer.post-form
