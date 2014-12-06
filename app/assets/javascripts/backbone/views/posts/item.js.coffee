@@ -51,8 +51,10 @@ class DeadchanNet.Views.Posts.Item extends Backbone.View
             rect = $element.getBoundingClientRect();
             $($element).css('width', $(window).width() - rect.left - 50)
         })
+      else
+        $reply.children('article').show()
     ), 1000
 
   hideReply: (e) ->
     clearTimeout @replyTimer
-    $(e.currentTarget).find('article').remove()
+    $(e.currentTarget).find('article').hide()

@@ -27,18 +27,28 @@ class DeadchanNet.Views.Treads.Item extends Backbone.View
           url: url,
           dataType: 'json'
           success: (data) ->
-            post = new DeadchanNet.Models.Post data
-            post.set board_abbr: url.split('/')[1]
+            if data['tread_id']?
+              post = new DeadchanNet.Models.Post data
+              post.set board_abbr: url.split('/')[1]
 
-            view = new DeadchanNet.Views.Posts.Item
-                        model: post
+              view = new DeadchanNet.Views.Posts.Item
+                          model: post
+            else
+              tread = new DeadchanNet.Models.Tread data
+              tread.set board_abbr: url.split('/')[1]
+
+              view = new DeadchanNet.Views.Treads.Item
+                          model: tread
+
             $element = view.render().el
             $reply.append $element
             rect = $element.getBoundingClientRect();
             $($element).css('width', $(window).width() - rect.left - 50)
         })
+      else
+        $reply.children('article').show()
     ), 1000
 
   hideReply: (e) ->
     clearTimeout @replyTimer
-    $(e.currentTarget).find('article').remove()
+    $(e.currentTarget).find('article').hide()
