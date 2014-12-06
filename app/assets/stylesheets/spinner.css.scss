@@ -3,13 +3,14 @@ $black_30: rgba(0, 0, 0, 0.3);
 $black_75: rgba(0, 0, 0, 0.75);
 $black_50: rgba(0, 0, 0, 0.5);
 
-.loading {
-  position: fixed;
+@mixin spinner-view($position, $margin-top) {
+  position: $position;
   z-index: 999;
   height: 2em;
   width: 2em;
   overflow: show;
   margin: auto;
+  margin-top: $margin-top;
   top: 0;
   left: 0;
   bottom: 0;
@@ -17,7 +18,7 @@ $black_50: rgba(0, 0, 0, 0.5);
   &:before {
     content: '';
     display: block;
-    position: fixed;
+    position: $position;
     top: 0;
     left: 0;
     width: 100%;
@@ -43,11 +44,25 @@ $black_50: rgba(0, 0, 0, 0.5);
     }
   }
 }
+
 @keyframes spinner {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.loading {
+  @include spinner-view(fixed, auto);
+}
+
+.article-loading {
+  height: 100px;
+  width: 250px;
+
+  .article-loader {
+    @include spinner-view(relative, 30px);
   }
 }

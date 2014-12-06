@@ -69,9 +69,18 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
       $reply = $(e.currentTarget)
       url = $reply.find('a').attr('href').replace('#', '/')
       if $reply.find('article').length == 0
+        $loader = document.createElement 'article'
+        $($loader).addClass 'well'
+        $($loader).addClass 'article-loading'
+        $($loader).append '<div class="article-loader"></div>'
+
         $.ajax({
-          url: url,
+          url: url
           dataType: 'json'
+          beforeSend: ->
+            $reply.append $loader
+          complete: ->
+            $loader.remove()
           success: (data) ->
             if data['tread_id']?
               post = new DeadchanNet.Models.Post data
