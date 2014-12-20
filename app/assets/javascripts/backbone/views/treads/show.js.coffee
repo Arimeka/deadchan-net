@@ -7,7 +7,12 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
     'click .post-form button#answer' : 'showForm'
     'click .post-form button#hide'   : 'hideForm'
     'mouseenter li.reply'            : 'showReply'
-    'mouseleave li.reply'            : 'hideReply'
+    'mouseenter a.parent-post'       : 'showParent'
+    'mouseleave li.reply'            : 'resetTimer'
+    'mouseleave a.parent-post'       : 'resetTimer'
+    'mouseleave article'             : 'hideReply'
+    'mouseleave .parent-list'        : 'hideReply'
+    'mouseleave .reply-list'         : 'hideReply'
     'click a.attachment'             : 'showFullsize'
 
   initialize: (attributes) ->
@@ -55,47 +60,52 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
 
   showReply: (e) ->
     e.stopPropagation()
+    $that = @
     @replyTimer = setTimeout (->
       $reply = $(e.currentTarget)
+      $body = $reply.closest('article')
       url = $reply.find('a').attr('href').replace('#', '/')
-      if $reply.find('article').length == 0
-        $loader = document.createElement 'article'
-        $($loader).addClass 'well'
-        $($loader).addClass 'article-loading'
-        $($loader).append '<div class="article-loader"></div>'
 
-        $.ajax({
-          url: url
-          dataType: 'json'
-          beforeSend: ->
-            $reply.append $loader
-          complete: ->
-            $loader.remove()
-          success: (data) ->
-            if data['tread_id']?
-              post = new DeadchanNet.Models.Post data
-              post.set board_abbr: url.split('/')[1]
+      $container = $body.find(".reply-list[data-href='#{url}']")
+      unless $container.length
+        $body.append("<div class='reply-list' data-href='#{url}'></div>")
+        $container = $body.find(".reply-list[data-href='#{url}']")
 
-              view = new DeadchanNet.Views.Posts.Item
-                          model: post
-            else
-              tread = new DeadchanNet.Models.Tread data
-              tread.set board_abbr: url.split('/')[1]
+      position =
+        {
+          top: $container.offset().top - $reply.offset().top,
+          left: $container.offset().left - $reply.offset().left,
+          marginTop: $reply.height()
+        }
 
-              view = new DeadchanNet.Views.Treads.Item
-                          model: tread
+      $that.showPost($container, url, position)
+    ), 1000
 
-            $element = view.render().el
-            $reply.append $element
-            rect = $element.getBoundingClientRect();
-            $($element).css('width', $(window).width() - rect.left - 50)
-        })
-      else
-        $reply.children('article').show()
+  showParent: (e) ->
+    e.stopPropagation()
+    $that = @
+    @replyTimer = setTimeout (->
+      $reply = $(e.currentTarget)
+      $body = $reply.closest('article')
+      url = $reply.attr('href').replace('#', '/')
+
+      $container = $body.find(".parent-list[data-href='#{url}']")
+      unless $container.length
+        $body.append("<div class='parent-list' data-href='#{url}'></div>")
+        $container = $body.find(".parent-list[data-href='#{url}']")
+
+      position =
+        {
+          top: $container.offset().top - $reply.offset().top,
+          left: $container.offset().left - $reply.offset().left,
+          marginTop: $reply.height()
+        }
+
+      $that.showPost($container, url, position)
     ), 1000
 
   hideReply: (e) ->
-    clearTimeout @replyTimer
+    @resetTimer()
     $(e.currentTarget).find('article').hide()
 
   showFullsize: (e) ->
@@ -149,3 +159,46 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
   checkCommentable: ->
     if $('.thread>article .post-form button').length == 0
       $('.post-form button').hide()
+
+  showPost: (container, url, position) ->
+    if container.find('article').length == 0
+      $loader = document.createElement 'article'
+      $($loader).addClass 'well'
+      $($loader).addClass 'article-loading'
+      $($loader).append '<div class="article-loader"></div>'
+
+      $.ajax({
+        url: url
+        dataType: 'json'
+        beforeSend: ->
+          container.append $loader
+        complete: ->
+          $loader.remove()
+        success: (data) ->
+          if data['tread_id']?
+            post = new DeadchanNet.Models.Post data
+            post.set board_abbr: url.split('/')[1]
+
+            view = new DeadchanNet.Views.Posts.Item
+                        model: post
+          else
+            tread = new DeadchanNet.Models.Tread data
+            tread.set board_abbr: url.split('/')[1]
+
+            view = new DeadchanNet.Views.Treads.Item
+                        model: tread
+
+          $element = view.render().el
+          container.append $element
+          rect = $element.getBoundingClientRect();
+
+          $($element).css('width', $(window).width() - rect.left - 50)
+          $($element).css('margin-top', position.marginTop)
+          $($element).css('left', -position.left)
+          $($element).css('top', -position.top)
+      })
+    else
+      container.children('article').show()
+
+  resetTimer: ->
+    clearTimeout @replyTimer

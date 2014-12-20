@@ -106,6 +106,7 @@ window.wheelzoom = (function(){
 
         bgPosX = offsetX - (bgWidth * bgRatioX);
         bgPosY = offsetY - (bgHeight * bgRatioY);
+        updateBgStyle();
       } else {
         updateBgStyle();
       }

@@ -19,12 +19,12 @@
 </ul>
 <div class="body row">
   <% if(image) { %>
-    <div class="col-md-2">
+    <div class="col-lg-2 col-md-12">
       <a href="<%= image %>" class="attachment"><img class="img-responsive img-thumbnail" src="<%= image_thumb %>">
       </a>
     </div>
   <% } %>
-  <div class="col-md-10"><%= content %></div>
+  <div class="col-lg-10 col-md-12 content"><%= content %></div>
 </div>
 <div class="footer post-form">
   <% if(replies) {%>

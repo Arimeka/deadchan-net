@@ -30,7 +30,7 @@
               .col-lg-2.col-md-12
                 = link_to entry.image.url(:original), class: 'attachment' do
                   = image_tag entry.image.url, class: 'img-responsive img-thumbnail'
-            .col-lg-10.col-md-12= entry.content.html_safe
+            .col-lg-10.col-md-12.content= entry.content.html_safe
           .footer.post-form
             - if entry.replies
               %ul.list-inline

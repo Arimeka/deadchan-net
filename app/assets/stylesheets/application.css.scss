@@ -149,16 +149,21 @@ textarea {
       img {
         max-width: 100%;
       }
+      .content {
+        max-height: 255px;
+        overflow: hidden;
+      }
     }
     .post-form {
       margin-top: 15px;
-
-      .reply {
-        article {
-          position: absolute;
-          z-index: 10;
-          left: 100px;
-        }
+    }
+    .parent-list,
+    .reply-list {
+      position: relative;
+      article {
+        position: absolute;
+        z-index: 10;
+        left: 100px;
       }
     }
   }

@@ -73,7 +73,7 @@ module ContentSupport
                 post.save
               end
 
-              str.gsub!("+#{r}","<a href='/#{tread.board.abbr}/#{tread.id}##{r}'><strong>+#{tread.id.to_s.last(7)}##{r.last(7)}</strong></a>")
+              str.gsub!("+#{r}","<a class='parent-post' href='/#{tread.board.abbr}/#{tread.id}##{r}'><strong>+#{tread.id.to_s.last(7)}##{r.last(7)}</strong></a>")
             else
               another_tread = Tread.where(id: r).first
               if another_tread
