@@ -19,7 +19,8 @@
           .col-lg-2.col-md-12
             = link_to tread.image.url(:original), class: 'attachment' do
               = image_tag tread.image.url, class: 'img-responsive img-thumbnail'
-        .col-lg-10.col-md-12.content= tread.content.html_safe
+        .col-lg-10.col-md-12
+          .content= tread.content.html_safe
       .footer.post-form
         - if tread.replies
           %ul.list-inline

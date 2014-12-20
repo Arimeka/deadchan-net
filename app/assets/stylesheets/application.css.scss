@@ -153,6 +153,11 @@ textarea {
         max-height: 255px;
         overflow: hidden;
       }
+      #show-more,
+      #hide-more {
+        display: block;
+        margin-top: 10px;
+      }
     }
     .post-form {
       margin-top: 15px;
@@ -217,15 +222,13 @@ aside.sidebar {
   }
 }
 
-.modal-dialog {
-  .modal-content {
-    .modal-body {
-      img {
-        display: block;
-        margin: auto;
-        max-width: 100%;
-      }
-    }
+#modal {
+  &>img {
+    max-width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 

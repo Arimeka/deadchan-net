@@ -16,21 +16,20 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
     'mouseleave .parent-list'         : 'hideReply'
     'mouseleave .reply-list'          : 'hideReply'
     'click a.attachment'              : 'showFullsize'
+    'click #show-more'                : 'showMore'
+    'click #hide-more'                : 'hideMore'
 
   initialize: (attributes) ->
     @attributes = attributes
     @checkCommentable()
+    @setShowMore()
 
     $('#modal').on('hidden.bs.modal', (e) ->
-      $body = $(@).find('.modal-body')
-
-      $body.html ''
+      $(@).html ''
     )
 
     $('#modal').on('shown.bs.modal', (e) ->
-      $body = $(@).find('.modal-body')
-
-      wheelzoom($body.find('img'), {zoom:0.005})
+      wheelzoom($(@).find('img'), {zoom:0.005})
     )
 
   showForm: (e) ->
@@ -134,11 +133,9 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
   showFullsize: (e) ->
     e.preventDefault()
     $modal = $('#modal')
-    $body = $modal.find('.modal-body')
-    $footer = $modal.find('.modal-body')
     src =  $(e.currentTarget).attr('href')
-    $body.html "<img src='#{src}' class='img-rounded'>"
-    $body.find('img').css('max-height',"#{$(window).height() - 200}px")
+    $modal.html "<img src='#{src}' class='img-rounded'>"
+    $modal.find('img').css('max-height',"#{$(window).height() - 200}px")
 
     $('#modal').modal('show')
 
@@ -225,3 +222,39 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
 
   resetTimer: ->
     clearTimeout @replyTimer
+
+  setShowMore: ->
+    @$('article .content').each ->
+      $container = $(@).parent()
+      if @.scrollHeight > $(@).height()
+        $container.append('<a id="show-more" href="#">Читать дальше</div>')
+
+  showMore: (e) ->
+    e.preventDefault()
+    $showMoreButton = $(e.currentTarget)
+    $content = $showMoreButton.closest('.body').find('.content')
+    $container = $showMoreButton.parent()
+
+    $showMoreButton.hide()
+    $content.css('max-height', 'none')
+    $content.css('overflow', 'visible')
+
+    unless $container.find('#hide-more').length
+      $container.append('<a id="hide-more" href="#">Скрыть</div>')
+    else
+      $container.find('#hide-more').show()
+
+  hideMore: (e) ->
+    e.preventDefault()
+    $hideMoreButton = $(e.currentTarget)
+    $content = $hideMoreButton.closest('.body').find('.content')
+    $container = $hideMoreButton.parent()
+
+    $hideMoreButton.hide()
+    $content.css('max-height', '')
+    $content.css('overflow', '')
+
+    unless $container.find('#show-more').length
+      $container.append('<a id="show-more" href="#">Скрыть</div>')
+    else
+      $container.find('#show-more').show()

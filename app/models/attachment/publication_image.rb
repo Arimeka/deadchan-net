@@ -10,7 +10,7 @@ class Attachment::PublicationImage < Attachment
                             url:            ':s3_domain_url'
 
   validates_attachment :file, presence: true
-  validates_attachment :file, size: { in: 0..5.megabytes }
+  validates_attachment :file, size: { in: 0..10.megabytes }
   validates_attachment :file, content_type: { content_type: %w[image/jpg image/gif image/png image/jpeg] }
 
   before_post_process :randomize_file_name
