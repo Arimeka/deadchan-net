@@ -11,7 +11,7 @@ module ImageConcern
 
       embeds_one field_name, has_one_params
 
-      accepts_nested_attributes_for field_name, allow_destroy: true, reject_if: proc { |attributes| attributes[:file].blank? }
+      accepts_nested_attributes_for field_name, allow_destroy: true
     end
 
     alias :has_file :has_image

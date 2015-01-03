@@ -43,9 +43,13 @@ ru:
         is_commentable:         "Комментируемо"
         is_pinned:              "Прикреплено"
         board_id:               "Борда"
+        image:                  "Изображение"
+        request_ip:             "IP-адрес"
 
       post:
         <<: *defaults
+        image:                  "Изображение"
+        request_ip:             "IP-адрес"
 
       user:
         last_sign_in_at:        "Последний вход"

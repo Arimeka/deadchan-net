@@ -5,6 +5,9 @@
     - else
       %span.glyphicon.glyphicon-eye-close
   %td= post.id
+  %td
+    - if post.image && post.image.file?
+      = image_tag post.image.url, class: 'thumbnail'
   %td= post.content.html_safe
   %td
     = link_to edit_lodge_tread_post_path(tread, post), class: "btn" do

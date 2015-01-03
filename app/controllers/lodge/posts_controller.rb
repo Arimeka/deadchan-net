@@ -2,6 +2,14 @@ class Lodge::PostsController < Lodge::LodgeController
   expose(:tread)  { Tread.find(params[:tread_id]) }
   expose(:post)   { params[:id] ? tread.posts.find(params[:id]) : Post.new(post_params.merge(lodge: true)) }
 
+  def new
+    self.post.build_image unless self.post.image
+  end
+
+  def edit
+    self.post.build_image unless self.post.image
+  end
+
   def create
     tread.posts.push(post)
     if tread.save
@@ -51,6 +59,7 @@ class Lodge::PostsController < Lodge::LodgeController
   private
 
     def post_params
-      params.fetch(:post, {}).permit(:content, :is_published)
+      params.fetch(:post, {}).permit(:content, :is_published,
+                                      image_attributes: [:id, :file, :_destroy])
     end
 end

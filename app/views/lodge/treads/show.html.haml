@@ -1,14 +1,27 @@
 - provide(:title, t("path.controllers.lodge/#{controller.controller_name}.show"))
 = render partial: "subnav"
 %h1= "#{tread.title} - #{t("path.controllers.lodge/#{controller.controller_name}.show")}"
+.col-sm-12
+  - if tread.image && tread.image.file?
+    .col-sm-3
+      = image_tag tread.image.url, class: 'thumbnail'
+  .col-sm-8
+    = tread.content.html_safe
+.clearfix
+- if tread.request_ip
+  .sol-sm-3
+    %strong IP-адрес:
+    = IPAddr.new_ntoh(tread.request_ip)
+%h2 Посты
 .table-responsive
   %table.table.table-condensed.table-striped
     %thead
       %tr
-        %th
-        %th= t "mongoid.attributes.post.id"
-        %th= t "mongoid.attributes.post.content"
-        %th
+        %th.col-sm-2
+        %th.col-sm-2= t "mongoid.attributes.post.id"
+        %th.col-sm-2= t "mongoid.attributes.post.image"
+        %th.col-sm-5= t "mongoid.attributes.post.content"
+        %th.col-sm-2
     %tbody= render posts
 .clearfix
 = will_paginate posts

@@ -3,6 +3,14 @@ class Lodge::TreadsController < Lodge::LodgeController
   expose(:tread)  { params[:id] ? Tread.find(params[:id]) : Tread.new(tread_params.merge(lodge: true)) }
   expose(:posts)  { tread.posts.paginate(page: params[:page], per_page: 30) }
 
+  def new
+    self.tread.build_image unless self.tread.image
+  end
+
+  def edit
+    self.tread.build_image unless self.tread.image
+  end
+
   def create
     if tread.save
       flash[:notice] = t('msg.saved')
@@ -14,6 +22,7 @@ class Lodge::TreadsController < Lodge::LodgeController
     else
       @errors = tread.errors.full_messages
       flash.now[:error] = t("msg.save_error")
+      self.tread.build_image unless self.tread.image
       render :new
     end
   end
@@ -29,6 +38,7 @@ class Lodge::TreadsController < Lodge::LodgeController
     else
       @errors = tread.errors.full_messages
       flash.now[:error] = t("msg.save_error")
+      self.tread.build_image unless self.tread.image
       render :edit
     end
   end
@@ -55,6 +65,7 @@ class Lodge::TreadsController < Lodge::LodgeController
                                         :is_published, :is_pinned,
                                         :is_commentable, :posts_number,
                                         :board_id, :is_admin, :show_name,
-                                        :lodge)
+                                        :lodge,
+                                        image_attributes: [:id, :file, :_destroy])
     end
 end

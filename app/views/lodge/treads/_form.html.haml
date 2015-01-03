@@ -1,47 +1,56 @@
 = render partial: "lodge/shared/blocks/messages"
 = form_for [:lodge, tread], html: {class: "form-horizontal", role: "form"} do |f|
-  .form-group
-    = f.label :title, class: "col-sm-2 control-label"
-    .col-sm-3
-      = f.text_field :title, placeholder: "Тема", class: "form-control"
-  .form-group
-    = f.label :board_id, class: "col-sm-2 control-label"
-    .col-sm-2
-      = f.select :board_id, boards.collect {|b| [ b.title, b.id ] }, { include_blank: false }, class: 'form-control'
-  .form-group
-    = f.label :posts_number, class: "col-sm-2 control-label"
-    .col-sm-2
-      = f.number_field :posts_number, min: 0, class: "form-control"
-  .form-group
-    .col-sm-offset-2.col-sm-2
-      .checkbox
-        = f.label :is_commentable do
-          = f.check_box :is_commentable
-          = t "mongoid.attributes.tread.is_commentable"
-      .checkbox
-        = f.label :is_published do
-          = f.check_box :is_published
-          = t "mongoid.attributes.tread.is_published"
-      .checkbox
-        = f.label :is_pinned do
-          = f.check_box :is_pinned
-          = t "mongoid.attributes.tread.is_pinned"
-      .checkbox
-        = f.label :show_name do
-          = f.check_box :show_name
-          = t "mongoid.attributes.tread.show_name"
-      .checkbox
-        = f.label :is_admin do
-          = f.check_box :is_admin
-          = t "mongoid.attributes.tread.is_admin"
-  .form-group
-    = f.label :content, class: "col-sm-2 control-label"
-    .col-md-10
-      = f.text_area :content, rows: 10, class: "form-control wysihtml5"
-  .form-actions
-    - unless tread.new_record?
-      = link_to "Удалить", lodge_tread_path(tread), method: :delete, data: { confirm: "Уверены?" }, title: "Удалить", class: "btn btn-danger pull-right"
-    = f.submit t('form.save'), class: 'btn btn-success'
-    = f.submit t('form.save_and_exit'), class: 'btn btn-primary'
-    = link_to 'Отмена', :back, class: 'btn'
+  .col-sm-6
+    .form-group
+      = f.label :title, class: "col-sm-2 control-label"
+      .col-sm-8
+        = f.text_field :title, placeholder: "Тема", class: "form-control"
+    .form-group
+      = f.label :board_id, class: "col-sm-2 control-label"
+      .col-sm-2
+        = f.select :board_id, boards.collect {|b| [ b.title, b.id ] }, { include_blank: false }, class: 'form-control'
+    .form-group
+      = f.label :posts_number, class: "col-sm-2 control-label"
+      .col-sm-2
+        = f.number_field :posts_number, min: 0, class: "form-control"
+    .form-group
+      .col-sm-offset-2.col-sm-2
+        .checkbox
+          = f.label :is_commentable do
+            = f.check_box :is_commentable
+            = t "mongoid.attributes.tread.is_commentable"
+        .checkbox
+          = f.label :is_published do
+            = f.check_box :is_published
+            = t "mongoid.attributes.tread.is_published"
+        .checkbox
+          = f.label :is_pinned do
+            = f.check_box :is_pinned
+            = t "mongoid.attributes.tread.is_pinned"
+        .checkbox
+          = f.label :show_name do
+            = f.check_box :show_name
+            = t "mongoid.attributes.tread.show_name"
+        .checkbox
+          = f.label :is_admin do
+            = f.check_box :is_admin
+            = t "mongoid.attributes.tread.is_admin"
+    - if f.object.request_ip
+      .form-group
+        = f.label :request_ip, class: "col-sm-2 control-label"
+        .col-sm-2= text_field_tag 'request_ip', IPAddr.new_ntoh(f.object.request_ip), readonly: true, class: 'form-control'
+  .col-sm-6
+    = render partial: '/lodge/shared/uploaders/image', locals: {form: f}
+  .clearfix
+  .col-sm-12
+    .form-group
+      = f.label :content, class: "col-sm-2 control-label"
+      .col-md-10
+        = f.text_area :content, rows: 10, class: "form-control wysihtml5"
+    .form-actions
+      - unless tread.new_record?
+        = link_to "Удалить", lodge_tread_path(tread), method: :delete, data: { confirm: "Уверены?" }, title: "Удалить", class: "btn btn-danger pull-right"
+      = f.submit t('form.save'), class: 'btn btn-success'
+      = f.submit t('form.save_and_exit'), class: 'btn btn-primary'
+      = link_to 'Отмена', :back, class: 'btn'
 = render partial: "lodge/shared/blocks/wysihtml5"

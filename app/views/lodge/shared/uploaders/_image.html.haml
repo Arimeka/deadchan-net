@@ -1,0 +1,9 @@
+= form.fields_for :image do |img_form|
+  .col-sm-4
+    .form-group
+      = img_form.file_field :file, accept: 'image/png,image/gif,image/jpeg'
+  .col-sm-8
+    = image_tag img_form.object.url, class: 'thumbnail'
+    %label.checkbox
+      = img_form.check_box :_destroy, skip_check: true
+      %i.glyphicon.glyphicon-trash
