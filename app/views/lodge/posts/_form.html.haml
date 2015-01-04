@@ -2,7 +2,7 @@
 = form_for [:lodge, tread, post], html: {class: "form-horizontal", role: "form"} do |f|
   .col-sm-6
     .form-group
-      .col-sm-offset-2.col-sm-2
+      .col-sm-offset-2.col-lg-4.col-md-5.col-sm-4
         .checkbox
           = f.label :is_published do
             = f.check_box :is_published
@@ -10,7 +10,7 @@
     - if f.object.request_ip
       .form-group
         = f.label :request_ip, class: "col-sm-2 control-label"
-        .col-sm-2= text_field_tag 'request_ip', IPAddr.new_ntoh(f.object.request_ip), readonly: true, class: 'form-control'
+        .col-lg-4.col-md-5.col-sm-4= text_field_tag 'request_ip', IPAddr.new_ntoh(f.object.request_ip), readonly: true, class: 'form-control'
   .col-sm-6
     = render partial: '/lodge/shared/uploaders/image', locals: {form: f}
   .clearfix

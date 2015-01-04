@@ -7,14 +7,14 @@
         = f.text_field :title, placeholder: "Тема", class: "form-control"
     .form-group
       = f.label :board_id, class: "col-sm-2 control-label"
-      .col-sm-2
+      .col-lg-4.col-md-5.col-sm-4
         = f.select :board_id, boards.collect {|b| [ b.title, b.id ] }, { include_blank: false }, class: 'form-control'
     .form-group
       = f.label :posts_number, class: "col-sm-2 control-label"
-      .col-sm-2
+      .col-lg-4.col-md-5.col-sm-4
         = f.number_field :posts_number, min: 0, class: "form-control"
     .form-group
-      .col-sm-offset-2.col-sm-2
+      .col-sm-offset-2.col-lg-8.col-md-8.col-sm-8
         .checkbox
           = f.label :is_commentable do
             = f.check_box :is_commentable
@@ -38,10 +38,9 @@
     - if f.object.request_ip
       .form-group
         = f.label :request_ip, class: "col-sm-2 control-label"
-        .col-sm-2= text_field_tag 'request_ip', IPAddr.new_ntoh(f.object.request_ip), readonly: true, class: 'form-control'
-  .col-sm-6
+        .col-lg-4.col-md-5.col-sm-4= text_field_tag 'request_ip', IPAddr.new_ntoh(f.object.request_ip), readonly: true, class: 'form-control'
+  .col-lg-6.col-md-7.col-sm-6
     = render partial: '/lodge/shared/uploaders/image', locals: {form: f}
-  .clearfix
   .col-sm-12
     .form-group
       = f.label :content, class: "col-sm-2 control-label"
@@ -53,4 +52,5 @@
       = f.submit t('form.save'), class: 'btn btn-success'
       = f.submit t('form.save_and_exit'), class: 'btn btn-primary'
       = link_to 'Отмена', :back, class: 'btn'
+  .clearfix
 = render partial: "lodge/shared/blocks/wysihtml5"

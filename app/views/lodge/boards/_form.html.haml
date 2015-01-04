@@ -2,22 +2,22 @@
 = form_for [:lodge, board], html: {class: "form-horizontal", role: "form"} do |f|
   .form-group
     = f.label :title, class: "col-sm-2 control-label"
-    .col-sm-3
+    .col-lg-4.col-md-5.col-sm-4
       = f.text_field :title, placeholder: "Название", class: "form-control"
   .form-group
     = f.label :abbr, class: "col-sm-2 control-label"
-    .col-sm-2
+    .col-lg-4.col-md-5.col-sm-4
       = f.text_field :abbr, placeholder: "Аббревиатура", class: "form-control"
   .form-group
     = f.label :placement_index, class: "col-sm-2 control-label"
-    .col-sm-2
+    .col-lg-4.col-md-5.col-sm-4
       = f.number_field :placement_index, min: 0, class: "form-control"
   .form-group
     = f.label :threads_number, class: "col-sm-2 control-label"
-    .col-sm-2
+    .col-lg-4.col-md-5.col-sm-4
       = f.number_field :threads_number, min: 0, class: "form-control"
   .form-group
-    .col-sm-offset-2.col-sm-2
+    .col-sm-offset-2.col-lg-4.col-md-5.col-sm-4
       .checkbox
         = f.label :is_threadable do
           = f.check_box :is_threadable
@@ -25,7 +25,7 @@
       .checkbox
         = f.label :is_published do
           = f.check_box :is_published
-          = t "mongoid.attributes.board.is_published"    
+          = t "mongoid.attributes.board.is_published"
   .form-actions
     - unless board.new_record?
       = link_to "Удалить", lodge_board_path(board), method: :delete, data: { confirm: "Уверены?" }, title: "Удалить", class: "btn btn-danger pull-right"
