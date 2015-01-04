@@ -112,7 +112,7 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
     $modal = $('#modal')
     src =  $(e.currentTarget).attr('href')
     $modal.html "<img src='#{src}' class='img-rounded'>"
-    $modal.find('img').css('max-height',"#{$(window).height() - 200}px")
+    $modal.find('img').css('max-height',"#{$(window).height() - 10}px")
 
     $('#modal').modal('show')
 

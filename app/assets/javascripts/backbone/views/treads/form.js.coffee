@@ -46,6 +46,8 @@ class DeadchanNet.Views.Treads.Form extends Backbone.View
           closable: false
         .show()
       @$('.uploading-filename').text ''
+      unless typeof(Recaptcha) == 'undefined'
+        Recaptcha.reload()
     else
       window.location.replace data.app.redirect
 

@@ -1,3 +1,4 @@
+= render 'layouts/csrf'
 = form_for tread, url: board_path(entry.abbr), authenticity_token: true, html: {role: 'form', class: 'form-horizontal', remote: true, 'data-type' => :json}  do |f|
   .form-group
     = f.label :title, class: "control-label"
