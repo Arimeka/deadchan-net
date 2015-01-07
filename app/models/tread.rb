@@ -15,7 +15,6 @@ class Tread
   field :is_pinned,       type: Mongoid::Boolean, default: false
   field :is_full,         type: Mongoid::Boolean, default: false
   field :is_admin,        type: Mongoid::Boolean, default: false
-  field :show_name,       type: Mongoid::Boolean, default: false
   field :posts_number,    type: Integer,          default: 500
   field :request_ip,      type: BSON::Binary
 

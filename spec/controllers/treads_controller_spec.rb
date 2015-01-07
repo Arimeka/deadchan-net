@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ThreadsController do
+describe TreadsController do
 
   describe "GET 'show'" do
     it "returns http success" do

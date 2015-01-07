@@ -16,6 +16,7 @@
 /tmp
 /config/recaptcha.yml
 /config/s3.yml
+/coverage
 .DS_Store
 
 deadchan-net.sublime-project

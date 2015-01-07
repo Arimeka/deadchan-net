@@ -26,7 +26,7 @@ class Ban
     if self.until.present? && self.until > Time.zone.now
       time = (self.until - Time.zone.now).to_i
     end
-    $redis.del("bans:#{BanType.find(ban_type_id_was).type}:#{request_ip_was}")
+    $redis.del("bans:#{BanType.find(ban_type_id_was).type}:#{request_ip_was}") if ban_type_id_was
     $redis.set("bans:#{self.ban_type.type}:#{request_ip}", reason, ex: time)
   end
 

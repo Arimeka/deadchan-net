@@ -2,7 +2,9 @@
 
 FactoryGirl.define do
   factory :ban do
-    reason "MyString"
-    ban_type_id "MyString"
+    reason { Faker::Lorem.paragraph }
+    self.until { Time.now + 1.day }
+    request_ip { Faker::Internet.ip_v4_address }
+    ban_type
   end
 end

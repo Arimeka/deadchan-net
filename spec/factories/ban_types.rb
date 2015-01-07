@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :ban_type do
-    type ""
+    sequence(:type) { |n| "ban_type-#{n}"}
   end
 end
