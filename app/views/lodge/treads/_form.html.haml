@@ -38,7 +38,9 @@
     - if f.object.request_ip
       .form-group
         = f.label :request_ip, class: "col-sm-2 control-label"
-        .col-lg-4.col-md-5.col-sm-4= text_field_tag 'request_ip', IPAddr.new_ntoh(f.object.request_ip), readonly: true, class: 'form-control'
+        .col-lg-4.col-md-5.col-sm-4
+          = text_field_tag 'request_ip', IPAddr.new_ntoh(f.object.request_ip), readonly: true, class: 'form-control'
+          = render partial: '/lodge/shared/blocks/ip_links', locals: { ip: IPAddr.new_ntoh(f.object.request_ip) }
   .col-lg-6.col-md-7.col-sm-6
     = render partial: '/lodge/shared/uploaders/image', locals: {form: f}
   .col-sm-12

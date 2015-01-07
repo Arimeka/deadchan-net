@@ -17,6 +17,9 @@ DeadchanNet::Application.routes.draw do
     resources :users, only: [:index, :destroy]
     resources :bans, except: :show
 
+    put 'unpablish_posts' => 'users#unpablish_posts', as: :unpablish_posts
+    put 'destroy_posts' => 'users#destroy_posts', as: :destroy_posts
+
     mount RailsSettingsUi::Engine, at: 'settings'
   end
 

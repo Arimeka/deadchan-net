@@ -43,7 +43,7 @@ class Tread
   belongs_to :board
   belongs_to :user
 
-  embeds_many :posts
+  embeds_many :posts, cascade_callbacks: true
 
   has_image :image, Attachment::PublicationImage
 

@@ -1,0 +1,6 @@
+= link_to lodge_unpablish_posts_path(request_ip: ip), method: :put, data: { confirm: "Уверены?" }, class: 'btn btn-danger' do
+  %span.glyphicon.glyphicon-eye-close
+= link_to lodge_unpablish_posts_path(request_ip: ip), method: :put, data: { confirm: "Уверены?" }, class: 'btn btn-danger' do
+  %span.glyphicon.glyphicon-trash
+= link_to new_lodge_ban_path(ban: {request_ip: ip}), class: 'btn btn-danger' do
+  %span.glyphicon.glyphicon-remove

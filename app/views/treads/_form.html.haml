@@ -3,6 +3,7 @@
   .form-group
     = f.label :content, class: "control-label"
     = f.text_area :content, rows: 10, class: "form-control"
+    .clearfix
     .controls
       - unless user_signed_in? || admin_signed_in?
         .captcha

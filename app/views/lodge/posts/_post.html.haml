@@ -10,6 +10,9 @@
       = image_tag post.image.url, class: 'thumbnail'
   %td= post.content.html_safe
   %td
+    - if post.request_ip
+      = IPAddr.new_ntoh(post.request_ip)
+  %td
     = link_to edit_lodge_tread_post_path(tread, post), class: "btn" do
       %span.glyphicon.glyphicon-pencil
     = link_to lodge_tread_post_path(tread, post), class: "btn btn-danger", method: :delete,  data: { confirm: "Уверены?" } do

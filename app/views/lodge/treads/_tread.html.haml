@@ -13,6 +13,9 @@
   %td= tread.title
   %td= tread.posts.count
   %td
+    - if tread.request_ip
+      = IPAddr.new_ntoh(tread.request_ip)
+  %td
     = link_to edit_lodge_tread_path(tread), class: "btn" do
       %span.glyphicon.glyphicon-pencil
     = link_to lodge_tread_path(tread), class: "btn" do
