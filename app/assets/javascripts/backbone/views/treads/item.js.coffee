@@ -23,10 +23,10 @@ class DeadchanNet.Views.Treads.Item extends Backbone.View
       $reply = $(e.currentTarget)
       url = $reply.find('a').attr('href').replace('#', '/')
       if $reply.find('article').length == 0
-        $loader = document.createElement 'article'
-        $($loader).addClass 'well'
-        $($loader).addClass 'article-loading'
-        $($loader).append '<div class="article-loader"></div>'
+        $loader = $(document.createElement 'article')
+        $loader.addClass 'well'
+        $loader.addClass 'article-loading'
+        $loader.append '<div class="article-loader"></div>'
 
         $.ajax({
           url: url
@@ -49,10 +49,16 @@ class DeadchanNet.Views.Treads.Item extends Backbone.View
               view = new DeadchanNet.Views.Treads.Item
                           model: tread
 
-            $element = view.render().el
-            $reply.append $element
-            rect = $element.getBoundingClientRect();
-            $($element).css('width', $(window).width() - rect.left - 50)
+            element = view.render().el
+            $reply.append element
+            rect = element.getBoundingClientRect();
+            $(element).css('width', $(window).width() - rect.left - 50)
+          error: ->
+            $sad = $(document.createElement 'article')
+            $sad.addClass 'well'
+            $sad.addClass 'article-sad'
+            $sad.append '<div class="article-smile"></div>'
+            $reply.append $sad
         })
       else
         $reply.children('article').show()

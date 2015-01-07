@@ -95,7 +95,7 @@ module ContentSupport
                   end
                   another_tread.save
                 end
-                str.gsub!("+#{r}","<a href='/#{tread.board.abbr}/#{tread.id}'><strong>+#{r.last(7)}</strong></a>")
+                str.gsub!("+#{r}","<a class='parent-post' href='/#{tread.board.abbr}/#{tread.id}'><strong>+#{r.last(7)}</strong></a>")
               end
             end
           end

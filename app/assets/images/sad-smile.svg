@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="181px" height="182px" viewBox="0 0 181 182" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0 (7574) - http://www.bohemiancoding.com/sketch -->
+    <title>Sad Smile</title>
+    <description>Created with Sketch.</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M180.5,180.46171 C178.693845,180.81743 176.858767,181 175,181 C147.385763,181 125,140.705627 125,91 C125,41.2943725 147.385763,1 175,1 C176.858767,1 178.693845,1.18256953 180.5,1.53828976 C155.473533,6.46722421 136,44.6401535 136,91 C136,137.359846 155.473533,175.532776 180.5,180.46171 Z M21.5,42 C32.8218374,42 42,32.8218374 42,21.5 C42,10.1781626 32.8218374,1 21.5,1 C10.1781626,1 1,10.1781626 1,21.5 C1,32.8218374 10.1781626,42 21.5,42 Z M21.5,181 C32.8218374,181 42,171.821837 42,160.5 C42,149.178163 32.8218374,140 21.5,140 C10.1781626,140 1,149.178163 1,160.5 C1,171.821837 10.1781626,181 21.5,181 Z" id="Sad-Smile" stroke="#D8D8D8" fill="#D8D8D8" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

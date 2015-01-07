@@ -51,4 +51,19 @@ footer {
   z-index: 9999;
 }
 
+.article-sad {
+  height: 100px;
+  width: 250px;
+
+  .article-smile {
+    height: 60px;
+    background: url(sad-smile.svg) no-repeat top center;
+    background-size: contain;
+
+    .no-svg {
+      background-image: url(sad-smile.png);
+    }
+  }
+}
+
 @import "wysiwyg_colors";

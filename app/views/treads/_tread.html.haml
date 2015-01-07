@@ -35,11 +35,11 @@
           %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
             Скрыть форму
           #form
-    - if tread.posts.any?
+    - if tread.posts.published.any?
       .posts
-        - if tread.posts.count - 1 > 0
+        - if tread.posts.published.count - 1 > 0
           %p.text-muted
-            = Russian.p(tread.posts.count - 1, "Пропущен", "Пропущено", "Пропущено")
-            = tread.posts.count - 1
-            = link_to Russian.p(tread.posts.count - 1, "ответ", "ответа", "ответов"), tread_path(tread.board.abbr, tread.id, {anchor: 'posts'})
-        = render tread.posts.last
+            = Russian.p(tread.posts.published.count - 1, "Пропущен", "Пропущено", "Пропущено")
+            = tread.posts.published.count - 1
+            = link_to Russian.p(tread.posts.published.count - 1, "ответ", "ответа", "ответов"), tread_path(tread.board.abbr, tread.id, {anchor: 'posts'})
+        = render tread.posts.published.last

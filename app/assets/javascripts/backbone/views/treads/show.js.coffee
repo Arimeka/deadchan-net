@@ -159,10 +159,10 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
 
   showPost: (container, url, position) ->
     if container.find('article').length == 0
-      $loader = document.createElement 'article'
-      $($loader).addClass 'well'
-      $($loader).addClass 'article-loading'
-      $($loader).append '<div class="article-loader"></div>'
+      $loader = $(document.createElement 'article')
+      $loader.addClass 'well'
+      $loader.addClass 'article-loading'
+      $loader.append '<div class="article-loader"></div>'
 
       $.ajax({
         url: url
@@ -185,14 +185,21 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
             view = new DeadchanNet.Views.Treads.Item
                         model: tread
 
-          $element = view.render().el
-          container.append $element
-          rect = $element.getBoundingClientRect();
+          element = view.render().el
+          container.append element
+          rect = element.getBoundingClientRect();
+          $element = $(element)
 
-          $($element).css('width', $(window).width() - rect.left - 50)
-          $($element).css('margin-top', position.marginTop)
-          $($element).css('left', -position.left)
-          $($element).css('top', -position.top)
+          $element.css('width', $(window).width() - rect.left - 50)
+          $element.css('margin-top', position.marginTop)
+          $element.css('left', -position.left)
+          $element.css('top', -position.top)
+        error: ->
+          $sad = $(document.createElement 'article')
+          $sad.addClass 'well'
+          $sad.addClass 'article-sad'
+          $sad.append '<div class="article-smile"></div>'
+          container.append $sad
       })
     else
       container.children('article').show()
