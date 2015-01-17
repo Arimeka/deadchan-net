@@ -69,24 +69,12 @@ class Tread
     end
   end
 
-  def get_posts
-    self.posts.published.map do |post|
-      { _id: post.id,
-        content: post.content,
-        created_at: post.created_at,
-        replies: post.replies,
-        image: (post.image && post.image.file?) ? post.image.url(:original) : nil,
-        image_thumb: (post.image && post.image.file?) ? post.image.url : nil
-      }
-    end
-  end
-
   private
 
     def first_set_timestamps
-      if is_published
-        self.published_at = Time.zone.now
-        self.updated_at = Time.zone.now
+      if is_published?
+        self.published_at = Time.zone.now unless published_at
+        self.updated_at = Time.zone.now unless updated_at
       end
     end
 

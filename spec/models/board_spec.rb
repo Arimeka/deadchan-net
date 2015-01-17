@@ -100,7 +100,7 @@ describe Board do
     expect(Board.published.to_a).to eq [board]
   end
 
-  context 'check Settings.readonly first' do
+  context 'check Settings.readonly before' do
     before(:each) do
       Settings.readonly = nil
     end
