@@ -5,6 +5,7 @@ class DeadchanNet.Views.Treads.Form extends Backbone.View
 
   events:
     'ajax:beforeSend'       : 'ajaxBeforeSend'
+    'ajax:remotipartSubmit' : 'ajaxBeforeSend'
     'ajax:success'          : 'ajaxSuccess'
     'ajax:error'            : 'ajaxError'
     'ajax:complete'         : 'ajaxComplete'
@@ -13,7 +14,6 @@ class DeadchanNet.Views.Treads.Form extends Backbone.View
 
   initialize: (attributes) ->
     @attributes = attributes
-    @$submitButton = @$el.find('input[type="submit"]')
 
   render: (content, title) ->
     $.ajax
@@ -52,6 +52,8 @@ class DeadchanNet.Views.Treads.Form extends Backbone.View
       window.location.replace data.app.redirect
 
   ajaxError: ->
+    $submitButton = @$el.find('input[type="submit"]')
+    $submitButton.prop('disabled', false)
     content = @$el.find('textarea').val()
     title = @$el.find('#tread_title').val()
     app.views.treadForm = new DeadchanNet.Views.Treads.Form
@@ -66,7 +68,9 @@ class DeadchanNet.Views.Treads.Form extends Backbone.View
     .show()
 
   ajaxBeforeSend: ->
-    @$submitButton.prop('disabled', true)
+    $submitButton = @$el.find('input[type="submit"]')
+    $submitButton.prop('disabled', true)
 
   ajaxComplete: ->
-    @$submitButton.prop('disabled', false)
+    $submitButton = @$el.find('input[type="submit"]')
+    $submitButton.prop('disabled', false)
