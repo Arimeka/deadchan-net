@@ -23,6 +23,12 @@
       <a href="<%= image %>" class="attachment"><img class="img-responsive img-thumbnail" src="<%= image_thumb %>">
       </a>
     </div>
+  <% } else if(video) { %>
+    <div class="col-lg-2 col-md-12">
+      <a class="attachment" data-content-type="video/webm" href="<%= video %>">
+        <img alt="Preview" class="img-responsive img-thumbnail" src="<%= video_preview %>">
+      </a>
+    </div>
   <% } %>
   <div class="col-lg-10 col-md-12">
     <div class="content"><%= content %></div>
