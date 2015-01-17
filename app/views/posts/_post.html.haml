@@ -9,8 +9,12 @@
     .body.row
       - if post.image && post.image.file?
         .col-lg-2.col-md-12
-          = link_to post.image.url(:original), class: 'attachment' do
+          = link_to post.image.url(:original), class: 'attachment', data: {content_type: post.image.file.content_type} do
             = image_tag post.image.url, class: 'img-responsive img-thumbnail'
+      - elsif post.video && post.video.file?
+        .col-lg-2.col-md-12
+          = link_to post.video.url, class: 'attachment', data: {content_type: post.video.file.content_type} do
+            = image_tag post.video.url(:preview), class: 'img-responsive img-thumbnail'
       .col-lg-10.col-md-12
         .content= post.content.html_safe
     .footer.post-form

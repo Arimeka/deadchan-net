@@ -23,7 +23,7 @@ class Tread
   # Validations
   # ======================================================
   validates :title, presence: true, length: { in: 2..30 }
-  validates :content, presence: true, length: { in: 1..2500 }, unless: 'self.image'
+  validates :content, presence: true, length: { in: 1..2500 }, unless: 'self.image || self.video'
   validates :content, length: { maximum: 2500 }
   validates :posts_number,
             numericality: { only_integer: true }
@@ -45,6 +45,7 @@ class Tread
   embeds_many :posts, cascade_callbacks: true
 
   has_image :image, Attachment::PublicationImage
+  has_file  :video, Attachment::PublicationVideo
 
   # Callbacks
   # ======================================================

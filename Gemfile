@@ -33,6 +33,7 @@ gem 'rails-settings-cached', github: 'Arimeka/rails-settings-cached'
 
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'aws-sdk'
+gem 'paperclip-ffmpeg'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

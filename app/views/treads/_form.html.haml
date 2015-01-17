@@ -11,8 +11,8 @@
       = f.fields_for :image do |img_form|
         %a{class: "upload-file btn btn-sm btn-primary"}
           %b
-            Загрузить изображение
-        = img_form.file_field :file, accept: 'image/png,image/gif,image/jpeg', id: 'fileupload'
+            Загрузить файл
+        = file_field_tag 'file', accept: 'image/png,image/gif,image/jpeg,video/webm', id: 'fileupload'
         %span{class: "uploading-filename"}
 
   = f.submit t('form.submit'), class: 'btn btn-primary'

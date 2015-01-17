@@ -3,8 +3,10 @@
 %h1= "#{tread.title} - #{t("path.controllers.lodge/#{controller.controller_name}.show")}"
 .col-sm-12
   - if tread.image && tread.image.file?
+    .col-sm-3= image_tag tread.image.url, class: 'thumbnail'
+  - elsif tread.video && tread.video.file?
     .col-sm-3
-      = image_tag tread.image.url, class: 'thumbnail'
+      = video_tag tread.video.url, class: 'thumbnail', controls: true, width: 300, poster: tread.video.url(:preview)
   .col-sm-8
     = tread.content.html_safe
 .clearfix

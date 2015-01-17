@@ -133,9 +133,20 @@ class DeadchanNet.Views.Boards.Show extends Backbone.View
   showFullsize: (e) ->
     e.preventDefault()
     $modal = $('#modal')
-    src =  $(e.currentTarget).attr('href')
-    $modal.html "<img src='#{src}' class='img-rounded'>"
-    $modal.find('img').css('max-height',"#{$(window).height() - 200}px")
+    $target = $(e.currentTarget)
+    src =  $target.attr('href')
+    if $target.data('content-type') == 'video/webm'
+      $modal.html "
+      <video  controls='controls' poster='' autoplay controls loop='1' muted='1' class='img-rounded'>
+        <source src='#{src}' type='#{$target.data('content-type')};' width='100%' height='100%'>
+      </video>
+      "
+      $modal.find('video').css('max-height',"#{$(window).height() - 10}px")
+      $modal.find('video').css('max-width',"#{$(window).width() - 40}px")
+    else
+      $modal.html "<img src='#{src}' class='img-rounded'>"
+      $modal.find('img').css('max-height',"#{$(window).height() - 10}px")
+      $modal.find('img').css('max-width',"#{$(window).width() - 40}px")
 
     $('#modal').modal('show')
 

@@ -14,7 +14,7 @@ class Post
 
   # Validations
   # ======================================================
-  validates :content, presence: true, length: { in: 1..2500 }, unless: 'self.image'
+  validates :content, presence: true, length: { in: 1..2500 }, unless: 'self.image || self.video'
   validates :content, length: { maximum: 2500 }
   validates :is_published, inclusion: { in: [true, false] }
 
@@ -28,4 +28,5 @@ class Post
   # ======================================================
   embedded_in :tread
   has_image :image, Attachment::PublicationImage
+  has_file  :video, Attachment::PublicationVideo
 end

@@ -28,8 +28,12 @@
           .body.row
             - if entry.image && entry.image.file?
               .col-lg-2.col-md-12
-                = link_to entry.image.url(:original), class: 'attachment' do
+                = link_to entry.image.url(:original), class: 'attachment', data: {content_type: entry.image.file.content_type} do
                   = image_tag entry.image.url, class: 'img-responsive img-thumbnail'
+            - elsif entry.video && entry.video.file?
+              .col-lg-2.col-md-12
+                = link_to entry.video.url, class: 'attachment', data: {content_type: entry.video.file.content_type} do
+                  = image_tag entry.video.url(:preview), class: 'img-responsive img-thumbnail'
             .col-lg-10.col-md-12
               .content= entry.content.html_safe
           .footer.post-form

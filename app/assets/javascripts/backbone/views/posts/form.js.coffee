@@ -33,7 +33,8 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
     @$('#fileupload').click()
 
   fileupload: (e) ->
-    @$('.uploading-filename').text $(e.currentTarget).val()
+    $target = $(e.currentTarget)
+    @$('.uploading-filename').text $target.val()
 
   ajaxSuccess: (e, data, status, xhr)->
     if data.app.error
@@ -74,7 +75,7 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
               })
 
   ajaxError: ->
-    submitButton = @$el.find('input[type="submit"]')
+    $submitButton = @$el.find('input[type="submit"]')
     $submitButton.prop('disabled', false)
     content = @$el.find('textarea').val()
     app.views.postForm = new DeadchanNet.Views.Posts.Form

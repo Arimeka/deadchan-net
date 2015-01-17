@@ -43,7 +43,8 @@ class BoardsController < ApplicationController
 
   private
     def tread_params
-      params.fetch(:tread, {}).permit(:title, :content, image_attributes: [:id, :file])
+      params[:tread] = set_file(params[:tread], params[:file]) if params[:tread] && params[:file]
+      params.fetch(:tread, {}).permit(:title, :content, image_attributes: [:id, :file], video_attributes: [:id, :file])
     end
 
     def verify_recaptcha!
@@ -53,5 +54,14 @@ class BoardsController < ApplicationController
           render json: {app: {error: {text: errors}}}
         end
       end
+    end
+
+    def set_file(params, file)
+      if file.content_type == 'video/webm'
+        params[:video_attributes] = {file: file}
+      else
+        params[:image_attributes] = {file: file}
+      end
+      params
     end
 end

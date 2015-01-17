@@ -15,6 +15,7 @@
           = render partial: '/lodge/shared/blocks/ip_links', locals: { ip: IPAddr.new_ntoh(f.object.request_ip) }
   .col-sm-6
     = render partial: '/lodge/shared/uploaders/image', locals: {form: f}
+    = render partial: '/lodge/shared/uploaders/video', locals: {form: f}
   .clearfix
   .col-sm-12
     .form-group

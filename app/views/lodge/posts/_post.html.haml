@@ -8,6 +8,8 @@
   %td
     - if post.image && post.image.file?
       = image_tag post.image.url, class: 'thumbnail'
+    - elsif post.video && post.video.file?
+      = video_tag post.video.url, class: 'thumbnail', controls: true, width: 300, poster: post.video.url(:preview)
   %td= post.content.html_safe
   %td
     - if post.request_ip

@@ -1,0 +1,9 @@
+= form.fields_for :video do |video_form|
+  .col-sm-4
+    .form-group
+      = video_form.file_field :file, accept: 'video/webm'
+  .col-sm-8
+    = video_tag video_form.object.url, class: 'thumbnail', controls: true, width: 300, poster: video_form.object.url(:preview)
+    %label.checkbox
+      = video_form.check_box :_destroy, skip_check: true
+      %i.glyphicon.glyphicon-trash
