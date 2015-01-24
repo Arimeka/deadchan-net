@@ -4,8 +4,8 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
   el: '#tread'
 
   events:
-    'click .post-form button#answer'  : 'showForm'
-    'click .post-form button#hide'    : 'hideForm'
+    'click .js-show-answer' : 'showForm'
+    'click .js-hide-answer' : 'hideForm'
     'mouseenter li.reply'             : 'showReply'
     'mouseenter a.parent-post'        : 'showParent'
     'mouseleave li.reply'             : 'resetTimer'
@@ -36,7 +36,7 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
       @toggleForm(e)
     else
       $container = $(e.currentTarget).closest('.post-form')
-      $btnHide = $container.find('button#hide')
+      $btnHide = $container.find('.js-hide-answer')
       data = e.currentTarget.dataset
 
       $(e.currentTarget).toggle()
@@ -45,7 +45,7 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
       app.views.postForm = new DeadchanNet.Views.Posts.Form
                                   abbr:     @attributes.abbr
                                   treadId:  @attributes.treadId
-      $container.find('#form').html app.views.postForm.render().el
+      $container.find('.form').html app.views.postForm.render().el
       if data.reply?
         app.views.postForm.$el.find('#post_content')[0].value = "+#{data.reply}"
 
@@ -53,7 +53,7 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
     $container = $(e.currentTarget).closest('.post-form')
 
     $(e.currentTarget).toggle()
-    $container.find('button#answer').toggle()
+    $container.find('.js-show-answer').toggle()
 
     app.views.postForm.remove()
 
@@ -131,13 +131,13 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
   toggleForm: (e) ->
     e.preventDefault()
     $container = $(e.currentTarget).closest('.post-form')
-    $btnHide = $container.find('button#hide')
+    $btnHide = $container.find('.js-hide-answer')
     data = e.currentTarget.dataset
 
     $(e.currentTarget).toggle()
     $btnHide.toggle()
 
-    $form = $container.find('#form')
+    $form = $container.find('.form')
 
     oldView = app.views.postForm
     $oldForm = app.views.postForm.$el
@@ -161,8 +161,8 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
 
   toggleButtons: (elem) ->
     $container = $(elem).closest('.post-form')
-    $container.find('button#answer').toggle()
-    $container.find('button#hide').toggle()
+    $container.find('.js-show-answer').toggle()
+    $container.find('.js-hide-answer').toggle()
 
   checkCommentable: ->
     if $('.thread>article .post-form button').length == 0

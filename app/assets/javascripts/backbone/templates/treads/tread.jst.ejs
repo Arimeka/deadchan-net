@@ -59,10 +59,10 @@
     </ul>
   <% } %>
   <% if( is_commentable === true ) { %>
-    <button class="btn btn-default btn-sm" data-abbr="<%= window.location.pathname.split('/')[1] %>" data-id="<%= _id.$oid %>" id="answer">Ответить</button>
-    <button class="btn btn-default btn-sm" id="hide" style="display: none;">
+    <button class="btn btn-default btn-sm js-show-answer" data-abbr="<%= window.location.pathname.split('/')[1] %>" data-id="<%= _id.$oid %>">Ответить</button>
+    <button class="btn btn-default btn-sm js-hide-answer" style="display: none;">
       Скрыть форму
     </button>
-    <div id="form"></div>
+    <div class="form"></div>
   <% } %>
 </div>

@@ -59,7 +59,7 @@ class DeadchanNet.Views.Treads.Form extends Backbone.View
     app.views.treadForm = new DeadchanNet.Views.Treads.Form
                                 abbr:     @$el.attributes.abbr
                                 redirect: @$el.attributes.redirect
-    @$el.closest('#form').html app.views.treadForm.render(content, title).el
+    @$el.closest('.form').html app.views.treadForm.render(content, title).el
     $('.top-right').notify
       message:
         text: 'Ошибка отправки формы, попробуйте еще раз'

@@ -61,17 +61,17 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
       else if data.app.reload
         window.location.reload()
       else
-        $posts = $("#posts")
+        @$('form').trigger('reset')
+        @$('textarea').val('')
+        @$('.uploading-filename').empty()
+        new DeadchanNet.Views.Posts.Collection
+          collection: app.collections.posts
+          el: $('.posts')
         app.collections.posts.fetch
+          reset: true
           success: ->
-            @$('form').trigger('reset')
-            @$('textarea').val('')
-            @$('.uploading-filename').empty()
-            @$('button').click()
-            postsCollection = new DeadchanNet.Views.Posts.Collection
-            a = $posts.html postsCollection.render().el
             $('html, body').animate(
-              {scrollTop: $(a).find('article').last().offset().top
+              {scrollTop: $('.posts').find('article').last().offset().top
               })
 
   ajaxError: ->
@@ -81,7 +81,7 @@ class DeadchanNet.Views.Posts.Form extends Backbone.View
     app.views.postForm = new DeadchanNet.Views.Posts.Form
                                 abbr:     @$el.attributes.abbr
                                 treadId:  @$el.attributes.treadId
-    @$el.closest('#form').html app.views.postForm.render(content).el
+    @$el.closest('.form').html app.views.postForm.render(content).el
     $('.top-right').notify
       message:
         text: 'Ошибка отправки формы, попробуйте еще раз'

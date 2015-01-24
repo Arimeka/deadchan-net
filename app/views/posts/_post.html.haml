@@ -26,8 +26,8 @@
             %li.reply
               = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
                 %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
-      %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: post.tread.board.abbr, id: post.tread.id, post_id: post.id, reply: post.id}} Ответить
-      %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
+      %button.btn.btn-default.btn-sm.js-show-answer{data: {abbr: post.tread.board.abbr, id: post.tread.id, post_id: post.id, reply: post.id}} Ответить
+      %button.btn.btn-default.btn-sm.js-hide-answer{style: 'display: none;'}
         Скрыть форму
-      #form
+      .form
 

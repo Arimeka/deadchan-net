@@ -3,11 +3,11 @@
   #tread
     .col-md-12.post-form
       - if entry.is_commentable?
-        %button{class: 'btn well', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id}}
+        %button.btn.well.js-show-answer{data: {abbr: entry.board.abbr, id: entry.id}}
           Ответить
-        %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+        %button.btn.well.js-hide-answer{style: 'display: none;'}
           Скрыть форму
-        #form
+        .form
     .clearfix
     .col-md-12
       .thread
@@ -46,17 +46,17 @@
                     = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
                       %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
             - if entry.is_commentable?
-              %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id, reply: entry.id}}
+              %button.btn.btn-default.btn-sm.js-show-answer{data: {abbr: entry.board.abbr, id: entry.id, reply: entry.id}}
                 Ответить
-              %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
+              %button.btn.btn-default.btn-sm.js-hide-answer{style: 'display: none;'}
                 Скрыть форму
-              #form
+              .form
         #posts
           .posts= render posts
     .col-md-12.post-form.page-footer
       - if entry.is_commentable?
-        %button{class: 'btn well', id: 'answer', data: {abbr: entry.board.abbr, id: entry.id}}
+        %button.btn.well.js-show-answer{data: {abbr: entry.board.abbr, id: entry.id}}
           Ответить
-        %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+        %button.btn.well.js-hide-answer{style: 'display: none;'}
           Скрыть форму
-        #form
+        .form

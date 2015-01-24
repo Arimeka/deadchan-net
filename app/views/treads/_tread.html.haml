@@ -35,10 +35,10 @@
                 = link_to "/#{p['board_abbr']}/#{p['tread_id']}#{'#' + p['post_id'] if p['post_id']}", class: 'text-muted' do
                   %small= ">>#{p['tread_id'].to_s.last(7)}#{'#' + p['post_id'].to_s.last(7) if p['post_id']}"
         - if tread.is_commentable?
-          %button{class: 'btn btn-default btn-sm', id: 'answer', data: {abbr: tread.board.abbr, id: tread.id, reply: tread.id}} Ответить
-          %button{class: 'btn btn-default btn-sm', id: 'hide', style: 'display: none;'}
+          %button.btn.btn-default.btn-sm.js-show-answer{data: {abbr: tread.board.abbr, id: tread.id, reply: tread.id}} Ответить
+          %button.btn.btn-default.btn-sm.js-hide-answer{style: 'display: none;'}
             Скрыть форму
-          #form
+          .form
     - if tread.posts.published.any?
       .posts
         - if tread.posts.published.count - 1 > 0

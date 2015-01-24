@@ -4,21 +4,21 @@
     .page-header
       - if entry.is_threadable?
         .col-md-12.tread-form
-          %button.btn.well#answer Создать тред
-          %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+          %button.btn.well.js-show-answer Создать тред
+          %button.btn.well.js-hide-answer{style: 'display: none;'}
             Скрыть форму
           .pages= will_paginate treads
           .clearfix
-          #form
+          .form
     .clearfix
     .col-md-12
       = render treads
     .page-footer
       - if entry.is_threadable?
         .col-md-12.wel.tread-form
-          %button.btn.well#answer Создать тред
-          %button{class: 'btn well', id: 'hide', style: 'display: none;'}
+          %button.btn.well.js-show-answer Создать тред
+          %button.btn.well.js-hide-answer{style: 'display: none;'}
             Скрыть форму
           .pages= will_paginate treads
           .clearfix
-          #form
+          .form
