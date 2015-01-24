@@ -5,27 +5,17 @@ class DeadchanNet.Views.Posts.Collection extends Backbone.View
 
   initialize: ->
     @listenTo app.collections.posts, "sync", @render
-
-  addAll: ->
-    @$el.empty()
-    app.collections.posts.each @addOne
-
-  addOne: (post) =>
-    view = new DeadchanNet.Views.Posts.Item
-      model: post
-    @$el.append view.render().el
+    that = @
+    @_views = []
+    app.collections.posts.each (post) ->
+      view = new DeadchanNet.Views.Posts.Item
+        model: post
+      that._views.push view
 
   render: ->
-    if app.collections.posts.length
-      @$el.show()
-      @addAll()
-      @setShowMore()
-    else
-      @$el.hide()
+    @$el.empty()
+    container = document.createDocumentFragment()
+    _.each @_views, (postView) ->
+      container.appendChild postView.render().el
+    @$el.append container
     @
-
-  setShowMore: ->
-    @$el.find('article .content').each ->
-      $container = $(@).parent()
-      if @.scrollHeight > $(@).height()
-        $container.append('<a id="show-more" href="#">Читать дальше</div>')
