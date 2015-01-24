@@ -1,0 +1,4 @@
+%ul.list-inline
+  - boards.each do |board|
+    - cache board do
+      %li= link_to "/#{board.abbr}/ #{board.title}", board_path(board.abbr)
