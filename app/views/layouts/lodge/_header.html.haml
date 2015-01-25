@@ -1,18 +1,63 @@
-%nav{class: 'navbar navbar-default navbar-collapse collapse', role: 'navigation'}
+/ Navigation
+%nav.navbar.navbar-default.navbar-static-top{:role => "navigation", :style => "margin-bottom: 0"}
   .navbar-header
-    .navbar-brand= link_to 'Deadchan', lodge_path
-  %ul.nav.navbar-nav
+    %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+      %span.sr-only Показать/Скрыть навигацию
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    = link_to 'Deadchan', lodge_path, class: 'navbar-brand'
+  / /.navbar-header
+  %ul.nav.navbar-top-links.navbar-right
     %li
-      = link_to 'Фронт', root_path
-    %li{class: controller.controller_path == "lodge/boards" && controller.action_name == "index" ? "active" : ""}
-      = link_to 'Борды', lodge_boards_path
-    %li{class: controller.controller_path == "lodge/treads" && controller.action_name == "index" ? "active" : ""}
-      = link_to 'Треды', lodge_treads_path
-    %li{class: controller.controller_path == "lodge/users" && controller.action_name == "index" ? "active" : ""}
-      = link_to 'Пользователи', lodge_users_path
-    %li{class: controller.controller_path == "lodge/bans" && controller.action_name == "index" ? "active" : ""}
-      = link_to 'Баны', lodge_bans_path
-  %ul.nav.navbar-nav.navbar-right
-    %li{class: controller.controller_path == "rails_settings_ui/settings" && controller.action_name == "index" ? "active" : ""}
-      = link_to 'Настройки', lodge_rails_settings_ui_path
-    %li= link_to 'Выйти', destroy_admin_session_path, method: :delete
+      = link_to lodge_rails_settings_ui_path do
+        %i.fa.fa-gear.fa-fw
+        Настройки
+    %li.dropdown
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        %i.fa.fa-user.fa-fw
+        %i.fa.fa-caret-down
+      %ul.dropdown-menu.dropdown-user
+        %li
+          = link_to destroy_admin_session_path, method: :delete do
+            %i.fa.fa-sign-out.fa-fw
+            Выйти
+      / /.dropdown-user
+    / /.dropdown
+  / /.navbar-top-links
+  .navbar-default.sidebar{:role => "navigation"}
+    .sidebar-nav.navbar-collapse
+      %ul#side-menu.nav
+        %li
+          = link_to lodge_path do
+            %i.fa.fa-dashboard.fa-fw
+            Dashboard
+        %li
+          %a{:href => "#"}
+            %i.fa.fa-sitemap.fa-fw
+            Борды
+            %span.fa.arrow
+          %ul.nav.nav-second-level
+            %li= link_to 'Список', lodge_boards_path
+            %li= link_to 'Создать', new_lodge_board_path
+          / /.nav-second-level
+        %li
+          %a{:href => "#"}
+            %i.fa.fa-sitemap.fa-fw
+            Треды
+            %span.fa.arrow
+          %ul.nav.nav-second-level
+            %li= link_to 'Список', lodge_treads_path
+            %li= link_to 'Создать', new_lodge_tread_path
+          / /.nav-second-level
+        %li
+          %a{:href => "#"}
+            %i.fa.fa-sitemap.fa-fw
+            Баны
+            %span.fa.arrow
+          %ul.nav.nav-second-level
+            %li= link_to 'Список', lodge_bans_path
+            %li= link_to 'Создать', new_lodge_ban_path
+          / /.nav-second-level
+    / /.sidebar-collapse
+  / /.navbar-static-side

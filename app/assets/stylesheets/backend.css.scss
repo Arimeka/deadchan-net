@@ -9,8 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap-datepicker3
- *= require bootstrap-wysihtml5
+ *= require font-awesome/css/font-awesome.min
  */
 
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
@@ -114,6 +113,11 @@ textarea {
    ========================================================================== */
 
 @import "main";
+@import "metisMenu/dist/metisMenu.min";
+@import "startbootstrap-sb-admin-2/dist/css/timeline";
+@import "startbootstrap-sb-admin-2/dist/css/sb-admin-2";
+@import "morrisjs/morris";
+@import "bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min";
 
 .wysihtml5-supported {
   textarea.wysihtml5 {

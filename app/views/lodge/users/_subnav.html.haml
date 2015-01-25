@@ -1,6 +1,0 @@
-.navbar.navbar-default
-  %ul.nav.navbar-nav
-    %li{class: controller.controller_path == "lodge/users" && controller.action_name == "index" ? "active" : ""}
-      = link_to lodge_users_path do
-        %i.icon-list-alt
-        =t "path.controllers.lodge/#{controller.controller_name}.index"

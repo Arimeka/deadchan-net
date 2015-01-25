@@ -14,7 +14,6 @@ DeadchanNet::Application.routes.draw do
     resources :treads do
       resources :posts, except: [:index, :show]
     end
-    resources :users, only: [:index, :destroy]
     resources :bans, except: :show
 
     put 'unpablish_posts' => 'users#unpablish_posts', as: :unpablish_posts

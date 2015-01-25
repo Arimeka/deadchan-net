@@ -1,20 +1,24 @@
 !!! 5
 %html{lang: 'ru'}
   %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
     %title= full_title(yield(:title))
-    %meta{charset: "utf-8"}
     = stylesheet_link_tag 'backend', media: 'all', "data-turbolinks-track" => true
     = stylesheet_link_tag 'normalize', "data-turbolinks-track" => true
     = javascript_include_tag "backend/backend", "data-turbolinks-track" => true
+    / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    / WARNING: Respond.js doesn't work if you view the page via file://
+    /[if lt IE 9]
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     = render 'layouts/csrf'
   %body
     = render 'layouts/spinner'
-    %header
+    = render 'layouts/lodge/messages'
+    #wrapper
       = render 'layouts/lodge/header'
-    .row
-      .col-md-2.sidebar= render 'layouts/lodge/sidebar'
-      .col-md-10
-        = render 'layouts/lodge/messages'
-        .well.col-md-12= yield
-    %footer
-      = render 'layouts/lodge/footer'
+      #page-wrapper= yield
+      / /#page-wrapper
+    / /#wrapper

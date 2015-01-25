@@ -14,9 +14,13 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+/vendor/assets/bower_components
+
 /config/recaptcha.yml
 /config/s3.yml
 /coverage
+
 .DS_Store
 
 deadchan-net.sublime-project

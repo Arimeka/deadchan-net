@@ -25,10 +25,4 @@
 //= require backbone/deadchan_net
 //= require moment
 //= require wheelzoom
-
-$(document).on('page:fetch', function() {
-  $('.loading').show();
-});
-$(document).on('page:change', function() {
-  $('.loading').hide();
-});
+//= require spinner
