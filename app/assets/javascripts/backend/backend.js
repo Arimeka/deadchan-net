@@ -10,7 +10,7 @@
 //= require bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min
 //= require bootstrap3-wysihtml5-bower/dist/locales/bootstrap-wysihtml5.ru-RU
 //= require metisMenu/dist/metisMenu.min
-//= require raphael/raphael-min
-//= require morrisjs/morris.min
 //= require startbootstrap-sb-admin-2/dist/js/sb-admin-2
 //= require spinner
+
+//= require backend/morris-data

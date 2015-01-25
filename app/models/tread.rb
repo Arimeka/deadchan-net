@@ -4,7 +4,6 @@ class Tread
   include ImageConcern
 
   field :board_id,        type: String
-  field :user_id,         type: String
   field :title,           type: String
   field :content,         type: String
   field :published_at,    type: Time
@@ -40,7 +39,6 @@ class Tread
   # Relations
   # ======================================================
   belongs_to :board
-  belongs_to :user
 
   embeds_many :posts, cascade_callbacks: true
 
@@ -68,6 +66,12 @@ class Tread
     else
       super
     end
+  end
+
+  def set_counts(user)
+    $redis.set("last_posting:#{user.id}", 1, ex: 10) if user
+    $redis.incrby("board:posts_count:#{board_id}:#{Time.now.strftime('%Y-%m-%d-%H')}", 1)
+    $redis.expire("board:posts_count:#{board_id}:#{Time.now.strftime('%Y-%m-%d-%H')}", 24.hours)
   end
 
   private

@@ -10,7 +10,9 @@ DeadchanNet::Application.routes.draw do
   namespace :lodge do
     get '/' => 'dashboard#index'
 
-    resources :boards
+    resources :boards do
+      get '/statistics' => 'boards#statistics'
+    end
     resources :treads do
       resources :posts, except: [:index, :show]
     end

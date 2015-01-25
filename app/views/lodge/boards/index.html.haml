@@ -1,15 +1,23 @@
 - provide(:title, t("path.controllers.lodge/#{controller.controller_name}.title"))
-= render partial: "subnav"
-.table-responsive
-  %table.table.table-condensed.table-striped
-    %thead
-      %tr
-        %th
-        %th= t "mongoid.attributes.board.abbr"
-        %th= t "mongoid.attributes.board.title"
-        %th= t "mongoid.attributes.board.threads_number"
-        %th= t "mongoid.attributes.board.placement_index"
-        %th
-    %tbody= render boards
-.clearfix
-= will_paginate boards
+.row
+  .col-lg-12
+    %h1.page-header Список борд
+  / /.col-lg-12
+/ /.row
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-body
+        .dataTable_wrapper
+          %table#dataTables-example.table.table-striped.table-bordered.table-hover
+            %thead
+              %tr
+                %th
+                %th= t "mongoid.attributes.board.abbr"
+                %th= t "mongoid.attributes.board.title"
+                %th= t "mongoid.attributes.board.threads_number"
+                %th= t "mongoid.attributes.board.placement_index"
+                %th
+            %tbody= render boards
+    .clearfix
+    = will_paginate boards

@@ -40,6 +40,9 @@
           %ul.nav.nav-second-level
             %li= link_to 'Список', lodge_boards_path
             %li= link_to 'Создать', new_lodge_board_path
+            - if controller.controller_name == 'boards' && board.to_param
+              %li= link_to 'Редактировать', edit_lodge_board_path(board)
+              %li= link_to 'Статистика', lodge_board_path(board)
           / /.nav-second-level
         %li
           %a{:href => "#"}

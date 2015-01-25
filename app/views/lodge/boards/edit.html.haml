@@ -1,4 +1,7 @@
 - provide(:title, 'Редактирование борды')
-= render partial: "subnav"
-%h2= board.title
+.row
+  .col-lg-12
+    %h1.page-header= board.title
+  / /.col-lg-12
+/ /.row
 = render partial: "form"

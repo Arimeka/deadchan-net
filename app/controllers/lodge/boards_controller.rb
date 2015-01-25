@@ -1,7 +1,7 @@
 class Lodge::BoardsController < Lodge::LodgeController
   expose(:boards) { Board.asc(:placement_index).paginate(page: params[:page]) }
   expose(:board)  { params[:id] ? Board.find(params[:id]) : Board.new(board_params) }
-  expose(:treads) { board.treads.includes(:board).desc(:is_pinned).desc(:updated_at).paginate(page: params[:page], per_page: 30) }
+  expose(:treads) { board.treads.includes(:board).desc(:is_pinned).desc(:updated_at).paginate(page: params[:page], per_page: 10) }
 
   def create
     if board.save
@@ -45,6 +45,15 @@ class Lodge::BoardsController < Lodge::LodgeController
         flash[:error] = @errors
         format.html {redirect_to edit_lodge_board_url(board)}
       end
+    end
+  end
+
+  def statistics
+    respond_to do |format|
+      format.json do
+        render json: { posting: Board.get_posting_statistic(params[:board_id]), visits: Board.get_visits_statistic(params[:board_id])}
+      end
+      format.any { render nothing: true }
     end
   end
 
