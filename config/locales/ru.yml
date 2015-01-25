@@ -11,6 +11,7 @@ ru:
   will_paginate:
     next_label:     "&raquo;"
     previous_label: "&laquo;"
+    page_gap:       "..."
   recaptcha:
     errors:
       verification_failed:    Неверный код подтверждения
