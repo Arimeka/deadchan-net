@@ -16,9 +16,9 @@
 
     %link{href: "#{image_path('logo.png')}", rel: "image_src"}
     %link{href: "#{request.url || 'http://deadchan.net/'}", rel: "canonical"}
-    = stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => true
-    = stylesheet_link_tag 'normalize', "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'normalize'
+    = javascript_include_tag 'modernizr-2.6.2.min'
   %body{class: "#{controller.controller_name}"}
     /[if lt IE 8]
       %p.browsehappy
@@ -34,4 +34,5 @@
       %footer
         = render 'layouts/footer'
     = render 'layouts/modal'
+    = javascript_include_tag "application"
     = render 'layouts/counters'

@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require turbolinks
-//= require jquery.turbolinks
 //= require bootstrap/alert
 //= require bootstrap/modal
 //= require bootstrap_notify
@@ -25,4 +23,3 @@
 //= require backbone/deadchan_net
 //= require moment
 //= require wheelzoom
-//= require spinner

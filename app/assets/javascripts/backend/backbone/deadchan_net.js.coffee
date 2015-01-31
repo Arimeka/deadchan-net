@@ -1,22 +1,23 @@
 #= require_self
-#= require_tree ./templates
-#= require_tree ./models
 #= require_tree ./views
 #= require_tree ./routers
+#= require raphael/raphael-min
+#= require morrisjs/morris.min
 
-window.DeadchanNet =
+window.DeadchanNetBackend =
   Models: {}
   Collections: {}
   Routers: {}
   Views: {}
   initialize: ->
+    handlersLength = Backbone.history.handlers.length
     window.app ||= {}
     app.views ||= {}
     app.collections ||= {}
-    app.router ||= new DeadchanNet.Routers.ApplicationRouter
+    app.router ||= new DeadchanNetBackend.Routers.ApplicationRouter
     Backbone.history.start pushState: true
 
 $ ->
   $(document).ready ->
     Backbone.history.stop()
-    DeadchanNet.initialize()
+    DeadchanNetBackend.initialize()

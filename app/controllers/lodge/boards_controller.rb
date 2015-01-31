@@ -3,6 +3,16 @@ class Lodge::BoardsController < Lodge::LodgeController
   expose(:board)  { params[:id] ? Board.find(params[:id]) : Board.new(board_params) }
   expose(:treads) { board.treads.includes(:board).desc(:is_pinned).desc(:updated_at).paginate(page: params[:page], per_page: 10) }
 
+  def show
+    respond_to do |format|
+      format.html do
+        if request.xhr?
+          render partial: 'lodge/boards/treads'
+        end
+      end
+    end
+  end
+
   def create
     if board.save
       flash[:notice] = t('msg.saved')

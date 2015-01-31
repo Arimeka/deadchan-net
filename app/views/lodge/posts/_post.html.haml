@@ -4,7 +4,6 @@
       %span.glyphicon.glyphicon-eye-open
     - else
       %span.glyphicon.glyphicon-eye-close
-  %td= post.id
   %td
     - if post.image && post.image.file?
       = image_tag post.image.url, class: 'thumbnail'
