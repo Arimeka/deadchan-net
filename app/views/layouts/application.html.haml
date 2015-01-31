@@ -19,6 +19,7 @@
     = stylesheet_link_tag 'application', media: 'all'
     = stylesheet_link_tag 'normalize'
     = javascript_include_tag 'modernizr-2.6.2.min'
+    = javascript_include_tag 'application'
   %body{class: "#{controller.controller_name}"}
     /[if lt IE 8]
       %p.browsehappy
@@ -34,5 +35,4 @@
       %footer
         = render 'layouts/footer'
     = render 'layouts/modal'
-    = javascript_include_tag "application"
     = render 'layouts/counters'

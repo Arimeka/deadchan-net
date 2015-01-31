@@ -7,7 +7,7 @@ class Lodge::BoardsController < Lodge::LodgeController
     respond_to do |format|
       format.html do
         if request.xhr?
-          render partial: 'lodge/boards/treads'
+          render partial: 'treads'
         end
       end
     end

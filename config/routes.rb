@@ -14,6 +14,7 @@ DeadchanNet::Application.routes.draw do
       get '/statistics' => 'boards#statistics'
     end
     resources :treads do
+      get '/statistics' => 'treads#statistics'
       resources :posts, except: [:index, :show]
     end
     resources :bans, except: :show

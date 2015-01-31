@@ -52,6 +52,10 @@
           %ul.nav.nav-second-level
             %li= link_to 'Список', lodge_treads_path
             %li= link_to 'Создать', new_lodge_tread_path
+            - if controller.controller_name == 'treads' && tread.to_param
+              %li= link_to 'Редактировать', edit_lodge_tread_path(tread)
+              %li= link_to 'Статистика', lodge_tread_path(tread)
+              %li= link_to 'Добавить пост', new_lodge_tread_post_path(tread)
           / /.nav-second-level
         %li
           %a{:href => "#"}
