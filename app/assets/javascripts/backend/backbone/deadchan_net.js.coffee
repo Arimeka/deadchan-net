@@ -21,3 +21,6 @@ $ ->
   $(document).ready ->
     Backbone.history.stop()
     DeadchanNetBackend.initialize()
+
+    $('#datetimepicker').datetimepicker
+      format: 'YYYY-MM-DD HH:mm:ss'

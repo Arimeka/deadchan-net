@@ -21,5 +21,6 @@
 //= require backbone_rails_sync
 //= require backbone_datalink
 //= require backbone/deadchan_net
-//= require moment
+//= require moment/min/moment.min
+//= require moment/locale/ru
 //= require wheelzoom

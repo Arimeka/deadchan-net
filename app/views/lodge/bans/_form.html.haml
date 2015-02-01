@@ -13,7 +13,10 @@
               .form-group
                 = f.label :until, class: "col-sm-2 control-label"
                 .col-lg-4.col-md-5.col-sm-4
-                  = f.text_field :until, placeholder: "До числа", class: "form-control", data: {provide: 'datepicker', 'date-format' => 'dd/mm/yyyy', 'date-language' => 'ru'}
+                  .input-group.date#datetimepicker
+                    = f.text_field :until, placeholder: "До числа", class: "form-control"
+                    %span.input-group-addon
+                      %span.glyphicon.glyphicon-calendar
               .form-group
                 = f.label :request_ip, class: "col-sm-2 control-label"
                 .col-lg-4.col-md-5.col-sm-4

@@ -16,6 +16,13 @@
                   .col-lg-4.col-md-5.col-sm-4
                     = f.select :board_id, boards.collect {|b| [ b.title, b.id ] }, { include_blank: false }, class: 'form-control'
                 .form-group
+                  = f.label :published_at, class: "col-sm-2 control-label"
+                  .col-lg-4.col-md-5.col-sm-4
+                    .input-group.date#datetimepicker
+                      = f.text_field :published_at, placeholder: 'Дата публикации', class: "form-control"
+                      %span.input-group-addon
+                        %span.glyphicon.glyphicon-calendar
+                .form-group
                   = f.label :posts_number, class: "col-sm-2 control-label"
                   .col-lg-4.col-md-5.col-sm-4
                     = f.number_field :posts_number, min: 0, class: "form-control"

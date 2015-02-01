@@ -3,7 +3,6 @@ class DeadchanNetBackend.Routers.ApplicationRouter extends Backbone.Router
     'lodge/boards/:id'     :  'boardShow'
     'lodge/treads/:id'     :  'treadShow'
 
-
   boardShow: ->
     new DeadchanNetBackend.Views.Boards.Show
 
