@@ -65,6 +65,8 @@
           %ul.nav.nav-second-level
             %li= link_to 'Список', lodge_bans_path
             %li= link_to 'Создать', new_lodge_ban_path
+            - if controller.controller_name == 'bans' && ban.to_param
+              %li= link_to 'Редактировать', edit_lodge_ban_path(ban)
           / /.nav-second-level
     / /.sidebar-collapse
   / /.navbar-static-side
