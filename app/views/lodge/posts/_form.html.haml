@@ -12,7 +12,11 @@
                     .checkbox
                       = f.label :is_published do
                         = f.check_box :is_published
-                        = t "mongoid.attributes.post.is_published"
+                        = t 'mongoid.attributes.post.is_published'
+                    .checkbox
+                      = f.label :is_checked do
+                        = f.check_box :is_checked
+                        = t 'mongoid.attributes.post.is_checked'
                 - if f.object.request_ip
                   .form-group
                     = f.label :request_ip, class: "col-sm-2 control-label"

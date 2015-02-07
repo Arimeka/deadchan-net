@@ -5,6 +5,8 @@ class DeadchanNetBackend.Views.Threads.Show extends Backbone.View
 
   events:
     'click .pagination li a': 'loadPosts'
+    'click .js-post-checked': 'toggleStatus'
+    'click .js-post-published': 'toggleStatus'
 
   initialize: ->
     @loadCharts()
@@ -57,3 +59,27 @@ class DeadchanNetBackend.Views.Threads.Show extends Backbone.View
           $container.html data
         complete: ->
           $spinner.hide()
+
+  toggleStatus: (e) ->
+    $target = $(e.currentTarget)
+    $form = $target.parent('form')
+    $container = $target.closest('tr')
+    href = $form.attr('action')
+
+    checked = $container.find('.js-post-checked').prop('checked')
+    published = $container.find('.js-post-published').prop('checked')
+
+    $.ajax
+      url: href
+      type: 'PUT'
+      dataType: 'html'
+      data:
+        post: {is_checked: checked, is_published: published}
+      success: ->
+        $container.removeClass()
+        if published == false
+          $container.addClass('bg-danger')
+        else if checked == false
+          $container.addClass('bg-warning')
+        else
+          $container.addClass('bg-success')

@@ -12,12 +12,13 @@
           %table#dataTables-example.table.table-striped.table-bordered.table-hover
             %thead
               %tr
-                %th
-                %th= t "mongoid.attributes.tread.board_id"
+                %th.col-sm-1
+                %th.col-sm-2= t "mongoid.attributes.tread.board_id"
                 %th= t "mongoid.attributes.tread.title"
-                %th= t "mongoid.attributes.tread.posts_count"
-                %th= t "mongoid.attributes.tread.request_ip"
-                %th
+                %th.col-sm-1= t "mongoid.attributes.tread.posts_count"
+                %th.col-sm-1= t "mongoid.attributes.tread.posts_count_unchecked"
+                %th.col-sm-2= t "mongoid.attributes.tread.request_ip"
+                %th.col-sm-2
             %tbody= render treads
     .clearfix
     = will_paginate treads

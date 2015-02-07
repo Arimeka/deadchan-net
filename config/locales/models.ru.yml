@@ -46,11 +46,13 @@ ru:
         image:                  "Изображение"
         request_ip:             "IP-адрес"
         published_at:           "Дата публикации"
+        posts_count_unchecked:  'К-во не проверенных'
 
       post:
         <<: *defaults
         image:                  "Изображение"
         request_ip:             "IP-адрес"
+        is_checked:             "Проверено"
 
       user:
         last_sign_in_at:        "Последний вход"

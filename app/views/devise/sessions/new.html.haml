@@ -10,7 +10,7 @@
           = f.password_field :password, placeholder: 'Пароль', class: 'form-control'
         - if devise_mapping.rememberable?
           .checkbox
-            %label
+            = f.label :remember_me do
               = f.check_box :remember_me
               Запомнить меня
         = f.submit 'Войти', class: 'btn btn-lg btn-success btn-block'
