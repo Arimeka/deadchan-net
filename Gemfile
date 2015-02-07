@@ -17,6 +17,10 @@ gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'aws-sdk'
 gem 'paperclip-ffmpeg'
 
+# Queue
+gem 'sidekiq'
+gem 'sidetiq'
+
 # HTML
 gem 'haml'
 gem 'haml-rails'

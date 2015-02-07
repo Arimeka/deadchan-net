@@ -1,0 +1,6 @@
+---
+:verbose: true
+:concurrency:  1
+:queues:
+  - [default, 1]
+  - [scheduled, 1]

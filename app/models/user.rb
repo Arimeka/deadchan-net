@@ -18,4 +18,8 @@ class User
   # Relations
   # ======================================================
   has_many :treads
+
+  # Scopes
+  # ======================================================
+  scope :olds, -> { where(:current_sign_in_at.lt => Time.zone.now - 1.day)}
 end
