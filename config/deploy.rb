@@ -21,7 +21,7 @@ else
 end
 
 set :linked_dirs, %w{log tmp/pids tmp/cache vendor/bundle}
-set :linked_files, %w{config/s3.yml config/recaptcha.yml}
+set :linked_files, %w{config/s3.yml config/recaptcha.yml config/secrets.yml}
 
 namespace :deploy do
   # Assets
