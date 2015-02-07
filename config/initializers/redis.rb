@@ -1,2 +1,3 @@
 require 'redis'
-$redis = Redis.new(REDIS_CONFIG)
+Redis.current = Redis.new(REDIS_CONFIG)
+$redis = Redis.current
