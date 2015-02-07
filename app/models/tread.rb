@@ -35,6 +35,7 @@ class Tread
   # Scopes
   # ======================================================
   scope :published, -> { where(is_published: true, :published_at.lt => Time.zone.now).desc(:is_pinned).desc(:updated_at) }
+  scope :unchecked, -> { where('posts.is_checked' => false) }
 
   # Relations
   # ======================================================
@@ -74,6 +75,8 @@ class Tread
     $redis.expire("board:posts_count:#{board_id}:#{Time.now.strftime('%Y-%m-%d-%H')}", 24.hours)
     $redis.incrby("thread:posts_count:#{id}:#{Time.now.strftime('%Y-%m-%d-%H')}", 1)
     $redis.expire("thread:posts_count:#{id}:#{Time.now.strftime('%Y-%m-%d-%H')}", 24.hours)
+    $redis.incrby("summary:posts_count:#{Time.now.strftime('%Y-%m-%d-%H')}", 1)
+    $redis.expire("summary:posts_count:#{Time.now.strftime('%Y-%m-%d-%H')}", 24.hours)
   end
 
   def self.get_posting_statistic(tread_id, count = 12)

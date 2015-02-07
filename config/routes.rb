@@ -9,6 +9,7 @@ DeadchanNet::Application.routes.draw do
 
   namespace :lodge do
     get '/' => 'dashboard#index'
+    get '/statistics' => 'dashboard#statistics'
 
     resources :boards do
       get '/statistics' => 'boards#statistics'
