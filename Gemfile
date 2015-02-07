@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.1.5'
 
 gem 'rails', '4.1.4'
 gem 'jbuilder', '~> 1.2'
@@ -44,8 +44,11 @@ group :doc do
 end
 
 group :development do
-  gem 'capistrano'
-  gem "rvm-capistrano"
+  gem 'capistrano', '~> 3.0'
+  gem 'capistrano-rails', '~> 1.1.0'
+  gem 'capistrano-rvm', '~> 0.1.0'
+  gem 'capistrano3-unicorn'
+  gem 'capistrano-sidekiq'
   gem 'annotate', ">=2.5.0"
   gem 'better_errors'
   gem 'binding_of_caller'
