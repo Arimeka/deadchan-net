@@ -3,8 +3,20 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  layout :layout_by_resource
+
   expose(:boards) { Board.published.asc(:placement_index) }
   expose(:entry)  { nil }
+
+  protected
+
+  def layout_by_resource
+    if devise_controller?
+      'devise'
+    else
+      'application'
+    end
+  end
 
   private
 
