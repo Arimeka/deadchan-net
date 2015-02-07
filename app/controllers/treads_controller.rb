@@ -24,7 +24,7 @@ class TreadsController < ApplicationController
           user = User.create
           user.remember_me!
         end
-        post.request_ip = IPAddr.new(request.ip).hton
+        post.request_ip = IPAddr.new(request.ip).hton.force_encoding('UTF-8')
         entry.posts.push(post)
         if entry.save
           unless user_signed_in? || admin_signed_in?

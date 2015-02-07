@@ -19,7 +19,7 @@ class BoardsController < ApplicationController
           user.remember_me!
           sign_in user
         end
-        tread.request_ip = IPAddr.new(request.ip).hton
+        tread.request_ip = IPAddr.new(request.ip).hton.force_encoding('UTF-8')
         if tread.save
           render json: {app: {notice: {text: [t('msg.saved')]}, redirect: tread_url(entry.abbr, tread.id)}}
           tread.set_counts(current_user)
