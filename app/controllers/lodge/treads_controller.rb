@@ -1,7 +1,17 @@
 class Lodge::TreadsController < Lodge::LodgeController
   expose(:treads) { Tread.desc(:is_pinned).desc(:updated_at).includes(:board).paginate(page: params[:page], per_page: 30) }
   expose(:tread)  { params[:id] ? Tread.find(params[:id]) : Tread.new(tread_params.merge(lodge: true)) }
-  expose(:posts)  { tread.posts.paginate(page: params[:page], per_page: 30) }
+  expose(:posts)  { tread.posts.paginate(page: params[:page], per_page: 10) }
+
+  def show
+    respond_to do |format|
+      format.html do
+        if request.xhr?
+          render partial: 'posts'
+        end
+      end
+    end
+  end
 
   def new
     self.tread.build_image unless self.tread.image
@@ -55,6 +65,15 @@ class Lodge::TreadsController < Lodge::LodgeController
         flash[:error] = @errors
         format.html {redirect_to edit_lodge_tread_url(tread)}
       end
+    end
+  end
+
+  def statistics
+    respond_to do |format|
+      format.json do
+        render json: { posting: Tread.get_posting_statistic(params[:tread_id]), visits: Tread.get_visits_statistic(params[:tread_id])}
+      end
+      format.any { render nothing: true }
     end
   end
 

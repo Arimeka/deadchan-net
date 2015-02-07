@@ -4,10 +4,10 @@ class Post
   include ContentSupport
   include ImageConcern
 
-  field :user_id,       type: String
   field :content,       type: String
   field :replies,       type: Array                           # [{board_abbr, tread_id, post_id}, ...]
   field :is_published,  type: Mongoid::Boolean, default: true
+  field :is_checked,    type: Mongoid::Boolean, default: false
   field :request_ip,    type: BSON::Binary
 
   attr_accessor :lodge
@@ -23,6 +23,7 @@ class Post
   # Scopes
   # ======================================================
   scope :published, -> { where(is_published: true).asc(:created_at) }
+  scope :unchecked, -> { where(is_checked: false) }
 
   # Relations
   # ======================================================

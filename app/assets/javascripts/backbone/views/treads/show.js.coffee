@@ -37,9 +37,10 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
     else
       $container = $(e.currentTarget).closest('.post-form')
       $btnHide = $container.find('.js-hide-answer')
-      data = e.currentTarget.dataset
+      $target = $(e.currentTarget)
+      data = $target.data()
 
-      $(e.currentTarget).toggle()
+      $target.toggle()
       $btnHide.toggle()
 
       app.views.postForm = new DeadchanNet.Views.Posts.Form
@@ -132,9 +133,10 @@ class DeadchanNet.Views.Treads.Show extends Backbone.View
     e.preventDefault()
     $container = $(e.currentTarget).closest('.post-form')
     $btnHide = $container.find('.js-hide-answer')
-    data = e.currentTarget.dataset
+    $target = $(e.currentTarget)
+    data = $target.data()
 
-    $(e.currentTarget).toggle()
+    $target.toggle()
     $btnHide.toggle()
 
     $form = $container.find('.form')

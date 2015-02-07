@@ -1,31 +1,44 @@
 - provide(:title, t("path.controllers.lodge/#{controller.controller_name}.show"))
-= render partial: "subnav"
-%h1= "#{tread.title} - #{t("path.controllers.lodge/#{controller.controller_name}.show")}"
-.col-sm-12
-  - if tread.image && tread.image.file?
-    .col-sm-3= image_tag tread.image.url, class: 'thumbnail'
-  - elsif tread.video && tread.video.file?
-    .col-sm-3
-      = video_tag tread.video.url, class: 'thumbnail', controls: true, width: 300, poster: tread.video.url(:preview)
-  .col-sm-8
-    = tread.content.html_safe
-.clearfix
-- if tread.request_ip
-  .sol-sm-3
-    %strong IP-адрес:
-    = IPAddr.new_ntoh(tread.request_ip)
-    = render partial: '/lodge/shared/blocks/ip_links', locals: { ip: IPAddr.new_ntoh(tread.request_ip) }
-%h2 Посты
-.table-responsive
-  %table.table.table-condensed.table-striped
-    %thead
-      %tr
-        %th.col-sm-2
-        %th.col-sm-2= t "mongoid.attributes.post.id"
-        %th.col-sm-2= t "mongoid.attributes.post.image"
-        %th.col-sm-5= t "mongoid.attributes.post.content"
-        %th.col-sm-2= t "mongoid.attributes.post.request_ip"
-        %th.col-sm-2
-    %tbody= render posts
-.clearfix
-= will_paginate posts
+.row
+  .col-lg-12
+    %h1.page-header= "#{tread.title} - #{t("path.controllers.lodge/#{controller.controller_name}.show")}"
+.row#thread
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        Текст треда
+      .panel-body
+        - if tread.image && tread.image.file?
+          .col-sm-3= image_tag tread.image.url, class: 'thumbnail'
+        - elsif tread.video && tread.video.file?
+          .col-sm-3
+            = video_tag tread.video.url, class: 'thumbnail', controls: true, width: 300, poster: tread.video.url(:preview)
+        .col-sm-8
+          = tread.content.html_safe
+        .clearfix
+        - if tread.request_ip
+          .sol-sm-3
+            %strong IP-адрес:
+            = IPAddr.new_ntoh(tread.request_ip)
+            = render partial: '/lodge/shared/blocks/ip_links', locals: { ip: IPAddr.new_ntoh(tread.request_ip) }
+  #js-thread-statistics
+    .col-lg-12
+      .panel.panel-default
+        .panel-heading
+          Постинг
+        .panel-body
+          #js-morris-area-posts-count
+    .col-lg-12
+      .panel.panel-default
+        .panel-heading
+          Посетители
+        .panel-body
+          #js-morris-area-views-count
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        Список постов
+      .panel-body#posts
+        .table-responsive
+          %table.table.table-condensed.table-striped
+            = render 'posts'

@@ -1,20 +1,25 @@
-%tr
-  %td
+%tr{class: post_status(post)}
+  %td.text-center
     - if post.is_published
       %span.glyphicon.glyphicon-eye-open
     - else
       %span.glyphicon.glyphicon-eye-close
-  %td= post.id
-  %td
+  %td.text-center
     - if post.image && post.image.file?
       = image_tag post.image.url, class: 'thumbnail'
     - elsif post.video && post.video.file?
       = video_tag post.video.url, class: 'thumbnail', controls: true, width: 300, poster: post.video.url(:preview)
   %td= post.content.html_safe
-  %td
+  %td.text-center
     - if post.request_ip
       = IPAddr.new_ntoh(post.request_ip)
-  %td
+  %td.text-center
+    = form_for [:lodge, tread, post], html: {role: 'form'} do |f|
+      = f.check_box :is_checked, class: 'js-post-checked'
+  %td.text-center
+    = form_for [:lodge, tread, post], html: {role: 'form'} do |f|
+      = f.check_box :is_published, class: 'js-post-published'
+  %td.text-center
     = link_to edit_lodge_tread_post_path(tread, post), class: "btn" do
       %span.glyphicon.glyphicon-pencil
     = link_to lodge_tread_post_path(tread, post), class: "btn btn-danger", method: :delete,  data: { confirm: "Уверены?" } do

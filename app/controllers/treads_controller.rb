@@ -23,10 +23,8 @@ class TreadsController < ApplicationController
         unless user_signed_in? || admin_signed_in?
           user = User.create
           user.remember_me!
-          post.user_id = user.id
         end
-        post.user_id = current_user.id if user_signed_in?
-        post.request_ip = IPAddr.new(request.ip).hton
+        post.request_ip = IPAddr.new(request.ip).hton.force_encoding('UTF-8')
         entry.posts.push(post)
         if entry.save
           unless user_signed_in? || admin_signed_in?
@@ -35,7 +33,7 @@ class TreadsController < ApplicationController
           else
             render json: {app: {notice: {text: [t('msg.saved')]}, id: post.id}}
           end
-          $redis.set("last_posting:#{current_user.id}", 1, ex: 10) if user_signed_in?
+          entry.set_counts(current_user)
         else
           errors = post.errors.full_messages
           render json: {app: {error: {text: errors}}}

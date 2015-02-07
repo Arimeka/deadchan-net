@@ -18,6 +18,7 @@ module DeadchanNet
     config.quiet_assets = true
 
     config.autoload_paths += ["#{config.root}/lib/middlewares"]
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
 
     config.generators do |g|
       g.template_engine :haml

@@ -1,4 +1,4 @@
-%tr{class: tread.is_published ? '' : 'unpublished'}
+%tr.text-center{class: tread.is_published ? '' : 'unpublished'}
   %td
     - unless tread.is_commentable
       %span.glyphicon.glyphicon-minus-sign
@@ -9,9 +9,9 @@
     - if tread.is_pinned
       %span.glyphicon.glyphicon-pushpin
   %td= link_to tread.board.title, edit_lodge_board_path(tread.board)
-  %td= tread.id
   %td= tread.title
   %td= tread.posts.count
+  %td= tread.posts.unchecked.count
   %td
     - if tread.request_ip
       = IPAddr.new_ntoh(tread.request_ip)

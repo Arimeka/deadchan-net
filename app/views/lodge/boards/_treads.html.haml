@@ -1,0 +1,12 @@
+.dataTable_wrapper
+  %table#dataTables-example.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th
+        %th= t "mongoid.attributes.tread.board_id"
+        %th= t "mongoid.attributes.tread.title"
+        %th= t "mongoid.attributes.tread.posts_count"
+        %th= t "mongoid.attributes.tread.request_ip"
+        %th
+    %tbody= render treads
+= will_paginate treads

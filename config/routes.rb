@@ -9,12 +9,15 @@ DeadchanNet::Application.routes.draw do
 
   namespace :lodge do
     get '/' => 'dashboard#index'
+    get '/statistics' => 'dashboard#statistics'
 
-    resources :boards
+    resources :boards do
+      get '/statistics' => 'boards#statistics'
+    end
     resources :treads do
+      get '/statistics' => 'treads#statistics'
       resources :posts, except: [:index, :show]
     end
-    resources :users, only: [:index, :destroy]
     resources :bans, except: :show
 
     put 'unpablish_posts' => 'users#unpablish_posts', as: :unpablish_posts

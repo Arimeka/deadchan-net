@@ -2,38 +2,37 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails', '4.1.4'
-gem 'sass-rails', '~> 4.0.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
-gem 'turbolinks'
-gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
-gem 'rails-backbone', github: 'codebrew/backbone-rails', tag: 'v1.1.2'
 gem 'remotipart', '~> 1.2'
 gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
 gem 'decent_exposure'
 gem 'russian'
-gem 'haml'
-gem "haml-rails"
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'autoprefixer-rails'
-gem 'bootstrap-wysihtml5-rails'
-gem 'bootstrap-datepicker-rails'
 gem 'redis-rails'
-gem 'yui-compressor'
 gem 'devise'
 gem 'will_paginate_mongoid'
 gem 'redcarpet'
-gem 'quiet_assets'
-gem 'recaptcha', require: 'recaptcha/rails'
-
-gem 'rails-settings-ui', '~> 0.3.0'
+gem 'recaptcha', require: 'recaptcha/rails', github: 'ambethia/recaptcha'
 gem 'rails-settings-cached', github: 'Arimeka/rails-settings-cached'
-
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'aws-sdk'
 gem 'paperclip-ffmpeg'
+
+# HTML
+gem 'haml'
+gem 'haml-rails'
+gem 'rails-settings-ui', '~> 0.3.0'
+
+# Assets
+gem 'bower-rails', '~> 0.9.1'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'jquery-rails'
+gem 'sass-rails', '~> 4.0.0'
+gem 'rails-backbone', github: 'codebrew/backbone-rails', tag: 'v1.1.2'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+gem 'quiet_assets'
+gem 'yui-compressor'
+gem 'uglifier', '>= 1.3.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

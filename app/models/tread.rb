@@ -4,7 +4,6 @@ class Tread
   include ImageConcern
 
   field :board_id,        type: String
-  field :user_id,         type: String
   field :title,           type: String
   field :content,         type: String
   field :published_at,    type: Time
@@ -36,11 +35,11 @@ class Tread
   # Scopes
   # ======================================================
   scope :published, -> { where(is_published: true, :published_at.lt => Time.zone.now).desc(:is_pinned).desc(:updated_at) }
+  scope :unchecked, -> { where('posts.is_checked' => false) }
 
   # Relations
   # ======================================================
   belongs_to :board
-  belongs_to :user
 
   embeds_many :posts, cascade_callbacks: true
 
@@ -68,6 +67,36 @@ class Tread
     else
       super
     end
+  end
+
+  def set_counts(user)
+    $redis.set("last_posting:#{user.id}", 1, ex: 10) if user
+    $redis.incrby("board:posts_count:#{board_id}:#{Time.now.strftime('%Y-%m-%d-%H')}", 1)
+    $redis.expire("board:posts_count:#{board_id}:#{Time.now.strftime('%Y-%m-%d-%H')}", 24.hours)
+    $redis.incrby("thread:posts_count:#{id}:#{Time.now.strftime('%Y-%m-%d-%H')}", 1)
+    $redis.expire("thread:posts_count:#{id}:#{Time.now.strftime('%Y-%m-%d-%H')}", 24.hours)
+    $redis.incrby("summary:posts_count:#{Time.now.strftime('%Y-%m-%d-%H')}", 1)
+    $redis.expire("summary:posts_count:#{Time.now.strftime('%Y-%m-%d-%H')}", 24.hours)
+  end
+
+  def self.get_posting_statistic(tread_id, count = 12)
+    result = []
+    count.to_i.times do |cnt|
+      time_key = (Time.now - cnt.hours).strftime('%Y-%m-%d-%H')
+      time = (Time.now - cnt.hours).strftime('%H:00')
+      result << {time: time, count: $redis.get("thread:posts_count:#{tread_id}:#{time_key}").to_i}
+    end
+    result.reverse
+  end
+
+  def self.get_visits_statistic(tread_id, count = 7)
+    result = []
+    count.to_i.times do |cnt|
+      time_key = (Time.now - cnt.days).strftime('%Y-%m-%d')
+      time = Russian::strftime((Time.now - cnt.days), '%A')
+      result << {time: time, views: $redis.get("thread:views:#{tread_id}:#{time_key}").to_i, uniq: $redis.pfcount("thread:uniq_views:#{tread_id}:#{time_key}").to_i}
+    end
+    result.reverse
   end
 
   private

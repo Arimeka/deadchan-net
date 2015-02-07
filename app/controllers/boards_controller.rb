@@ -19,11 +19,10 @@ class BoardsController < ApplicationController
           user.remember_me!
           sign_in user
         end
-        tread.user_id = current_user.id if current_user
-        tread.request_ip = IPAddr.new(request.ip).hton
+        tread.request_ip = IPAddr.new(request.ip).hton.force_encoding('UTF-8')
         if tread.save
           render json: {app: {notice: {text: [t('msg.saved')]}, redirect: tread_url(entry.abbr, tread.id)}}
-          $redis.set("last_posting:#{current_user.id}", 1, ex: 10) if user_signed_in?
+          tread.set_counts(current_user)
         else
           errors = tread.errors.full_messages
           render json: {app: {error: {text: errors}}}

@@ -27,17 +27,22 @@ class Lodge::PostsController < Lodge::LodgeController
   end
 
   def update
-    if post.update_attributes(post_params.merge(lodge: true))
-      flash[:notice] = t('msg.saved')
-      if params[:commit] == t('form.save_and_exit')
-        redirect_to lodge_tread_url(tread)
-      else
-        redirect_to edit_lodge_tread_post_url(tread,post)
-      end
+    if request.xhr?
+      post.update_attributes(post_params.merge(lodge: true))
+      render nothing: true
     else
-      @errors = post.errors.full_messages
-      flash.now[:error] = t("msg.save_error")
-      render :edit
+      if post.update_attributes(post_params.merge(lodge: true))
+        flash[:notice] = t('msg.saved')
+        if params[:commit] == t('form.save_and_exit')
+          redirect_to lodge_tread_url(tread)
+        else
+          redirect_to edit_lodge_tread_post_url(tread,post)
+        end
+      else
+        @errors = post.errors.full_messages
+        flash.now[:error] = t("msg.save_error")
+        render :edit
+      end
     end
   end
 
@@ -59,7 +64,7 @@ class Lodge::PostsController < Lodge::LodgeController
   private
 
     def post_params
-      params.fetch(:post, {}).permit(:content, :is_published,
+      params.fetch(:post, {}).permit(:content, :is_published, :is_checked,
                                       image_attributes: [:id, :file, :_destroy])
     end
 end

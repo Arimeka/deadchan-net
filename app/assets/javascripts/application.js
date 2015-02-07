@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.remotipart
-//= require turbolinks
-//= require jquery.turbolinks
 //= require bootstrap/alert
 //= require bootstrap/modal
 //= require bootstrap_notify
@@ -23,12 +21,6 @@
 //= require backbone_rails_sync
 //= require backbone_datalink
 //= require backbone/deadchan_net
-//= require moment
+//= require moment/min/moment.min
+//= require moment/locale/ru
 //= require wheelzoom
-
-$(document).on('page:fetch', function() {
-  $('.loading').show();
-});
-$(document).on('page:change', function() {
-  $('.loading').hide();
-});

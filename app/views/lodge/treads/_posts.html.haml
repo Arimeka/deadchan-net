@@ -1,0 +1,13 @@
+.dataTable_wrapper
+  %table#dataTables-example.table.table-bordered.table-hover
+    %thead
+      %tr
+        %th.col-sm-1
+        %th.col-sm-2= t "mongoid.attributes.post.image"
+        %th.col-sm-5= t "mongoid.attributes.post.content"
+        %th.col-sm-2= t "mongoid.attributes.post.request_ip"
+        %th.col-sm-2= t "mongoid.attributes.post.is_checked"
+        %th.col-sm-2= t "mongoid.attributes.post.is_published"
+        %th.col-sm-2
+    %tbody= render posts
+= will_paginate posts

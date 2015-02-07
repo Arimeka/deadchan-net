@@ -1,4 +1,7 @@
 - provide(:title, 'Редактирование треда')
-= render partial: "subnav"
-%h2= tread.title
-= render partial: "form"
+.row
+  .col-lg-12
+    %h1.page-header= tread.title
+  / /.col-lg-12
+/ /.row
+= render 'form'

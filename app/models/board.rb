@@ -45,6 +45,46 @@ class Board
     end
   end
 
+  def self.get_posting_statistic(board_id, count = 12)
+    result = []
+    count.to_i.times do |cnt|
+      time_key = (Time.now - cnt.hours).strftime('%Y-%m-%d-%H')
+      time = (Time.now - cnt.hours).strftime('%H:00')
+      result << {time: time, count: $redis.get("board:posts_count:#{board_id}:#{time_key}").to_i}
+    end
+    result.reverse
+  end
+
+  def self.get_visits_statistic(board_id, count = 7)
+    result = []
+    count.to_i.times do |cnt|
+      time_key = (Time.now - cnt.days).strftime('%Y-%m-%d')
+      time = Russian::strftime((Time.now - cnt.days), '%A')
+      result << {time: time, views: $redis.get("board:views:#{board_id}:#{time_key}").to_i, uniq: $redis.pfcount("board:uniq_views:#{board_id}:#{time_key}").to_i}
+    end
+    result.reverse
+  end
+
+  def self.get_posting_summary_statistic(count = 12)
+    result = []
+    count.to_i.times do |cnt|
+      time_key = (Time.now - cnt.hours).strftime('%Y-%m-%d-%H')
+      time = (Time.now - cnt.hours).strftime('%H:00')
+      result << {time: time, count: $redis.get("summary:posts_count:#{time_key}").to_i}
+    end
+    result.reverse
+  end
+
+  def self.get_visits_summary_statistic(count = 7)
+    result = []
+    count.to_i.times do |cnt|
+      time_key = (Time.now - cnt.days).strftime('%Y-%m-%d')
+      time = Russian::strftime((Time.now - cnt.days), '%A')
+      result << {time: time, views: $redis.get("summary:views:#{time_key}").to_i, uniq: $redis.pfcount("summary:uniq_views:#{time_key}").to_i}
+    end
+    result.reverse
+  end
+
   private
 
     def unpublish_olds

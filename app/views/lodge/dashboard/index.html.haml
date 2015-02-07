@@ -1,2 +1,36 @@
-- provide(:title, 'Админка')
-.lead Последние посты
+- provide(:title, 'Dashboard')
+.row
+  .col-lg-12
+    %h1.page-header Dashboard
+  / /.col-lg-12
+/ /.row
+.row#dashboard
+  .col-lg-3.col-md-6
+    .panel.panel-primary
+      .panel-heading
+        .row
+          .col-xs-3
+            %i.fa.fa-comments.fa-5x
+          .col-xs-9.text-right
+            .huge= unchecked_treads_count
+            %div Не проверенных тредов
+      = link_to lodge_treads_path do
+        .panel-footer
+          %span.pull-left На список тредов
+          %span.pull-right
+            %i.fa.fa-arrow-circle-right
+          .clearfix
+  #js-summary-statistics
+    .col-lg-12
+      .panel.panel-default
+        .panel-heading
+          Постинг
+        .panel-body
+          #js-morris-area-posts-count
+    .col-lg-12
+      .panel.panel-default
+        .panel-heading
+          Посетители
+        .panel-body
+          #js-morris-area-views-count
+/ /.row
