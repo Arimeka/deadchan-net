@@ -44,7 +44,7 @@ group :doc do
 end
 
 group :development do
-  gem 'capistrano', '~> 3.0'
+  gem 'capistrano', '3.2.1'
   gem 'capistrano-rails', '~> 1.1.0'
   gem 'capistrano-rvm', '~> 0.1.0'
   gem 'capistrano3-unicorn'

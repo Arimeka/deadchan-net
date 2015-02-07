@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.3.5'
+lock '3.2.1'
 
 set :application, 'deadchan-net'
 set :repo_url, 'git@github.com:Arimeka/deadchan-net.git'
@@ -20,7 +20,7 @@ else
   ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 end
 
-set :linked_dirs, %w{log tmp/pids tmp/cache vendor/bundle}
+set :linked_dirs, %w{log tmp/pids tmp/sockets tmp/cache vendor/bundle}
 set :linked_files, %w{config/s3.yml config/recaptcha.yml config/secrets.yml}
 
 namespace :deploy do
