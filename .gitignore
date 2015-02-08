@@ -20,6 +20,7 @@
 /config/recaptcha.yml
 /config/s3.yml
 /coverage
+/public/assets
 
 .DS_Store
 
