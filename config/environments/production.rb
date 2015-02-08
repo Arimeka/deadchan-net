@@ -14,7 +14,7 @@ DeadchanNet::Application.configure do
   config.assets.compile = false
   config.assets.digest = true
   config.assets.version = '1.0'
-  config.assets.precompile += ['modernizr-2.6.2.min.js']
+  config.assets.precompile += ['modernizr-2.6.2.min.js', 'normalize.css']
 
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
