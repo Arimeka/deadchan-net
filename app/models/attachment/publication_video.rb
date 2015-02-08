@@ -9,7 +9,9 @@ class Attachment::PublicationVideo < Attachment
                             default_url:    File.join('missing', 'publication_video_:style.jpg'),
                             default_style:  :original,
                             path:           ':attachment/videos/:id/:style.:extension',
-                            url:            ':s3_domain_url',
+                            url:            ':s3_alias_url',
+                            s3_host_alias:  'static-staging.deadchan.net',
+                            s3_protocol:    'https',
                             use_timestamp:  false
 
   validates_attachment :file, presence: true
