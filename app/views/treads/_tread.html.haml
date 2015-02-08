@@ -16,14 +16,14 @@
           = link_to tread.id.to_s.last(7), tread_path(tread.board.abbr, tread.id)
       .body.row
         - if tread.image && tread.image.file?
-          .col-lg-2.col-md-12
+          .col-lg-3.col-md-12
             = link_to tread.image.url(:original), class: 'attachment', data: {content_type: tread.image.file.content_type} do
-              = image_tag tread.image.url, class: 'img-responsive img-thumbnail'
+              = image_tag tread.image.url, size: '260x260', class: 'img-responsive img-thumbnail'
         - elsif tread.video && tread.video.file?
-          .col-lg-2.col-md-12
+          .col-lg-3.col-md-12
             = link_to tread.video.url, class: 'attachment', data: {content_type: tread.video.file.content_type} do
-              = image_tag tread.video.url(:preview), class: 'img-responsive img-thumbnail'
-        .col-lg-10.col-md-12
+              = image_tag tread.video.url(:preview), width: '260', class: 'img-responsive img-thumbnail'
+        .col-lg-9.col-md-12
           .content= tread.content.html_safe
       .footer.post-form
         - if tread.replies
