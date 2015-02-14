@@ -20,6 +20,9 @@ ru:
         user:
           banned:               "Данный ip забанен"
 
+        attachment:
+          bad_aspect_ratio:     "имеет плохое соотношение сторон"
+
     attributes:
       defaults: &defaults
         title:                  "Заголовок"

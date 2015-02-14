@@ -4,14 +4,14 @@ class Attachment::PublicationVideo < Attachment
   has_mongoid_attached_file :file,
                             storage:        :s3,
                             s3_credentials: {bucket: S3_CONFIG['bucket'], access_key_id: S3_CONFIG['access_key_id'], secret_access_key: S3_CONFIG['secret_access_key']},
-                            styles:         {preview: { geometry: '260x260^', format: 'png', time: DEFAULT_PREVIEW_TIMESTAMP }},
+                            styles:         {preview: { geometry: '260x260', format: 'png', time: DEFAULT_PREVIEW_TIMESTAMP }},
                             processors:     [:ffmpeg],
                             default_url:    File.join('missing', 'publication_video_:style.jpg'),
                             default_style:  :original,
                             path:           ':attachment/videos/:id/:style.:extension',
                             url:            ':s3_alias_url',
-                            s3_host_alias:  'static-staging.deadchan.net',
-                            s3_protocol:    'https',
+                            s3_host_alias:  S3_CONFIG['host'],
+                            s3_protocol:    S3_CONFIG['protocol'],
                             use_timestamp:  false
 
   validates_attachment :file, presence: true

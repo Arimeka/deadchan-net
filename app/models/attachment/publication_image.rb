@@ -2,19 +2,22 @@ class Attachment::PublicationImage < Attachment
   has_mongoid_attached_file :file,
                             storage:        :s3,
                             s3_credentials: {bucket: S3_CONFIG['bucket'], access_key_id: S3_CONFIG['access_key_id'], secret_access_key: S3_CONFIG['secret_access_key']},
-                            styles:         { s260x260: {geometry: '260x260#'} },
+                            styles:         { s260x260: {geometry: '260x260'} },
                             processors:     [:thumbnail],
                             default_url:    File.join('missing', 'publication_image_:style.jpg'),
                             default_style:  :s260x260,
                             path:           ':attachment/images/:id/:style.:extension',
                             url:            ':s3_alias_url',
-                            s3_host_alias:  'static-staging.deadchan.net',
-                            s3_protocol:    'https',
+                            s3_host_alias:  S3_CONFIG['host'],
+                            s3_protocol:    S3_CONFIG['protocol'],
                             use_timestamp:  false
 
   validates_attachment :file, presence: true
   validates_attachment :file, size: { in: 0..10.megabytes }
   validates_attachment :file, content_type: { content_type: %w[image/jpg image/gif image/png image/jpeg] }
+
+  validates_with AspectRatioValidator
+  validate_before_processing AspectRatioValidator, attributes: [:file]
 
   before_post_process :randomize_file_name
 
