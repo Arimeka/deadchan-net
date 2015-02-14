@@ -1,4 +1,4 @@
-- cache tread do
+- cache "tread/partial/#{tread.id}/#{tread.updated_at.to_i}/#{tread.posts.count}/#{tread.posts.last.try(:id)}/#{tread.posts.last.try(:updated_at).to_i}" do
   .thread
     %article.well
       %ul.header.list-inline

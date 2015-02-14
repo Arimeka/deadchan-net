@@ -1,4 +1,4 @@
-- cache "tread/show/#{entry.id}/#{entry.updated_at.to_i}/#{posts.last.try(:id)}/#{posts.last.try(:updated_at).to_i}" do
+- cache "tread/show/#{entry.id}/#{entry.updated_at.to_i}/#{posts.count}/#{posts.last.try(:id)}/#{posts.last.try(:updated_at).to_i}" do
   - provide(:title, "#{entry.board.title} - #{entry.title}")
   #tread
     .col-md-12.post-form
